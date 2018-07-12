@@ -22,13 +22,13 @@
 		E7259A2020F43D96005DC340 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A1F20F43D96005DC340 /* Define.swift */; };
 		E7259A2220F444F0005DC340 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A2120F444F0005DC340 /* LoadingView.swift */; };
 		E7259A2820F4A37F005DC340 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A2720F4A37F005DC340 /* APIManager.swift */; };
-		E7259A3420F588DF005DC340 /* pinCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A3120F588DF005DC340 /* pinCodeCell.swift */; };
-		E7259A3520F588DF005DC340 /* pinCodeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A3220F588DF005DC340 /* pinCodeLayoutView.swift */; };
-		E7259A3620F588DF005DC340 /* pinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A3320F588DF005DC340 /* pinCodeView.swift */; };
 		E7259A3820F5EC0A005DC340 /* setNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A3720F5EC0A005DC340 /* setNameViewController.swift */; };
 		E747243C20E61DCD00B4FB6C /* CreatWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */; };
 		E747243E20E61E2D00B4FB6C /* pinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */; };
 		E747244020E632A900B4FB6C /* pinCodeAgainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */; };
+		E7BEEB2520F70E8400E7956B /* pinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2420F70E8400E7956B /* pinViewController.swift */; };
+		E7BEEB2720F70ED700E7956B /* pinLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2620F70ED700E7956B /* pinLayoutView.swift */; };
+		E7BEEB2920F70EF600E7956B /* pinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2820F70EF600E7956B /* pinCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,13 +72,13 @@
 		E7259A1F20F43D96005DC340 /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		E7259A2120F444F0005DC340 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E7259A2720F4A37F005DC340 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		E7259A3120F588DF005DC340 /* pinCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pinCodeCell.swift; sourceTree = "<group>"; };
-		E7259A3220F588DF005DC340 /* pinCodeLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pinCodeLayoutView.swift; sourceTree = "<group>"; };
-		E7259A3320F588DF005DC340 /* pinCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pinCodeView.swift; sourceTree = "<group>"; };
 		E7259A3720F5EC0A005DC340 /* setNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setNameViewController.swift; sourceTree = "<group>"; };
 		E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatWalletViewController.swift; sourceTree = "<group>"; };
 		E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCodeViewController.swift; sourceTree = "<group>"; };
 		E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCodeAgainViewController.swift; sourceTree = "<group>"; };
+		E7BEEB2420F70E8400E7956B /* pinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinViewController.swift; sourceTree = "<group>"; };
+		E7BEEB2620F70ED700E7956B /* pinLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinLayoutView.swift; sourceTree = "<group>"; };
+		E7BEEB2820F70EF600E7956B /* pinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +176,8 @@
 		E71B0F5820E464DC002FCA4A /* Vc */ = {
 			isa = PBXGroup;
 			children = (
+				E7BEEB2120F70DFB00E7956B /* pin */,
 				E7259A2420F4457C005DC340 /* 不用 */,
-				E7259A3020F588DF005DC340 /* pinCode */,
 				E71B0F5B20E4659F002FCA4A /* phoneNumberViewController.swift */,
 				E71B0F5D20E465D2002FCA4A /* phoneVerificationViewController.swift */,
 				E7259A3720F5EC0A005DC340 /* setNameViewController.swift */,
@@ -212,15 +212,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		E7259A3020F588DF005DC340 /* pinCode */ = {
+		E7BEEB2120F70DFB00E7956B /* pin */ = {
 			isa = PBXGroup;
 			children = (
-				E7259A3120F588DF005DC340 /* pinCodeCell.swift */,
-				E7259A3220F588DF005DC340 /* pinCodeLayoutView.swift */,
-				E7259A3320F588DF005DC340 /* pinCodeView.swift */,
+				E7BEEB2420F70E8400E7956B /* pinViewController.swift */,
+				E7BEEB2620F70ED700E7956B /* pinLayoutView.swift */,
+				E7BEEB2820F70EF600E7956B /* pinCollectionViewCell.swift */,
 			);
-			name = pinCode;
-			path = ../../../ts1/ts1/model/pinCode;
+			path = pin;
 			sourceTree = "<group>";
 		};
 		F6EC77EDE8B297CDAAA22DD9 /* Pods */ = {
@@ -409,21 +408,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7259A2820F4A37F005DC340 /* APIManager.swift in Sources */,
+				E7BEEB2520F70E8400E7956B /* pinViewController.swift in Sources */,
 				E747243C20E61DCD00B4FB6C /* CreatWalletViewController.swift in Sources */,
 				E7259A3820F5EC0A005DC340 /* setNameViewController.swift in Sources */,
 				E71B0F5E20E465D2002FCA4A /* phoneVerificationViewController.swift in Sources */,
-				E7259A3620F588DF005DC340 /* pinCodeView.swift in Sources */,
+				E7BEEB2720F70ED700E7956B /* pinLayoutView.swift in Sources */,
 				E71B0F6520E61AC1002FCA4A /* tool.swift in Sources */,
-				E7259A3420F588DF005DC340 /* pinCodeCell.swift in Sources */,
 				E7259A2220F444F0005DC340 /* LoadingView.swift in Sources */,
 				E747244020E632A900B4FB6C /* pinCodeAgainViewController.swift in Sources */,
-				E7259A3520F588DF005DC340 /* pinCodeLayoutView.swift in Sources */,
 				E71B0F5C20E4659F002FCA4A /* phoneNumberViewController.swift in Sources */,
 				E71B0F2D20E463BE002FCA4A /* ViewController.swift in Sources */,
 				E71B0F2B20E463BE002FCA4A /* AppDelegate.swift in Sources */,
 				E71B0F5A20E46514002FCA4A /* logininViewController.swift in Sources */,
 				E7259A2020F43D96005DC340 /* Define.swift in Sources */,
 				E747243E20E61E2D00B4FB6C /* pinCodeViewController.swift in Sources */,
+				E7BEEB2920F70EF600E7956B /* pinCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

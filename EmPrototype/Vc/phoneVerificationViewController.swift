@@ -130,7 +130,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
                 let alert = UIAlertController(title: "完成簡訊認證", message: nil, preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
-                    let vc = pinCodeView()
+                    let vc = pinViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
                     
                 }))

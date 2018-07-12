@@ -39,9 +39,9 @@ class APIManager: NSObject {
         
         let url = "https://twilio168.azurewebsites.net/api/HttpTriggerInputName?code=32npjc/WSfYFIRnzVtz/F8ezvoalEjc0DMt8Z1ovaiCKUoXkYteSJA==&token=\(token)&name=\(name)"
         
-//        let urlstr = url.urlEncoded()
+        let urlstr = url.urlEncoded()
         
-        Alamofire.request(url).responseJSON { response in
+        Alamofire.request(urlstr).responseJSON { response in
             
 
             if let Json = response.result.value {

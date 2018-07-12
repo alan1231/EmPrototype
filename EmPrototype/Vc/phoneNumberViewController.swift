@@ -90,23 +90,6 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
         nextBtn.layer.cornerRadius = 20
         view.addSubview(nextBtn)
         
-
-        
-//        let request = URLRequest(url: NSURL(string: "https://twilio168.azurewebsites.net/api/HttpTriggerCSharp3?code=vsBbawBOQg3Ww0o7Mocv2mXOAcVwywv1NvCBGzmEkcGE5x9RXTHHcQ==&phoneNo=886978768913")! as URL)
-//        do {
-//            // Perform the request
-//            let response: AutoreleasingUnsafeMutablePointer<URLResponse?>? = nil
-//            let data = try? NSURLConnection.sendSynchronousRequest(request, returning: response)
-//
-//            // Convert the data to JSON
-//            let jsonSerialized = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
-//
-//            if let json = jsonSerialized, let url = json!["status"] {
-//                print("@@@:\(url as! String)")
-//            }
-//        }
-
-
     }
     override func viewWillAppear(_ animated: Bool) {
         
