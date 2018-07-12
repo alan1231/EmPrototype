@@ -5,16 +5,29 @@
 //  Created by alan on 2018/6/28.
 //  Copyright © 2018年 alan. All rights reserved.
 //
-
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var navigation = UINavigationController(rootViewController:phoneNumberViewController())
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+//        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+//            print(uuid)
+//        }
+        
+        
+        self.window = UIWindow(frame:UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
+        //1.创建导航控制器的根视图
+        //2.创建导航视图控制器，并为他制定根视图控制器
+        //3.将导航视图控制器设置为window的根视图控制器
+        navigation.navigationBar.isHidden = true
+        self.window?.rootViewController = navigation
+
+        self.window?.backgroundColor = UIColor.white
         // Override point for customization after application launch.
         return true
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		272118B6383B18BC7FEFDF1C /* Pods_EmPrototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC48C146CED77DF33D2248D /* Pods_EmPrototype.framework */; };
 		E71B0F2B20E463BE002FCA4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F2A20E463BE002FCA4A /* AppDelegate.swift */; };
 		E71B0F2D20E463BE002FCA4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F2C20E463BE002FCA4A /* ViewController.swift */; };
 		E71B0F3020E463BE002FCA4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71B0F2E20E463BE002FCA4A /* Main.storyboard */; };
@@ -14,6 +15,20 @@
 		E71B0F3520E463C1002FCA4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71B0F3320E463C1002FCA4A /* LaunchScreen.storyboard */; };
 		E71B0F4020E463C1002FCA4A /* EmPrototypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F3F20E463C1002FCA4A /* EmPrototypeTests.swift */; };
 		E71B0F4B20E463C1002FCA4A /* EmPrototypeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F4A20E463C1002FCA4A /* EmPrototypeUITests.swift */; };
+		E71B0F5A20E46514002FCA4A /* logininViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F5920E46514002FCA4A /* logininViewController.swift */; };
+		E71B0F5C20E4659F002FCA4A /* phoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F5B20E4659F002FCA4A /* phoneNumberViewController.swift */; };
+		E71B0F5E20E465D2002FCA4A /* phoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F5D20E465D2002FCA4A /* phoneVerificationViewController.swift */; };
+		E71B0F6520E61AC1002FCA4A /* tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F6420E61AC1002FCA4A /* tool.swift */; };
+		E7259A2020F43D96005DC340 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A1F20F43D96005DC340 /* Define.swift */; };
+		E7259A2220F444F0005DC340 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A2120F444F0005DC340 /* LoadingView.swift */; };
+		E7259A2820F4A37F005DC340 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A2720F4A37F005DC340 /* APIManager.swift */; };
+		E7259A3420F588DF005DC340 /* pinCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A3120F588DF005DC340 /* pinCodeCell.swift */; };
+		E7259A3520F588DF005DC340 /* pinCodeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A3220F588DF005DC340 /* pinCodeLayoutView.swift */; };
+		E7259A3620F588DF005DC340 /* pinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A3320F588DF005DC340 /* pinCodeView.swift */; };
+		E7259A3820F5EC0A005DC340 /* setNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A3720F5EC0A005DC340 /* setNameViewController.swift */; };
+		E747243C20E61DCD00B4FB6C /* CreatWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */; };
+		E747243E20E61E2D00B4FB6C /* pinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */; };
+		E747244020E632A900B4FB6C /* pinCodeAgainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5FA4174A827CEAEB1CF4126D /* Pods-EmPrototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPrototype.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EmPrototype/Pods-EmPrototype.debug.xcconfig"; sourceTree = "<group>"; };
+		6A16A8D9C7BDBCAA5BE07280 /* Pods-EmPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPrototype.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmPrototype/Pods-EmPrototype.release.xcconfig"; sourceTree = "<group>"; };
+		AAC48C146CED77DF33D2248D /* Pods_EmPrototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmPrototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71B0F2720E463BE002FCA4A /* EmPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71B0F2A20E463BE002FCA4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E71B0F2C20E463BE002FCA4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +65,20 @@
 		E71B0F4620E463C1002FCA4A /* EmPrototypeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmPrototypeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71B0F4A20E463C1002FCA4A /* EmPrototypeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmPrototypeUITests.swift; sourceTree = "<group>"; };
 		E71B0F4C20E463C1002FCA4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E71B0F5920E46514002FCA4A /* logininViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logininViewController.swift; sourceTree = "<group>"; };
+		E71B0F5B20E4659F002FCA4A /* phoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = phoneNumberViewController.swift; sourceTree = "<group>"; };
+		E71B0F5D20E465D2002FCA4A /* phoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = phoneVerificationViewController.swift; sourceTree = "<group>"; };
+		E71B0F6420E61AC1002FCA4A /* tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tool.swift; sourceTree = "<group>"; };
+		E7259A1F20F43D96005DC340 /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		E7259A2120F444F0005DC340 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		E7259A2720F4A37F005DC340 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		E7259A3120F588DF005DC340 /* pinCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pinCodeCell.swift; sourceTree = "<group>"; };
+		E7259A3220F588DF005DC340 /* pinCodeLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pinCodeLayoutView.swift; sourceTree = "<group>"; };
+		E7259A3320F588DF005DC340 /* pinCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pinCodeView.swift; sourceTree = "<group>"; };
+		E7259A3720F5EC0A005DC340 /* setNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setNameViewController.swift; sourceTree = "<group>"; };
+		E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatWalletViewController.swift; sourceTree = "<group>"; };
+		E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCodeViewController.swift; sourceTree = "<group>"; };
+		E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCodeAgainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				272118B6383B18BC7FEFDF1C /* Pods_EmPrototype.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34FE93F27D4022E61124E9C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAC48C146CED77DF33D2248D /* Pods_EmPrototype.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E71B0F1E20E463BE002FCA4A = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +122,8 @@
 				E71B0F3E20E463C1002FCA4A /* EmPrototypeTests */,
 				E71B0F4920E463C1002FCA4A /* EmPrototypeUITests */,
 				E71B0F2820E463BE002FCA4A /* Products */,
+				F6EC77EDE8B297CDAAA22DD9 /* Pods */,
+				34FE93F27D4022E61124E9C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +140,17 @@
 		E71B0F2920E463BE002FCA4A /* EmPrototype */ = {
 			isa = PBXGroup;
 			children = (
+				E7259A2520F4A335005DC340 /* API */,
+				E7259A2320F444FB005DC340 /* view */,
+				E71B0F5820E464DC002FCA4A /* Vc */,
 				E71B0F2A20E463BE002FCA4A /* AppDelegate.swift */,
 				E71B0F2C20E463BE002FCA4A /* ViewController.swift */,
 				E71B0F2E20E463BE002FCA4A /* Main.storyboard */,
 				E71B0F3120E463C1002FCA4A /* Assets.xcassets */,
 				E71B0F3320E463C1002FCA4A /* LaunchScreen.storyboard */,
 				E71B0F3620E463C1002FCA4A /* Info.plist */,
+				E71B0F6420E61AC1002FCA4A /* tool.swift */,
+				E7259A1F20F43D96005DC340 /* Define.swift */,
 			);
 			path = EmPrototype;
 			sourceTree = "<group>";
@@ -125,6 +173,65 @@
 			path = EmPrototypeUITests;
 			sourceTree = "<group>";
 		};
+		E71B0F5820E464DC002FCA4A /* Vc */ = {
+			isa = PBXGroup;
+			children = (
+				E7259A2420F4457C005DC340 /* 不用 */,
+				E7259A3020F588DF005DC340 /* pinCOde */,
+				E71B0F5B20E4659F002FCA4A /* phoneNumberViewController.swift */,
+				E71B0F5D20E465D2002FCA4A /* phoneVerificationViewController.swift */,
+				E7259A3720F5EC0A005DC340 /* setNameViewController.swift */,
+			);
+			path = Vc;
+			sourceTree = "<group>";
+		};
+		E7259A2320F444FB005DC340 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				E7259A2120F444F0005DC340 /* LoadingView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		E7259A2420F4457C005DC340 /* 不用 */ = {
+			isa = PBXGroup;
+			children = (
+				E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */,
+				E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */,
+				E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */,
+				E71B0F5920E46514002FCA4A /* logininViewController.swift */,
+			);
+			path = "不用";
+			sourceTree = "<group>";
+		};
+		E7259A2520F4A335005DC340 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E7259A2720F4A37F005DC340 /* APIManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		E7259A3020F588DF005DC340 /* pinCOde */ = {
+			isa = PBXGroup;
+			children = (
+				E7259A3120F588DF005DC340 /* pinCodeCell.swift */,
+				E7259A3220F588DF005DC340 /* pinCodeLayoutView.swift */,
+				E7259A3320F588DF005DC340 /* pinCodeView.swift */,
+			);
+			name = pinCOde;
+			path = ../../../ts1/ts1/model/pinCOde;
+			sourceTree = "<group>";
+		};
+		F6EC77EDE8B297CDAAA22DD9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5FA4174A827CEAEB1CF4126D /* Pods-EmPrototype.debug.xcconfig */,
+				6A16A8D9C7BDBCAA5BE07280 /* Pods-EmPrototype.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +239,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E71B0F4F20E463C1002FCA4A /* Build configuration list for PBXNativeTarget "EmPrototype" */;
 			buildPhases = (
+				533AF448860D968BE5763DCD /* [CP] Check Pods Manifest.lock */,
 				E71B0F2320E463BE002FCA4A /* Sources */,
 				E71B0F2420E463BE002FCA4A /* Frameworks */,
 				E71B0F2520E463BE002FCA4A /* Resources */,
+				AD5CC260066F4A29194BBC32 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,13 +360,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		533AF448860D968BE5763DCD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EmPrototype-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD5CC260066F4A29194BBC32 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EmPrototype/Pods-EmPrototype-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CountryPickerView/CountryPickerView.framework",
+				"${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CountryPickerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libPhoneNumber_iOS.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EmPrototype/Pods-EmPrototype-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E71B0F2320E463BE002FCA4A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7259A2820F4A37F005DC340 /* APIManager.swift in Sources */,
+				E747243C20E61DCD00B4FB6C /* CreatWalletViewController.swift in Sources */,
+				E7259A3820F5EC0A005DC340 /* setNameViewController.swift in Sources */,
+				E71B0F5E20E465D2002FCA4A /* phoneVerificationViewController.swift in Sources */,
+				E7259A3620F588DF005DC340 /* pinCodeView.swift in Sources */,
+				E71B0F6520E61AC1002FCA4A /* tool.swift in Sources */,
+				E7259A3420F588DF005DC340 /* pinCodeCell.swift in Sources */,
+				E7259A2220F444F0005DC340 /* LoadingView.swift in Sources */,
+				E747244020E632A900B4FB6C /* pinCodeAgainViewController.swift in Sources */,
+				E7259A3520F588DF005DC340 /* pinCodeLayoutView.swift in Sources */,
+				E71B0F5C20E4659F002FCA4A /* phoneNumberViewController.swift in Sources */,
 				E71B0F2D20E463BE002FCA4A /* ViewController.swift in Sources */,
 				E71B0F2B20E463BE002FCA4A /* AppDelegate.swift in Sources */,
+				E71B0F5A20E46514002FCA4A /* logininViewController.swift in Sources */,
+				E7259A2020F43D96005DC340 /* Define.swift in Sources */,
+				E747243E20E61E2D00B4FB6C /* pinCodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,16 +594,18 @@
 		};
 		E71B0F5020E463C1002FCA4A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FA4174A827CEAEB1CF4126D /* Pods-EmPrototype.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4KJKM9P4AK;
 				INFOPLIST_FILE = EmPrototype/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-2345.EmPrototype";
+				PRODUCT_BUNDLE_IDENTIFIER = emem.EmPrototype.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -446,16 +614,18 @@
 		};
 		E71B0F5120E463C1002FCA4A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A16A8D9C7BDBCAA5BE07280 /* Pods-EmPrototype.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4KJKM9P4AK;
 				INFOPLIST_FILE = EmPrototype/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-2345.EmPrototype";
+				PRODUCT_BUNDLE_IDENTIFIER = emem.EmPrototype.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

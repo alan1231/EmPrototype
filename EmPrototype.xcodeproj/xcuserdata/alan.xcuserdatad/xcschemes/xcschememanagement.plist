@@ -7,7 +7,25 @@
 		<key>EmPrototype.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>E71B0F2620E463BE002FCA4A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E71B0F3A20E463C1002FCA4A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E71B0F4520E463C1002FCA4A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
