@@ -177,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				E7259A2420F4457C005DC340 /* 不用 */,
-				E7259A3020F588DF005DC340 /* pinCOde */,
+				E7259A3020F588DF005DC340 /* pinCode */,
 				E71B0F5B20E4659F002FCA4A /* phoneNumberViewController.swift */,
 				E71B0F5D20E465D2002FCA4A /* phoneVerificationViewController.swift */,
 				E7259A3720F5EC0A005DC340 /* setNameViewController.swift */,
@@ -212,15 +212,15 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		E7259A3020F588DF005DC340 /* pinCOde */ = {
+		E7259A3020F588DF005DC340 /* pinCode */ = {
 			isa = PBXGroup;
 			children = (
 				E7259A3120F588DF005DC340 /* pinCodeCell.swift */,
 				E7259A3220F588DF005DC340 /* pinCodeLayoutView.swift */,
 				E7259A3320F588DF005DC340 /* pinCodeView.swift */,
 			);
-			name = pinCOde;
-			path = ../../../ts1/ts1/model/pinCOde;
+			name = pinCode;
+			path = ../../../ts1/ts1/model/pinCode;
 			sourceTree = "<group>";
 		};
 		F6EC77EDE8B297CDAAA22DD9 /* Pods */ = {
