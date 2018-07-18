@@ -96,7 +96,9 @@ public class CountryPickerView: NibView {
         }
         
         if showCountryCodeInView || showPhoneCodeInView {
-            countryDetailsLabel.text = showCountryCodeInView ? selectedCountry.code : selectedCountry.phoneCode
+            let str = selectedCountry.phoneCode + " ▼"
+
+            countryDetailsLabel.text = showCountryCodeInView ? selectedCountry.code : str
         } else {
             countryDetailsLabel.text = nil
         }
@@ -128,8 +130,13 @@ public class CountryPickerView: NibView {
     public var countries: [Country] = {
         var countries = [Country]()
         let bundle = Bundle(for: CountryPickerView.self)
+        
+//        print(Locale.current.regionCode)
+        
         guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
+            
             let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
+
                 return countries
         }
         

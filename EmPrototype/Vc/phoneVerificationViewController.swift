@@ -24,7 +24,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         let btn = UIButton ()
         btn.setTitle("返回", for: .normal)
         btn.setTitleColor(UIColor.white, for: .normal)
-        btn.frame = CGRect(x: width/20, y: height/25, width: width/8
+        btn.frame = CGRect(x: width/20, y: ((view.frame.size.height/6)/2)-(height/25)/2, width: width/8
             , height: height/25)
         btn.addTarget(self, action: #selector(self.back(sender:)), for: .touchUpInside)
         view.addSubview(btn)
@@ -37,8 +37,8 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         
         
         
+        messageTextField.frame = CGRect(x: view.frame.size.width/15.8, y: view.frame.size.height/3.55, width: view.frame.size.width/1.2, height: view.frame.size.height/15)
         
-        messageTextField.frame = CGRect(x: 27, y: 160, width: view.frame.size.width/1.2, height: 40)
         messageTextField.becomeFirstResponder()
         messageTextField.keyboardType = UIKeyboardType.numberPad
         messageTextField.backgroundColor = UIColor.white
@@ -55,17 +55,17 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(messageTextField)
         
         let numberLab = UILabel()
-        numberLab.text = phoneNumberViewController.myphoneNumber
+        numberLab.text = user.get("phoneNumber")
 //        numberLab.text = "+886978768913"
         numberLab.textAlignment = .center
         numberLab.font = UIFont.systemFont(ofSize: 15)
         numberLab.frame = messageTextField.frame
-        numberLab.frame.origin.y = 200
+        numberLab.frame.origin.y = view.frame.size.height/2.84
         numberLab.frame.size.height = numberLab.frame.size.height * 0.7
         numberLab.textColor = UIColor(red: 59/255, green: 196/255, blue: 89/255, alpha: 1)
         view.addSubview(numberLab)
         
-        
+
         
         let messageCodeLab = UILabel()
         messageCodeLab.textColor = cgGray
@@ -73,7 +73,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         messageCodeLab.textAlignment = .center
         messageCodeLab.font = UIFont.systemFont(ofSize: 15)
         messageCodeLab.frame = numberLab.frame
-        messageCodeLab.frame.origin.y = 220
+        messageCodeLab.frame.origin.y = view.frame.size.height/2.58
         view.addSubview(messageCodeLab)
         
         let h1 = UILabel()
@@ -82,15 +82,19 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         h1.textAlignment = .center
         h1.font = UIFont.systemFont(ofSize: 15)
         h1.frame = numberLab.frame
-        h1.frame.origin.y = 240
+        h1.frame.origin.y = view.frame.size.height/2.37
         view.addSubview(h1)
         
+
         let restMessageCodeBtn = UIButton()
         restMessageCodeBtn.setTitle("重新传送认证码", for: .normal)
         restMessageCodeBtn.setTitleColor(cgBlackGray, for: .normal)
         restMessageCodeBtn.frame = numberLab.frame
         restMessageCodeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        restMessageCodeBtn.frame.origin.y = 265
+        restMessageCodeBtn.frame.origin.y = view.frame.size.height/2.14
+        
+
+        
         restMessageCodeBtn.frame.size.height += -10
         restMessageCodeBtn.frame.size.width = getSizeFromString(string: "重新传送认证码", withFont:UIFont.systemFont(ofSize: 15)).width
         restMessageCodeBtn.frame.origin.x = view.frame.size.width/2 - restMessageCodeBtn.frame.size.width/2
@@ -99,7 +103,8 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         
         
         nextBtn.frame = messageTextField.frame
-        nextBtn.frame.origin.y = 300
+        nextBtn.frame.origin.y = view.frame.size.height/1.889
+
         nextBtn.backgroundColor = mobiColor
         nextBtn.setTitleColor(UIColor.white, for: .normal)
         nextBtn.layer.cornerRadius = 20
@@ -119,22 +124,31 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 
         self.setupView()
 
-        APIManager.getApi.sendMessage(phoneNumberViewController.myphoneNumber, self.messageTextField.text!, completion: {result,token,err    in
+        APIManager.getApi.sendMessage(user.get("phoneNumber"), self.messageTextField.text!, completion: {result,token,err    in
     
             if result == "ok"{
                 self.loadviewBG.removeFromSuperview()
 
                 
-                phoneNumberViewController.token = token!
-                print(phoneNumberViewController.token)
-                let alert = UIAlertController(title: "完成簡訊認證", message: nil, preferredStyle: .alert)
                 
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
-                    let vc = pinViewController()
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    
-                }))
-                self.present(alert, animated: false)
+                user.save("token", token!)
+                
+//                let defaults = UserDefaults.standard
+//                defaults.set(token, forKey: "token")
+//                defaults.synchronize()
+//                print(defaults.object(forKey: "token") as! String)
+                
+                let vc = pinViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.navigationBar.isHidden = false
+
+//                let alert = UIAlertController(title: "完成簡訊認證", message: nil, preferredStyle: .alert)
+//
+//                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+//                
+//
+//                }))
+//                self.present(alert, animated: true)
 
             }else{
                 self.loadviewBG.removeFromSuperview()

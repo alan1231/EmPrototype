@@ -26,6 +26,13 @@
 		E747243C20E61DCD00B4FB6C /* CreatWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */; };
 		E747243E20E61E2D00B4FB6C /* pinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */; };
 		E747244020E632A900B4FB6C /* pinCodeAgainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */; };
+		E765DA4620F71D96003FF71A /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4520F71D96003FF71A /* homeViewController.swift */; };
+		E765DA4A20F73935003FF71A /* tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4920F73935003FF71A /* tabbar.swift */; };
+		E765DA4C20F73A32003FF71A /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4B20F73A32003FF71A /* AViewController.swift */; };
+		E765DA4E20F73A3D003FF71A /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4D20F73A3D003FF71A /* BViewController.swift */; };
+		E765DA5020F83E44003FF71A /* home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4F20F83E43003FF71A /* home.swift */; };
+		E765DA5420FC45A6003FF71A /* homeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA5320FC45A6003FF71A /* homeLayoutView.swift */; };
+		E7AB786B20FECC4000270CA6 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AB786A20FECC4000270CA6 /* user.swift */; };
 		E7BEEB2520F70E8400E7956B /* pinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2420F70E8400E7956B /* pinViewController.swift */; };
 		E7BEEB2720F70ED700E7956B /* pinLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2620F70ED700E7956B /* pinLayoutView.swift */; };
 		E7BEEB2920F70EF600E7956B /* pinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2820F70EF600E7956B /* pinCollectionViewCell.swift */; };
@@ -76,6 +83,13 @@
 		E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatWalletViewController.swift; sourceTree = "<group>"; };
 		E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCodeViewController.swift; sourceTree = "<group>"; };
 		E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCodeAgainViewController.swift; sourceTree = "<group>"; };
+		E765DA4520F71D96003FF71A /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
+		E765DA4920F73935003FF71A /* tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabbar.swift; sourceTree = "<group>"; };
+		E765DA4B20F73A32003FF71A /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
+		E765DA4D20F73A3D003FF71A /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
+		E765DA4F20F83E43003FF71A /* home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = home.swift; sourceTree = "<group>"; };
+		E765DA5320FC45A6003FF71A /* homeLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeLayoutView.swift; sourceTree = "<group>"; };
+		E7AB786A20FECC4000270CA6 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = user.swift; path = API/user.swift; sourceTree = "<group>"; };
 		E7BEEB2420F70E8400E7956B /* pinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinViewController.swift; sourceTree = "<group>"; };
 		E7BEEB2620F70ED700E7956B /* pinLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinLayoutView.swift; sourceTree = "<group>"; };
 		E7BEEB2820F70EF600E7956B /* pinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -143,14 +157,18 @@
 				E7259A2520F4A335005DC340 /* API */,
 				E7259A2320F444FB005DC340 /* view */,
 				E71B0F5820E464DC002FCA4A /* Vc */,
-				E71B0F2A20E463BE002FCA4A /* AppDelegate.swift */,
-				E71B0F2C20E463BE002FCA4A /* ViewController.swift */,
-				E71B0F2E20E463BE002FCA4A /* Main.storyboard */,
 				E71B0F3120E463C1002FCA4A /* Assets.xcassets */,
 				E71B0F3320E463C1002FCA4A /* LaunchScreen.storyboard */,
 				E71B0F3620E463C1002FCA4A /* Info.plist */,
+				E71B0F2A20E463BE002FCA4A /* AppDelegate.swift */,
+				E765DA4B20F73A32003FF71A /* AViewController.swift */,
+				E765DA4D20F73A3D003FF71A /* BViewController.swift */,
+				E765DA4F20F83E43003FF71A /* home.swift */,
+				E71B0F2C20E463BE002FCA4A /* ViewController.swift */,
 				E71B0F6420E61AC1002FCA4A /* tool.swift */,
 				E7259A1F20F43D96005DC340 /* Define.swift */,
+				E71B0F2E20E463BE002FCA4A /* Main.storyboard */,
+				E7AB786A20FECC4000270CA6 /* user.swift */,
 			);
 			path = EmPrototype;
 			sourceTree = "<group>";
@@ -181,6 +199,9 @@
 				E71B0F5B20E4659F002FCA4A /* phoneNumberViewController.swift */,
 				E71B0F5D20E465D2002FCA4A /* phoneVerificationViewController.swift */,
 				E7259A3720F5EC0A005DC340 /* setNameViewController.swift */,
+				E765DA4920F73935003FF71A /* tabbar.swift */,
+				E765DA4520F71D96003FF71A /* homeViewController.swift */,
+				E765DA5320FC45A6003FF71A /* homeLayoutView.swift */,
 			);
 			path = Vc;
 			sourceTree = "<group>";
@@ -414,14 +435,21 @@
 				E71B0F5E20E465D2002FCA4A /* phoneVerificationViewController.swift in Sources */,
 				E7BEEB2720F70ED700E7956B /* pinLayoutView.swift in Sources */,
 				E71B0F6520E61AC1002FCA4A /* tool.swift in Sources */,
+				E765DA4A20F73935003FF71A /* tabbar.swift in Sources */,
 				E7259A2220F444F0005DC340 /* LoadingView.swift in Sources */,
+				E765DA5420FC45A6003FF71A /* homeLayoutView.swift in Sources */,
+				E765DA5020F83E44003FF71A /* home.swift in Sources */,
 				E747244020E632A900B4FB6C /* pinCodeAgainViewController.swift in Sources */,
 				E71B0F5C20E4659F002FCA4A /* phoneNumberViewController.swift in Sources */,
 				E71B0F2D20E463BE002FCA4A /* ViewController.swift in Sources */,
 				E71B0F2B20E463BE002FCA4A /* AppDelegate.swift in Sources */,
+				E765DA4E20F73A3D003FF71A /* BViewController.swift in Sources */,
 				E71B0F5A20E46514002FCA4A /* logininViewController.swift in Sources */,
 				E7259A2020F43D96005DC340 /* Define.swift in Sources */,
+				E765DA4C20F73A32003FF71A /* AViewController.swift in Sources */,
 				E747243E20E61E2D00B4FB6C /* pinCodeViewController.swift in Sources */,
+				E7AB786B20FECC4000270CA6 /* user.swift in Sources */,
+				E765DA4620F71D96003FF71A /* homeViewController.swift in Sources */,
 				E7BEEB2920F70EF600E7956B /* pinCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,14 +625,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4KJKM9P4AK;
+				DEVELOPMENT_TEAM = 956SHRFBVW;
 				INFOPLIST_FILE = EmPrototype/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = emem.EmPrototype.com;
+				PRODUCT_BUNDLE_IDENTIFIER = em.EmPrototypes.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -617,14 +645,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4KJKM9P4AK;
+				DEVELOPMENT_TEAM = 956SHRFBVW;
 				INFOPLIST_FILE = EmPrototype/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = emem.EmPrototype.com;
+				PRODUCT_BUNDLE_IDENTIFIER = em.EmPrototypes.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -24,12 +24,12 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     
     var labAry = [UILabel]()
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        
-        navigationController?.navigationBar.isHidden = false
+//        navigationController?.navigationBar.isHidden = false
         
         self.title = ""
         let newBackButton = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.done, target: self, action:#selector(self.back))
@@ -46,7 +46,8 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         
         initView()
         
-        
+  
+
         //        let btn = UIButton()
         //        btn.frame = CGRect(x: 10, y: 30, width: 40, height: 40)
         //        btn.addTarget(self, action: #selector(self.back), for: .touchUpInside)
@@ -56,14 +57,17 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     @objc func back(){
         self.navigationController?.popViewController(animated: true)
         
-        if phoneNumberViewController.PinStatus == "1"{
+        if user.get("PinStatus") == "1"{
             navigationController?.navigationBar.isHidden = true
+            print("bbb")
         }else{
             navigationController?.navigationBar.isHidden = false
+            print("aaaa")
         }
         
-        phoneNumberViewController.PinStatus = "1"
-        
+        let defaults = UserDefaults.standard
+        defaults.set("1", forKey: "PinStatus")
+        defaults.synchronize()
     }
     
     func initView(){
@@ -74,12 +78,15 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         colltionView?.delegate = self;
         colltionView?.dataSource = self;
         colltionView?.backgroundColor = UIColor.white
+
         //设置每一个cell的宽高
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 1.0
         layout.sectionInset = .zero
         layout.itemSize = CGSize(width: width/3.18, height: height/12)
         self.view.addSubview(colltionView!)
+        colltionView!.delaysContentTouches = false
+
         
     }
     func collectionView(_ collectionView: UICollectionView,
@@ -103,36 +110,58 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                 pinPassword.removeLast()
                 
             default:
+                let count = Int(user.get("PinNumber"))! + 1
                 
-                if !(pinPassword.count == 6) {
+                if !(pinPassword.count == count) {
                     pinPassword.append(dataArr[(indexPath.item)])
-                    if pinPassword.count == 6{
+                    if pinPassword.count == count{
                         
-                        let str = "\(pinPassword[0])"+"\(pinPassword[1])"+"\(pinPassword[2])"+"\(pinPassword[3])"+"\(pinPassword[4])"+"\(pinPassword[5])"
+                        var str = String()
+                        if count == 6 {
+                             str = "\(pinPassword[0])"+"\(pinPassword[1])"+"\(pinPassword[2])"+"\(pinPassword[3])"+"\(pinPassword[4])"+"\(pinPassword[5])"
+                            print("六位碼驗證:"+"\(str)")
+                        }else{
+                             str = "\(pinPassword[0])"+"\(pinPassword[1])"+"\(pinPassword[2])"+"\(pinPassword[3])"
+                            print("四位碼驗證:"+"\(str)")
+                        }
                         
-                        print("六位碼驗證:"+"\(str)")
                         
-                        switch (phoneNumberViewController.PinStatus){
-                            
+                        
+                        switch (user.get("PinStatus")){
                         case "1" :
                             pinViewController.pinCode = str
+                            let defaults = UserDefaults.standard
+                            defaults.set(str, forKey: "pinCode")
+                            defaults.synchronize()
                             let vc = pinViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
-                            phoneNumberViewController.PinStatus = "2"
+                            
+                            let defaults2 = UserDefaults.standard
+                            defaults2.set("2", forKey: "PinStatus")
+                            defaults2.synchronize()
+                            
                         case "2" :
-                            if str == pinViewController.pinCode{
-                                print("驗證ok")
-                                let alert = UIAlertController(title: "PinCode認證", message: nil, preferredStyle: .alert)
+                            if str == user.get("pinCode"){
+                                let vc = setNameViewController()
+                                self.navigationController?.pushViewController(vc, animated: true)
                                 
-                                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
-                                    let vc = setNameViewController()
-                                    self.present(vc, animated: true, completion: nil)
-                                    
-                                }))
-                                self.present(alert, animated: true)
+                                let defaults = UserDefaults.standard
+                                defaults.set("3", forKey: "PinStatus")
+                                defaults.synchronize()
+                            }else{
+                                print("某愛了")
+                                pinMain.pinLab.shake()
+                                pinPassword.removeAll()
                                 
+                            }
+                        case "3" :
+                            if str == user.get("pinCode"){
+                                let vc = tabbar()
+                                self.navigationController?.pushViewController(vc, animated: false)
                                 
-                                
+                                let defaults = UserDefaults.standard
+                                defaults.set("3", forKey: "PinStatus")
+                                defaults.synchronize()
                             }else{
                                 print("某愛了")
                                 pinMain.pinLab.shake()
@@ -140,8 +169,8 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                                 
                             }
                             
-                        default: break
-                            
+                        default: 
+                            print("NNNNNN")
                         }
                         
                         
@@ -151,30 +180,27 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                 break
             }
         }
-        for i in 0...5{
+        for i in 0...Int(user.get("PinNumber"))!{
             pinMain.labArry[i].layer.cornerRadius = pinMain.labArry[i].bounds.width/2
             pinMain.labArry[i].isHidden = ((i >= pinPassword.count) ? true:false)
-            
         }
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        labAry[indexPath.row].backgroundColor = UIColor.groupTableViewBackground
-        return true
-    }
-    
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         labAry[indexPath.row].backgroundColor = UIColor.groupTableViewBackground
     }
     
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-        labAry[indexPath.row].backgroundColor = UIColor.white
-        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
+            self.labAry[indexPath.row].backgroundColor = UIColor.white
+        }
     }
     
+    
+    
+
     
     
     

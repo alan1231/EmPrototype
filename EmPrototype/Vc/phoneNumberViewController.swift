@@ -12,7 +12,7 @@ import Alamofire
 import libPhoneNumber_iOS
 class phoneNumberViewController: UIViewController,UITextFieldDelegate {
     
-    let cp = CountryPickerView(frame: CGRect(x: 20, y: 220, width: 115, height: 20))
+    let cp = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 125, height: 20))
     
     let loadviewBG = UIView()
     
@@ -20,35 +20,44 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
 
     var  phoneNumberField = UITextField()
     
-    static var myphoneNumber = String()
-    static var PinStatus = String()
-    static var token = String()
+    let nextBtn = UIButton()
+    
+    var phoneNumber = NBPhoneNumber()
+    var phoneUtil = NBPhoneNumberUtil()
+    
+    var phoneNumberResults : Bool = false
+    
+//    static var myphoneNumber = String()
+//    static var PinStatus = String()
+//    static var token = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+   
         
         let topview = UILabel()
         topview.backgroundColor = mobiColor
         topview.frame = CGRect(x: 0 , y: 0, width: view.frame.size.width, height: view.frame.size.height/6)
         view.addSubview(topview)
 
- 
+        
         
         view.backgroundColor = UIColor.white
-        
+        phoneNumberField.addTarget(self, action: #selector(self.ck), for: .editingChanged)
         phoneNumberField.leftView = cp
         phoneNumberField.leftViewMode = .always
         phoneNumberField.placeholder = "手机号码"
         phoneNumberField.keyboardType = UIKeyboardType.numberPad
-        phoneNumberField.frame = CGRect(x: 22, y: 160
-            , width: view.frame.size.width/1.2, height: 40)
+        phoneNumberField.frame = CGRect(x: view.frame.size.width/15.8, y: view.frame.size.height/3.6
+            , width: view.frame.size.width/1.15, height: 40)
+        phoneNumberField.delegate = self
 
         phoneNumberField.layer.addBorder(edge: .bottom, color: UIColor.groupTableViewBackground, thickness: 1)
 
         phoneNumberField.addTarget(self, action: #selector(self.change), for: .editingChanged)
         phoneNumberField.font = UIFont.systemFont(ofSize: 20)
         view.addSubview(phoneNumberField)
-        phoneNumberField.becomeFirstResponder()
         
         cp.showCountryCodeInView = false
         
@@ -74,53 +83,72 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
 //        view.addSubview(messageCode)
         
         let infolab = UILabel()
-        infolab.frame = CGRect(x: 0, y: 265, width: self.view.frame.size.width, height: 40)
+        infolab.frame = CGRect(x: 0, y: view.frame.size.height/2.9, width: self.view.frame.size.width, height: view.frame.size.height/14.2
+        )
         infolab.text = "点击「下一步」即表示您同意使用协议和隐私政策"
         infolab.font = UIFont.systemFont(ofSize: 12)
         infolab.textAlignment = .center
         view.addSubview(infolab)
         
-        let nextBtn = UIButton()
         nextBtn.frame = phoneNumberField.frame
-        nextBtn.frame.origin.y = 300
+        nextBtn.frame.origin.y =  view.frame.size.height/2.4
         nextBtn.addTarget(self, action: #selector(self.nextView), for: .touchUpInside)
-        nextBtn.backgroundColor = mobiColor
+        nextBtn.backgroundColor = UIColor.gray
         nextBtn.setTitle("下一步", for: .normal)
         nextBtn.setTitleColor(UIColor.white, for: .normal)
         nextBtn.layer.cornerRadius = 20
         view.addSubview(nextBtn)
         
+        
+        let view3ces = UILabel()
+        view3ces.font = UIFont.boldSystemFont(ofSize: 20)
+        view3ces.text = "欢迎使用电子钱包"
+        view3ces.frame = view.frame
+        view3ces.textAlignment = .center
+        view3ces.textColor = UIColor.white
+        view3ces.backgroundColor = mobiColor
+        view.addSubview(view3ces)
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) {
+            view3ces.removeFromSuperview()
+            self.phoneNumberField.becomeFirstResponder()
+
+        }
+        
     }
     override func viewWillAppear(_ animated: Bool) {
-        
+        navigationController?.navigationBar.isHidden = true
     }
     @objc func nextView(){
-        let phoneUtil = NBPhoneNumberUtil()
         
         do {
-            let phoneNumber: NBPhoneNumber = try phoneUtil.parse(phoneNumberField.text!, defaultRegion:cp.selectedCountry.code)
 
-            let phoneNumberResults =  phoneUtil.isValidNumber(forRegion: phoneNumber, regionCode:cp.selectedCountry.code)
-            
-            
             let vs : String = try phoneUtil.format(phoneNumber, numberFormat: .E164)
-            phoneNumberViewController.myphoneNumber = vs
-            phoneNumberViewController.PinStatus = "1"
-
+            
+            let defaults = UserDefaults.standard
+            defaults.set(vs, forKey: "phoneNumber")
+            defaults.synchronize()
+            
+            let defaults2 = UserDefaults.standard
+            defaults2.set("1", forKey: "PinStatus")
+            defaults2.synchronize()
+            
+            user.remove("PinNumber")
+            let defaults3 = UserDefaults.standard
+            defaults3.set("5", forKey: "PinNumber")
+            defaults3.synchronize()
+            
+//            phoneNumberViewController.PinStatus = "1"
+            
             if phoneNumberResults {
+                
                 setupView()
                 
-                
-           
                 Alamofire.request("https://twilio168.azurewebsites.net/api/HttpTriggerCSharp3?code=vsBbawBOQg3Ww0o7Mocv2mXOAcVwywv1NvCBGzmEkcGE5x9RXTHHcQ==&phoneNo=\(vs)").responseJSON { response in
                     if let Json = response.result.value {
                         // 回傳 yes
                         let ty = Json as![String:AnyObject]
                         let status = ty["status"]as! String
-                        
-                        
-                        
-                        
                         if status == "ok"{
                             self.loadviewBG.removeFromSuperview()
 
@@ -134,19 +162,11 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
                     }else{
                         self.alert("連接異常","關閉")
                         self.loadviewBG.removeFromSuperview()
-
                     }
-                    
-                    
                 }
-                
-                
             }else{
                 self.alert("請輸入正確的手機號碼","關閉")
-
             }
-            
-
         }
         catch let error as NSError {
             // alert 輸入 正確號碼
@@ -200,7 +220,29 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
     
     }
     
+
     
+    @objc func ck(){
+//        print(phoneNumberField.text!)
+        do {
+            phoneNumber = try phoneUtil.parse(phoneNumberField.text!, defaultRegion:cp.selectedCountry.code)
+            
+             phoneNumberResults =  phoneUtil.isValidNumber(forRegion: phoneNumber, regionCode:cp.selectedCountry.code)
+            
+            if phoneNumberResults {
+                nextBtn.backgroundColor = mobiColor
+            }else{
+                nextBtn.backgroundColor = UIColor.gray
+            }
+        }
+        catch let error as NSError {
+            // alert 輸入 正確號碼
+            print(error.localizedDescription)
+            print("sssss")
+        }
+        
+        
+    }
     
 
 

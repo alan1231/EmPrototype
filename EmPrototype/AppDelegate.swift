@@ -9,15 +9,26 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-    var navigation = UINavigationController(rootViewController:phoneNumberViewController())
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-//        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-//            print(uuid)
-//        }
+        var navigation = UINavigationController(rootViewController:phoneNumberViewController())
         
+//          user.remove("pinCode")
+//          user.remove("PinStatus")
+//          user.remove("token")
+//          user.remove("PinNumber")
+
+        let defaults = UserDefaults.standard
+        if  defaults.object(forKey: "token") as? String == nil && defaults.object(forKey: "pinCode") == nil {
+            navigation = UINavigationController(rootViewController:phoneNumberViewController())
+        }else{
+            navigation = UINavigationController(rootViewController:pinViewController())
+            navigation.navigationBar.isHidden = true
+        }
+        
+
+
         
         self.window = UIWindow(frame:UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
@@ -29,6 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window?.backgroundColor = UIColor.white
         // Override point for customization after application launch.
+        
+
+
+        
+        
         return true
     }
 

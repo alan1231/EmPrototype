@@ -104,7 +104,6 @@ class pinCodeViewController: UIViewController,UITextFieldDelegate {
             self.codeNumber = 5
             self.labview.removeFromSuperview()
             self.labview = UIView()
-
             self.labAry.removeAll()
             self.labview.center = self.view.center
             self.labview.frame.size.width = 230

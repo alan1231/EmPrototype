@@ -27,10 +27,12 @@ class CountryPickerViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = false
         
         prepareTableItems()
         prepareNavItem()
         prepareSearchBar()
+
     }
    
 }
@@ -101,14 +103,21 @@ extension CountryPickerViewController {
             return
         }
         searchController = UISearchController(searchResultsController:  nil)
+
         searchController?.searchResultsUpdater = self
         searchController?.dimsBackgroundDuringPresentation = false
         searchController?.hidesNavigationBarDuringPresentation = searchBarPosition == .tableViewHeader
         searchController?.searchBar.delegate = self
-
+        searchController?.searchBar.sizeToFit()
+        let myview = UIView()
+        myview.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70)
+        print(view.frame.size.height/10)
+        myview.addSubview((searchController?.searchBar)!)
         switch searchBarPosition {
-        case .tableViewHeader: tableView.tableHeaderView = searchController?.searchBar
-        case .navigationBar: navigationItem.titleView = searchController?.searchBar
+        case .tableViewHeader: tableView.tableHeaderView = myview
+        
+        case .navigationBar: navigationItem.titleView = myview
+
         default: break
         }
     }
@@ -117,6 +126,7 @@ extension CountryPickerViewController {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }
+
 
 
 //MARK:- UITableViewDataSource
@@ -173,7 +183,9 @@ extension CountryPickerViewController {
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         }
     }
-    
+   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return view.frame.height/30
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let country = isSearchMode ? searchResults[indexPath.row]
@@ -230,6 +242,7 @@ extension CountryPickerViewController: UISearchBarDelegate {
         // Show the back/left navigationItem button
         prepareNavItem()
         navigationItem.hidesBackButton = false
+
     }
     
 }

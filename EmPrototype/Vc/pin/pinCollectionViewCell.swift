@@ -23,7 +23,7 @@ class pinCollectionViewCell: UICollectionViewCell {
     //數字鍵
     func initView(){
         
-        titleLabel = UILabel(frame:CGRect(x: 0, y: 10, width: width/3.18, height: width/12))
+        titleLabel = UILabel(frame:CGRect(x: 0, y: 12, width: width/3.18, height: width/12))
         titleLabel?.textColor = UIColor.black
         titleLabel?.font = UIFont.systemFont(ofSize: 28)
         titleLabel?.textAlignment = .center

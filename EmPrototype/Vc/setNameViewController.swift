@@ -16,11 +16,11 @@ class setNameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = mobiColor
-
+        navigationController?.navigationBar.isHidden = true
         
         let nameLab = UILabel()
         nameLab.frame = CGRect(x: 0, y: view.frame.size.height/10, width: view.frame.size.width, height: view.frame.size.height/10)
-        nameLab.text = "請輸入名字"
+        nameLab.text = "请输入姓名"
         nameLab.textAlignment = .center
         nameLab.font = UIFont.boldSystemFont(ofSize: 30)
         nameLab.textColor = UIColor.white
@@ -38,7 +38,7 @@ class setNameViewController: UIViewController {
 
         view.addSubview(textfield)
         
-        btn.frame = CGRect(x: view.frame.size.width/1.25, y: view.frame.size.height/28, width: view.frame.size.width/6, height: view.frame.size.height/20)
+        btn.frame = CGRect(x: view.frame.size.width/1.28, y: view.frame.size.height/28, width: view.frame.size.width/5, height: view.frame.size.height/20)
         btn.setTitleColor(UIColor.gray, for: .normal)
         btn.layer.addBorder(edge: .bottom, color: UIColor.gray, thickness: 1)
         btn.setTitle("下一步", for: .normal)
@@ -54,22 +54,16 @@ class setNameViewController: UIViewController {
         //除去前后空格
         let str2 = str1.trimmingCharacters(in: .whitespaces)
         
-            APIManager.getApi.sendName(phoneNumberViewController.token, str2, completion: {result,err    in
+            APIManager.getApi.sendName(user.get("token"), str2, completion: {result,err    in
                 
                 
                 if result == "ok"{
                     self.loadviewBG.removeFromSuperview()
-
-                    //                phoneNumberViewController.token = token!
-                    //                print(phoneNumberViewController.token)
-                    //                let alert = UIAlertController(title: "完成簡訊認證", message: nil, preferredStyle: .alert)
-                    //
-                    //                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
-                    //                    let vc = pinCodeView()
-                    //                    self.navigationController?.pushViewController(vc, animated: true)
-                    //
-                    //                }))
-                    //                self.present(alert, animated: false)
+                    
+                    let vc = tabbar()
+//                    self.navigationController?.pushViewController(vc, animated: true)
+                    self.present(vc, animated: false, completion: nil)
+                   
                     
                 }else{
                     self.loadviewBG.removeFromSuperview()

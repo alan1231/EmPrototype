@@ -10,6 +10,7 @@ import UIKit
 
 public let width = UIScreen.main.bounds.size.width//获取屏幕宽
 public let height = UIScreen.main.bounds.size.height//获取屏幕高
+
 public let mobiColor = UIColor(red: 37/255.0, green: 66/255.0, blue: 152/255.0, alpha: 1)
 public let systemBuleColor = UIColor(red: 25/255.0, green: 56/255.0, blue: 145/255.0, alpha: 1)
 public let cgGray = UIColor(red: 193/255, green: 191/255, blue: 194/255, alpha: 1)
