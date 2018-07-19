@@ -12,7 +12,14 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
     let messageTextField = UITextField()
     let nextBtn = UIButton()
     let loadviewBG = UIView()
-
+    let restMessageCodeBtn = UIButton()
+    
+    var second = 60
+    var timer = Timer()
+    var isTimerRun = false
+    var str = String()
+    var bordview = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,7 +62,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(messageTextField)
         
         let numberLab = UILabel()
-        numberLab.text = user.get("phoneNumber")
+        numberLab.text = user.get("PhoneNumber")
 //        numberLab.text = "+886978768913"
         numberLab.textAlignment = .center
         numberLab.font = UIFont.systemFont(ofSize: 15)
@@ -86,20 +93,28 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(h1)
         
 
-        let restMessageCodeBtn = UIButton()
-        restMessageCodeBtn.setTitle("重新传送认证码", for: .normal)
         restMessageCodeBtn.setTitleColor(cgBlackGray, for: .normal)
         restMessageCodeBtn.frame = numberLab.frame
         restMessageCodeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         restMessageCodeBtn.frame.origin.y = view.frame.size.height/2.14
-        
-
-        
         restMessageCodeBtn.frame.size.height += -10
-        restMessageCodeBtn.frame.size.width = getSizeFromString(string: "重新传送认证码", withFont:UIFont.systemFont(ofSize: 15)).width
+        restMessageCodeBtn.setTitle("沒有收到驗證碼嗎？請等待60s", for: .normal)
+        restMessageCodeBtn.frame.size.width = getSizeFromString(string: "沒有收到驗證碼嗎？請等待60s", withFont:UIFont.systemFont(ofSize: 15)).width
         restMessageCodeBtn.frame.origin.x = view.frame.size.width/2 - restMessageCodeBtn.frame.size.width/2
-        restMessageCodeBtn.layer.addBorder(edge: .bottom, color: UIColor(red: 149/255, green: 149/255, blue: 152/255, alpha: 1), thickness: 1)
+//        restMessageCodeBtn.layer.addBorder(edge: .bottom, color: UIColor(red: 149/255, green: 149/255, blue: 152/255, alpha: 1), thickness: 1)
+        restMessageCodeBtn.addTarget(self, action: #selector(self.restMessage), for: .touchUpInside)
+//        restMessageCodeBtn.setAttributedTitle(NSAttributedString(string: "沒有收到驗證碼嗎？請等待60s",
+//                                                      attributes: [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]), for: .normal)
         view.addSubview(restMessageCodeBtn)
+        
+        bordview.frame = restMessageCodeBtn.frame
+        bordview.frame.origin.y = restMessageCodeBtn.frame.origin.y + restMessageCodeBtn.frame.size.height
+        bordview.frame.size.height = 1
+        bordview.backgroundColor = UIColor(red: 149/255, green: 149/255, blue: 152/255, alpha: 1)
+        view.addSubview(bordview)
+        
+        
+        
         
         
         nextBtn.frame = messageTextField.frame
@@ -111,6 +126,63 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         nextBtn.addTarget(self, action: #selector(self.nextView), for: .touchUpInside)
         nextBtn.setTitle("确定", for: .normal)
         view.addSubview(nextBtn)
+        restMessageCodeBtn.isHidden = true
+        bordview.isHidden = true
+        runTimer()
+    }
+    
+    func runTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    @objc func restMessage (){
+        if isTimerRun == true{
+            second = 60
+            runTimer()
+            isTimerRun = false
+            
+            
+            APIManager.getApi.sendPhoneNumber(user.get("PhoneNumber"), self.messageTextField.text!, completion: {result,err    in
+                if result == "ok"{
+                    print("ok")
+                }else{
+                    print("err")
+                }
+            })
+            
+            
+            
+        }
+ 
+    }
+    
+    @objc func updateTimer(){
+        
+        if second == 0 {
+            isTimerRun = true
+            restMessageCodeBtn.isHidden = false
+            bordview.isHidden = false
+            timer.invalidate()
+             str = "重新传送验证码"
+            restMessageCodeBtn.setTitle(str, for: .normal)
+            restMessageCodeBtn.frame.size.width = getSizeFromString(string: str , withFont:UIFont.systemFont(ofSize: 15)).width
+            restMessageCodeBtn.frame.origin.x = view.frame.size.width/2 - restMessageCodeBtn.frame.size.width/2
+            bordview.frame.origin.x = restMessageCodeBtn.frame.origin.x
+            bordview.frame.size.width = restMessageCodeBtn.frame.size.width
+
+            restMessageCodeBtn.invalidateIntrinsicContentSize()
+
+        }else{
+            second -= 1
+            print(second)
+             str = "沒有收到驗證碼嗎？請等待\(second)秒"
+            restMessageCodeBtn.setTitle(str, for: .normal)
+            restMessageCodeBtn.frame.size.width = getSizeFromString(string: str , withFont:UIFont.systemFont(ofSize: 15)).width
+            restMessageCodeBtn.frame.origin.x = view.frame.size.width/2 - restMessageCodeBtn.frame.width/2
+            bordview.frame.origin.x = restMessageCodeBtn.frame.origin.x
+            bordview.frame.size.width = restMessageCodeBtn.frame.size.width
+        }
+
         
     }
     @objc func back(sender: UIBarButtonItem) {
@@ -124,7 +196,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 
         self.setupView()
 
-        APIManager.getApi.sendMessage(user.get("phoneNumber"), self.messageTextField.text!, completion: {result,token,err    in
+        APIManager.getApi.sendMessage(user.get("PhoneNumber"), self.messageTextField.text!, completion: {result,token,err    in
     
             if result == "ok"{
                 self.loadviewBG.removeFromSuperview()
@@ -151,6 +223,11 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
                 self.loadviewBG.removeFromSuperview()
                 self.messageTextField.becomeFirstResponder()
                 self.messageTextField.shake()
+//                self.messageTextField.attributedPlaceholder = "输入验证码".attributedString(aligment: .center)
+
+                self.messageTextField.attributedPlaceholder = NSAttributedString(string:
+                    "错误验证码", attributes:
+                    [NSAttributedStringKey.foregroundColor:UIColor.red])
                 self.messageTextField.text = ""
             }
             
@@ -158,9 +235,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 
     }
     
-    @objc func nextView2(str: String){
-       
-    }
+ 
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else{

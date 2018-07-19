@@ -12,6 +12,36 @@ class APIManager: NSObject {
     
     static let getApi = APIManager()
     
+    func sendPhoneNumber(_ Number:String,_ name:String,completion:@escaping (String?,Error?)->Void){
+        let url = "https://davidfunc.azurewebsites.net/api/requestSMSVerify?code=St0Av0A0PagU18UrTafewYxaZonjdrjnLQnTJVxVk6XhCh1lwUDC1A==&phoneNo=\(Number)"
+
+        Alamofire.request(url).responseJSON { response in
+            
+            
+            if let Json = response.result.value {
+                // 回傳 yes
+                print(Json)
+                let ty = Json as![String:AnyObject]
+                let status = ty["status"]as! String
+                if status == "ok"{
+                    completion(status, nil)
+                }else{
+                    
+                    completion(status, nil)
+                    print(Json)
+                    
+                    
+                }
+                
+            }else{
+                let e = NSError(domain:"", code:1)
+                completion(nil, e)
+                print(e)
+                
+            }
+        }
+        
+    }
     
     func sendMessage(_ phoneNumber:String,_ smsCode:String,completion:@escaping (String?,String?,Error?)->Void){
         Alamofire.request("https://davidfunc.azurewebsites.net/api/verifySMSPasscode?code=lECM7Qzk08hMeMLmqIbosIfqQzHXAmZcialbxsT658huTitp8WUqxQ==&phoneNo=\(phoneNumber)&smsCode=\(smsCode)").responseJSON { response in

@@ -28,6 +28,7 @@ class BViewController: UIViewController {
         user.remove("PinStatus")
         user.remove("Token")
         user.remove("PinNumber")
+        user.remove("PhoneNumber")
         let vc = phoneNumberViewController()
         self.navigationController?.pushViewController(vc, animated: true)
         self.navigationController?.navigationBar.isHidden = true

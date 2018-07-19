@@ -10,7 +10,7 @@ import UIKit
 import CountryPickerView
 import Alamofire
 import libPhoneNumber_iOS
-class phoneNumberViewController: UIViewController,UITextFieldDelegate {
+class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
     let cp = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 125, height: 20))
     
@@ -57,12 +57,21 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
         
         cp.showCountryCodeInView = false
         
-        let infolab = UILabel()
-        infolab.frame = CGRect(x: 0, y: phoneNumberField.frame.origin.y + phoneNumberField.frame.size.height , width: self.view.frame.size.width, height: view.frame.size.height/18
+        let infolab = UITextView()
+        infolab.frame = CGRect(x: 0, y: phoneNumberField.frame.origin.y + view.frame.size.height/4.3, width: self.view.frame.size.width, height: view.frame.size.height/18
         )
-        infolab.text = "点击「下一步」即表示您同意使用协议和隐私政策"
+        infolab.appendLinkString(string: "点击「下一步」即表示您同意")
+        infolab.appendLinkString(string: "使用协议", withURLString: "about:")
+        infolab.appendLinkString(string: "和")
+        infolab.appendLinkString(string: "隐私政策", withURLString: "feedback:")
+
+
         infolab.font = UIFont.systemFont(ofSize: 12)
         infolab.textAlignment = .center
+        infolab.delegate = self
+        infolab.isUserInteractionEnabled = true
+        infolab.isEditable = false
+        
         view.addSubview(infolab)
         
         nextBtn.frame = phoneNumberField.frame
@@ -91,16 +100,38 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
         }
         
     }
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL,
+                  in characterRange: NSRange) -> Bool {
+        print(URL.scheme as Any)
+        
+        switch URL.scheme {
+        case "about" :
+            let vc = AgreementViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        case "feedback" :
+            let vc = PrivacyPolicyViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        default:
+            print("这个是普通的url")
+        }
+        
+        return true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
     }
+    
+    
+
+    
     @objc func nextView(){
         
         do {
 
             let vs : String = try phoneUtil.format(phoneNumber, numberFormat: .E164)
             
-            user.save("phoneNumber",vs)
+            user.save("PhoneNumber",vs)
             user.save("PinNumber", "5")
             user.save("PinStatus", "1")
             
@@ -110,7 +141,6 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
                 
                 Alamofire.request("https://davidfunc.azurewebsites.net/api/requestSMSVerify?code=St0Av0A0PagU18UrTafewYxaZonjdrjnLQnTJVxVk6XhCh1lwUDC1A==&phoneNo=\(vs)").responseJSON { response in
                     
-                    print("https://davidfunc.azurewebsites.net/api/requestSMSVerify?code=St0Av0A0PagU18UrTafewYxaZonjdrjnLQnTJVxVk6XhCh1lwUDC1A==&phoneNo=\(vs)")
                     
                     if let Json = response.result.value {
                         // 回傳 yes
@@ -215,4 +245,5 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
 
 
 }
+
 

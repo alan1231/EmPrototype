@@ -32,6 +32,8 @@
 		E765DA4E20F73A3D003FF71A /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4D20F73A3D003FF71A /* BViewController.swift */; };
 		E765DA5020F83E44003FF71A /* home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4F20F83E43003FF71A /* home.swift */; };
 		E765DA5420FC45A6003FF71A /* homeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA5320FC45A6003FF71A /* homeLayoutView.swift */; };
+		E76F71DA2100755100020DBF /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F71D92100755100020DBF /* AgreementViewController.swift */; };
+		E76F71DC2100757100020DBF /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F71DB2100757100020DBF /* PrivacyPolicyViewController.swift */; };
 		E7AB786B20FECC4000270CA6 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AB786A20FECC4000270CA6 /* user.swift */; };
 		E7BEEB2520F70E8400E7956B /* pinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2420F70E8400E7956B /* pinViewController.swift */; };
 		E7BEEB2720F70ED700E7956B /* pinLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2620F70ED700E7956B /* pinLayoutView.swift */; };
@@ -89,6 +91,8 @@
 		E765DA4D20F73A3D003FF71A /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
 		E765DA4F20F83E43003FF71A /* home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = home.swift; sourceTree = "<group>"; };
 		E765DA5320FC45A6003FF71A /* homeLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeLayoutView.swift; sourceTree = "<group>"; };
+		E76F71D92100755100020DBF /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
+		E76F71DB2100757100020DBF /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		E7AB786A20FECC4000270CA6 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = user.swift; path = API/user.swift; sourceTree = "<group>"; };
 		E7BEEB2420F70E8400E7956B /* pinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinViewController.swift; sourceTree = "<group>"; };
 		E7BEEB2620F70ED700E7956B /* pinLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinLayoutView.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				E7259A1F20F43D96005DC340 /* Define.swift */,
 				E71B0F2E20E463BE002FCA4A /* Main.storyboard */,
 				E7AB786A20FECC4000270CA6 /* user.swift */,
+				E76F71D92100755100020DBF /* AgreementViewController.swift */,
+				E76F71DB2100757100020DBF /* PrivacyPolicyViewController.swift */,
 			);
 			path = EmPrototype;
 			sourceTree = "<group>";
@@ -430,6 +436,7 @@
 			files = (
 				E7259A2820F4A37F005DC340 /* APIManager.swift in Sources */,
 				E7BEEB2520F70E8400E7956B /* pinViewController.swift in Sources */,
+				E76F71DC2100757100020DBF /* PrivacyPolicyViewController.swift in Sources */,
 				E747243C20E61DCD00B4FB6C /* CreatWalletViewController.swift in Sources */,
 				E7259A3820F5EC0A005DC340 /* setNameViewController.swift in Sources */,
 				E71B0F5E20E465D2002FCA4A /* phoneVerificationViewController.swift in Sources */,
@@ -443,6 +450,7 @@
 				E71B0F5C20E4659F002FCA4A /* phoneNumberViewController.swift in Sources */,
 				E71B0F2D20E463BE002FCA4A /* ViewController.swift in Sources */,
 				E71B0F2B20E463BE002FCA4A /* AppDelegate.swift in Sources */,
+				E76F71DA2100755100020DBF /* AgreementViewController.swift in Sources */,
 				E765DA4E20F73A3D003FF71A /* BViewController.swift in Sources */,
 				E71B0F5A20E46514002FCA4A /* logininViewController.swift in Sources */,
 				E7259A2020F43D96005DC340 /* Define.swift in Sources */,

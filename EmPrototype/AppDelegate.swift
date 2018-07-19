@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //          user.remove("PinStatus")
 //          user.remove("Token")
 //          user.remove("PinNumber")
-        
+//          user.remove("PhoneNumber")
 //            user.save("PinNumber", "5")
 //            user.save("PinStatus", "1")
 
