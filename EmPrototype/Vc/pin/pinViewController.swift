@@ -12,7 +12,6 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     
     var pinMain: pinLayoutView!
     
-    static var pinCode = String()
     
     var dataArr = ["1","2","3","4","5","6","7","8","9","清除","0","⌫"]
     
@@ -24,12 +23,18 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     
     var labAry = [UILabel]()
     
+    var pinLab = UILabel()
+    
+    var labArry = [UILabel]()
+    var labArry2 = [UILabel]()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-//        navigationController?.navigationBar.isHidden = false
+        pinLab.frame = CGRect(x: 0, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
+        self.view.addSubview(pinLab)
+        //        navigationController?.navigationBar.isHidden = false
         
         self.title = ""
         let newBackButton = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.done, target: self, action:#selector(self.back))
@@ -44,16 +49,83 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         
         view.addSubview(pinMain)
         
-        initView()
+        pinMain.nextBtn.frame = CGRect(x: viewSize.width/2 - viewSize.width/10 , y: pinLab.frame.origin.y + pinLab.frame.size.height + viewSize.height/5.5, width: viewSize.width/5, height: 40)
         
-  
-
+        initView()
+        pinMain.nextBtn.addTarget(self, action:#selector(self.pinchange), for: .touchUpInside)
+        
+        
         //        let btn = UIButton()
         //        btn.frame = CGRect(x: 10, y: 30, width: 40, height: 40)
         //        btn.addTarget(self, action: #selector(self.back), for: .touchUpInside)
         //        btn.backgroundColor  = UIColor.red
         //        view.addSubview(btn)
+        
+        switch user.get("PinNumber"){
+        case "3":
+            addCode(Int(user.get("PinNumber"))!, nb: 2.7)
+        case "5":
+            addCode(Int(user.get("PinNumber"))!, nb: 3.6)
+        default:break
+        }
+        
     }
+    @objc func pinchange(){
+        
+        if pinMain.pinBool {
+            pinMain.pinBool = false
+            pinPassword.removeAll()
+            pinLab.removeFromSuperview()
+            pinLab = UILabel()
+            pinLab.frame = CGRect(x: 0, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
+            view.addSubview(pinLab)
+            addCode(3, nb: 2.7)
+            pinMain.nextBtn.setTitle("PIN选项4", for: .normal)
+            
+
+            user.save("PinNumber", "3")
+            
+        }else{
+            pinMain.pinBool = true
+            pinPassword.removeAll()
+            pinLab.removeFromSuperview()
+            pinLab = UILabel()
+            pinLab.frame = CGRect(x: 0, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
+            view.addSubview(pinLab)
+            addCode(5, nb: 3.6)
+            pinMain.nextBtn.setTitle("PIN选项6", for: .normal)
+            
+            user.save("PinNumber", "5")
+
+        }
+        
+        
+        
+    }
+    @objc func addCode (_ int:Int ,nb:CGFloat){
+        labArry.removeAll()
+        for i in 0...int{
+            let lab = UILabel()
+            lab.frame = CGRect(x: (Int(viewSize.width/12)*i)+Int(viewSize.width/nb), y: 0, width: Int(viewSize.width/20), height: Int(viewSize.width/20))
+            lab.backgroundColor = systemBuleColor
+            lab.layer.cornerRadius=lab.bounds.width/2
+            lab.layer.masksToBounds=true
+            lab.isHidden = true
+            pinLab.addSubview(lab)
+            labArry.append(lab)
+        }
+        
+        labArry2.removeAll()
+        for i in 0...int{
+            let lab = UILabel()
+            lab.frame = CGRect(x: (Int(viewSize.width/12)*i)+Int(viewSize.width/nb)
+                , y: 0 + Int((viewSize.width/20)/2)-1, width: Int(viewSize.width/20), height: 3)
+            lab.backgroundColor = systemBuleColor
+            pinLab.addSubview(lab)
+            labArry2.append(lab)
+        }
+    }
+    
     @objc func back(){
         self.navigationController?.popViewController(animated: true)
         
@@ -65,9 +137,9 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             print("aaaa")
         }
         
-        let defaults = UserDefaults.standard
-        defaults.set("1", forKey: "PinStatus")
-        defaults.synchronize()
+        
+        user.save("PinStatus", "1")
+
     }
     
     func initView(){
@@ -78,7 +150,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         colltionView?.delegate = self;
         colltionView?.dataSource = self;
         colltionView?.backgroundColor = UIColor.white
-
+        
         //设置每一个cell的宽高
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 1.0
@@ -86,7 +158,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         layout.itemSize = CGSize(width: width/3.18, height: height/12)
         self.view.addSubview(colltionView!)
         colltionView!.delaysContentTouches = false
-
+        
         
     }
     func collectionView(_ collectionView: UICollectionView,
@@ -118,10 +190,10 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                         
                         var str = String()
                         if count == 6 {
-                             str = "\(pinPassword[0])"+"\(pinPassword[1])"+"\(pinPassword[2])"+"\(pinPassword[3])"+"\(pinPassword[4])"+"\(pinPassword[5])"
+                            str = "\(pinPassword[0])"+"\(pinPassword[1])"+"\(pinPassword[2])"+"\(pinPassword[3])"+"\(pinPassword[4])"+"\(pinPassword[5])"
                             print("六位碼驗證:"+"\(str)")
                         }else{
-                             str = "\(pinPassword[0])"+"\(pinPassword[1])"+"\(pinPassword[2])"+"\(pinPassword[3])"
+                            str = "\(pinPassword[0])"+"\(pinPassword[1])"+"\(pinPassword[2])"+"\(pinPassword[3])"
                             print("四位碼驗證:"+"\(str)")
                         }
                         
@@ -129,47 +201,40 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                         
                         switch (user.get("PinStatus")){
                         case "1" :
-                            pinViewController.pinCode = str
-                            let defaults = UserDefaults.standard
-                            defaults.set(str, forKey: "pinCode")
-                            defaults.synchronize()
+                            user.save("PinCode",str)
+                            user.save("PinStatus", "2")
+
                             let vc = pinViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
-                            
-                            let defaults2 = UserDefaults.standard
-                            defaults2.set("2", forKey: "PinStatus")
-                            defaults2.synchronize()
+                            self.navigationController?.navigationBar.isHidden = false
+
                             
                         case "2" :
-                            if str == user.get("pinCode"){
+                            if str == user.get("PinCode"){
                                 let vc = setNameViewController()
                                 self.navigationController?.pushViewController(vc, animated: true)
                                 
-                                let defaults = UserDefaults.standard
-                                defaults.set("3", forKey: "PinStatus")
-                                defaults.synchronize()
+                                user.save("PinStatus", "3")
+
                             }else{
                                 print("某愛了")
-                                pinMain.pinLab.shake()
+                                pinLab.shake()
                                 pinPassword.removeAll()
                                 
                             }
                         case "3" :
-                            if str == user.get("pinCode"){
+                            if str == user.get("PinCode"){
                                 let vc = tabbar()
                                 self.navigationController?.pushViewController(vc, animated: false)
                                 
-                                let defaults = UserDefaults.standard
-                                defaults.set("3", forKey: "PinStatus")
-                                defaults.synchronize()
                             }else{
                                 print("某愛了")
-                                pinMain.pinLab.shake()
+                                pinLab.shake()
                                 pinPassword.removeAll()
                                 
                             }
                             
-                        default: 
+                        default:
                             print("NNNNNN")
                         }
                         
@@ -181,13 +246,14 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             }
         }
         for i in 0...Int(user.get("PinNumber"))!{
-            pinMain.labArry[i].layer.cornerRadius = pinMain.labArry[i].bounds.width/2
-            pinMain.labArry[i].isHidden = ((i >= pinPassword.count) ? true:false)
+            print(i)
+            labArry[i].layer.cornerRadius = labArry[i].bounds.width/2
+            labArry[i].isHidden = ((i >= pinPassword.count) ? true:false)
         }
         
     }
     
-
+    
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         labAry[indexPath.row].backgroundColor = UIColor.groupTableViewBackground
     }
@@ -200,7 +266,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     
     
     
-
+    
     
     
     

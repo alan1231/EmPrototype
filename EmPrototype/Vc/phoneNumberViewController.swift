@@ -83,7 +83,7 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
 //        view.addSubview(messageCode)
         
         let infolab = UILabel()
-        infolab.frame = CGRect(x: 0, y: view.frame.size.height/2.9, width: self.view.frame.size.width, height: view.frame.size.height/14.2
+        infolab.frame = CGRect(x: 0, y: phoneNumberField.frame.origin.y + phoneNumberField.frame.size.height , width: self.view.frame.size.width, height: view.frame.size.height/18
         )
         infolab.text = "点击「下一步」即表示您同意使用协议和隐私政策"
         infolab.font = UIFont.systemFont(ofSize: 12)
@@ -91,7 +91,7 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(infolab)
         
         nextBtn.frame = phoneNumberField.frame
-        nextBtn.frame.origin.y =  view.frame.size.height/2.4
+        nextBtn.frame.origin.y =  infolab.frame.origin.y + infolab.frame.size.height
         nextBtn.addTarget(self, action: #selector(self.nextView), for: .touchUpInside)
         nextBtn.backgroundColor = UIColor.gray
         nextBtn.setTitle("下一步", for: .normal)
@@ -125,18 +125,11 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
 
             let vs : String = try phoneUtil.format(phoneNumber, numberFormat: .E164)
             
-            let defaults = UserDefaults.standard
-            defaults.set(vs, forKey: "phoneNumber")
-            defaults.synchronize()
-            
-            let defaults2 = UserDefaults.standard
-            defaults2.set("1", forKey: "PinStatus")
-            defaults2.synchronize()
-            
-            user.remove("PinNumber")
-            let defaults3 = UserDefaults.standard
-            defaults3.set("5", forKey: "PinNumber")
-            defaults3.synchronize()
+
+            user.save("phoneNumber",vs)
+            user.save("PinNumber", "5")
+            user.save("PinStatus", "1")
+
             
 //            phoneNumberViewController.PinStatus = "1"
             
@@ -144,7 +137,7 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
                 
                 setupView()
                 
-                Alamofire.request("https://twilio168.azurewebsites.net/api/HttpTriggerCSharp3?code=vsBbawBOQg3Ww0o7Mocv2mXOAcVwywv1NvCBGzmEkcGE5x9RXTHHcQ==&phoneNo=\(vs)").responseJSON { response in
+                Alamofire.request("https://davidfunc.azurewebsites.net/api/requestSMSVerify?code=St0Av0A0PagU18UrTafewYxaZonjdrjnLQnTJVxVk6XhCh1lwUDC1A%3D%3D&phoneNo=\(vs)").responseJSON { response in
                     if let Json = response.result.value {
                         // 回傳 yes
                         let ty = Json as![String:AnyObject]

@@ -24,9 +24,9 @@ class BViewController: UIViewController {
         self.view.addSubview(btn)
     }
     @objc func dddd(){
-        user.remove("pinCode")
+        user.remove("PinCode")
         user.remove("PinStatus")
-        user.remove("token")
+        user.remove("Token")
         user.remove("PinNumber")
         let vc = phoneNumberViewController()
         self.present(vc, animated: true, completion: nil)

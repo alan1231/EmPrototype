@@ -48,13 +48,15 @@ class setNameViewController: UIViewController {
         
     }
     @objc func sendName (){
+        print("1")
         textfield.resignFirstResponder()
         setupView()
         let str1 = self.textfield.text!
         //除去前后空格
         let str2 = str1.trimmingCharacters(in: .whitespaces)
-        
-            APIManager.getApi.sendName(user.get("token"), str2, completion: {result,err    in
+            print(str2)
+            print(user.get("Token"))
+            APIManager.getApi.sendName(user.get("Token"), str2, completion: {result,err    in
                 
                 
                 if result == "ok"{
@@ -67,7 +69,8 @@ class setNameViewController: UIViewController {
                     
                 }else{
                     self.loadviewBG.removeFromSuperview()
-
+                    print(str2)
+                    print(user.get("Token"))
                     //                self.messageTextField.becomeFirstResponder()
                     //                self.messageTextField.shake()
                     //                self.messageTextField.text = ""

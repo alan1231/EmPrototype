@@ -16,7 +16,8 @@ class user: NSObject {
     }
     static func get (_ key:String)->String{
         let defaults = UserDefaults.standard
-        return defaults.object(forKey:key) as! String
+        let str = defaults.object(forKey:key)
+        return str as! String
     }
     static func remove (_ key:String){
         let defaults = UserDefaults.standard

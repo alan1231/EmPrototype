@@ -14,7 +14,7 @@ class APIManager: NSObject {
     
     
     func sendMessage(_ phoneNumber:String,_ smsCode:String,completion:@escaping (String?,String?,Error?)->Void){
-        Alamofire.request("https://twilio168.azurewebsites.net/api/HttpTriggerSmsCheck?code=G/HlMKjalgY5r0GXahXfaWQ2aVnVypkmowdUXUEsOUEfmheOCcaXLw==&phoneNo=\(phoneNumber)&smsCode=\(smsCode)").responseJSON { response in
+        Alamofire.request("https://davidfunc.azurewebsites.net/api/verifySMSPasscode?code=lECM7Qzk08hMeMLmqIbosIfqQzHXAmZcialbxsT658huTitp8WUqxQ%3D%3D&phoneNo=\(phoneNumber)&smsCode=\(smsCode)").responseJSON { response in
             if let Json = response.result.value {
                 // 回傳 yes
                 print(Json)
@@ -36,11 +36,10 @@ class APIManager: NSObject {
      }
     
     func sendName(_ token:String,_ name:String,completion:@escaping (String?,Error?)->Void){
-        
-        let url = "https://twilio168.azurewebsites.net/api/HttpTriggerInputName?code=32npjc/WSfYFIRnzVtz/F8ezvoalEjc0DMt8Z1ovaiCKUoXkYteSJA==&token=\(token)&name=\(name)"
-        
+        print("1")
+        let url = "https://davidfunc.azurewebsites.net/api/setUsername?code=lXyuIVo6awl56MAo2kIBF3NT1e9rMw4X5ybecNHrawksrKOHzC%2FXuQ%3D%3D&token=\(token)&name=\(name)"
         let urlstr = url.urlEncoded()
-        
+        print(url)
         Alamofire.request(urlstr).responseJSON { response in
             
 

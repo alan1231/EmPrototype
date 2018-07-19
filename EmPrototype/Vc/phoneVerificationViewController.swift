@@ -131,12 +131,9 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 
                 
                 
-                user.save("token", token!)
+                user.save("Token", token!)
                 
-//                let defaults = UserDefaults.standard
-//                defaults.set(token, forKey: "token")
-//                defaults.synchronize()
-//                print(defaults.object(forKey: "token") as! String)
+
                 
                 let vc = pinViewController()
                 self.navigationController?.pushViewController(vc, animated: true)

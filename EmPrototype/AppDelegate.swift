@@ -11,22 +11,26 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        print("11111")
         var navigation = UINavigationController(rootViewController:phoneNumberViewController())
         
-//          user.remove("pinCode")
+//          user.remove("PinCode")
 //          user.remove("PinStatus")
-//          user.remove("token")
+//          user.remove("Token")
 //          user.remove("PinNumber")
+        
+//            user.save("PinNumber", "5")
+//            user.save("PinStatus", "1")
 
         let defaults = UserDefaults.standard
-        if  defaults.object(forKey: "token") as? String == nil && defaults.object(forKey: "pinCode") == nil {
+        if  defaults.object(forKey: "Token") as? String == nil && defaults.object(forKey: "pinCode") == nil {
             navigation = UINavigationController(rootViewController:phoneNumberViewController())
         }else{
             navigation = UINavigationController(rootViewController:pinViewController())
             navigation.navigationBar.isHidden = true
         }
-        
+//        navigation = UINavigationController(rootViewController:pinViewController())
+//        navigation.navigationBar.isHidden = true
 
 
         
