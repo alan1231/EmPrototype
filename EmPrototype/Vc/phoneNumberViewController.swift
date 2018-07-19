@@ -26,10 +26,6 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
     var phoneUtil = NBPhoneNumberUtil()
     
     var phoneNumberResults : Bool = false
-    
-//    static var myphoneNumber = String()
-//    static var PinStatus = String()
-//    static var token = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,27 +56,6 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(phoneNumberField)
         
         cp.showCountryCodeInView = false
-        
-//        let messagelab = UILabel()
-//        messagelab.frame = CGRect(x: 0, y: 0, width: 150, height: 40)
-//        messagelab.text = "短信驗證碼"
-//
-//        let messageBtn = UIButton()
-//        messageBtn.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
-//        messageBtn.setTitle("發送", for: .normal)
-//        messageBtn.setTitleColor(UIColor.blue, for: .normal)
-//        messageBtn.layer.addBorder(edge: .bottom, color: UIColor.blue, thickness: 1)
-//
-//        messageCode.rightView = messageBtn
-//        messageCode.rightViewMode = .always
-//
-//        messageCode.leftView = messagelab
-//        messageCode.leftViewMode = .always
-//        messageCode.keyboardType = UIKeyboardType.numberPad
-//        messageCode.frame = phoneNumberField.frame
-//        messageCode.frame.origin.y += phoneNumberField.frame.height+10
-//        messageCode.layer.addBorder(edge: .bottom, color: UIColor.groupTableViewBackground, thickness: 1)
-//        view.addSubview(messageCode)
         
         let infolab = UILabel()
         infolab.frame = CGRect(x: 0, y: phoneNumberField.frame.origin.y + phoneNumberField.frame.size.height , width: self.view.frame.size.width, height: view.frame.size.height/18
@@ -125,21 +100,22 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
 
             let vs : String = try phoneUtil.format(phoneNumber, numberFormat: .E164)
             
-
             user.save("phoneNumber",vs)
             user.save("PinNumber", "5")
             user.save("PinStatus", "1")
-
-            
-//            phoneNumberViewController.PinStatus = "1"
             
             if phoneNumberResults {
-                
+                print("22222")
                 setupView()
                 
-                Alamofire.request("https://davidfunc.azurewebsites.net/api/requestSMSVerify?code=St0Av0A0PagU18UrTafewYxaZonjdrjnLQnTJVxVk6XhCh1lwUDC1A%3D%3D&phoneNo=\(vs)").responseJSON { response in
+                Alamofire.request("https://davidfunc.azurewebsites.net/api/requestSMSVerify?code=St0Av0A0PagU18UrTafewYxaZonjdrjnLQnTJVxVk6XhCh1lwUDC1A==&phoneNo=\(vs)").responseJSON { response in
+                    
+                    print("https://davidfunc.azurewebsites.net/api/requestSMSVerify?code=St0Av0A0PagU18UrTafewYxaZonjdrjnLQnTJVxVk6XhCh1lwUDC1A==&phoneNo=\(vs)")
+                    
                     if let Json = response.result.value {
                         // 回傳 yes
+                        print(Json)
+                        
                         let ty = Json as![String:AnyObject]
                         let status = ty["status"]as! String
                         if status == "ok"{
@@ -231,7 +207,6 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate {
         catch let error as NSError {
             // alert 輸入 正確號碼
             print(error.localizedDescription)
-            print("sssss")
         }
         
         

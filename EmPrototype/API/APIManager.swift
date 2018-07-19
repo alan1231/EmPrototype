@@ -14,7 +14,7 @@ class APIManager: NSObject {
     
     
     func sendMessage(_ phoneNumber:String,_ smsCode:String,completion:@escaping (String?,String?,Error?)->Void){
-        Alamofire.request("https://davidfunc.azurewebsites.net/api/verifySMSPasscode?code=lECM7Qzk08hMeMLmqIbosIfqQzHXAmZcialbxsT658huTitp8WUqxQ%3D%3D&phoneNo=\(phoneNumber)&smsCode=\(smsCode)").responseJSON { response in
+        Alamofire.request("https://davidfunc.azurewebsites.net/api/verifySMSPasscode?code=lECM7Qzk08hMeMLmqIbosIfqQzHXAmZcialbxsT658huTitp8WUqxQ==&phoneNo=\(phoneNumber)&smsCode=\(smsCode)").responseJSON { response in
             if let Json = response.result.value {
                 // 回傳 yes
                 print(Json)
@@ -36,10 +36,12 @@ class APIManager: NSObject {
      }
     
     func sendName(_ token:String,_ name:String,completion:@escaping (String?,Error?)->Void){
-        print("1")
-        let url = "https://davidfunc.azurewebsites.net/api/setUsername?code=lXyuIVo6awl56MAo2kIBF3NT1e9rMw4X5ybecNHrawksrKOHzC%2FXuQ%3D%3D&token=\(token)&name=\(name)"
+        let url = "https://davidfunc.azurewebsites.net/api/setUsername?code=lXyuIVo6awl56MAo2kIBF3NT1e9rMw4X5ybecNHrawksrKOHzC/XuQ==&token=\(token)&name=\(name)"
         let urlstr = url.urlEncoded()
-        print(url)
+        
+        print(urlstr)
+        
+        print(url+";")
         Alamofire.request(urlstr).responseJSON { response in
             
 
@@ -59,12 +61,9 @@ class APIManager: NSObject {
                 }
                 
             }else{
-//                var error: Error? {
-//                    return 1 as! Error
-//
-//                }
                 let e = NSError(domain:"", code:1)
                 completion(nil, e)
+                print(e)
                 
             }
         }

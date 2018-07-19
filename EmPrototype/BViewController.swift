@@ -29,7 +29,8 @@ class BViewController: UIViewController {
         user.remove("Token")
         user.remove("PinNumber")
         let vc = phoneNumberViewController()
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.navigationBar.isHidden = true
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

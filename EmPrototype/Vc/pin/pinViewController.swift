@@ -12,7 +12,6 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     
     var pinMain: pinLayoutView!
     
-    
     var dataArr = ["1","2","3","4","5","6","7","8","9","清除","0","⌫"]
     
     var Allcell = UICollectionViewCell()
@@ -26,6 +25,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     var pinLab = UILabel()
     
     var labArry = [UILabel]()
+    
     var labArry2 = [UILabel]()
     
     override func viewDidLoad() {
@@ -246,7 +246,6 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             }
         }
         for i in 0...Int(user.get("PinNumber"))!{
-            print(i)
             labArry[i].layer.cornerRadius = labArry[i].bounds.width/2
             labArry[i].isHidden = ((i >= pinPassword.count) ? true:false)
         }

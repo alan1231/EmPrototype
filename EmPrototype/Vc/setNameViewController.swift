@@ -48,14 +48,12 @@ class setNameViewController: UIViewController {
         
     }
     @objc func sendName (){
-        print("1")
         textfield.resignFirstResponder()
         setupView()
         let str1 = self.textfield.text!
         //除去前后空格
         let str2 = str1.trimmingCharacters(in: .whitespaces)
-            print(str2)
-            print(user.get("Token"))
+
             APIManager.getApi.sendName(user.get("Token"), str2, completion: {result,err    in
                 
                 
@@ -64,20 +62,18 @@ class setNameViewController: UIViewController {
                     
                     let vc = tabbar()
 //                    self.navigationController?.pushViewController(vc, animated: true)
-                    self.present(vc, animated: false, completion: nil)
-                   
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    self.navigationController?.navigationBar.isHidden = true
                     
                 }else{
                     self.loadviewBG.removeFromSuperview()
-                    print(str2)
-                    print(user.get("Token"))
+
                     //                self.messageTextField.becomeFirstResponder()
                     //                self.messageTextField.shake()
                     //                self.messageTextField.text = ""
                 }
                 if result == nil {
                     self.loadviewBG.removeFromSuperview()
-                    print("含空")
                 }
                 
                 
