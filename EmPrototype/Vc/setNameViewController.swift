@@ -33,8 +33,8 @@ class setNameViewController: UIViewController {
         
         textfield.frame = CGRect(x: view.frame.size.width/10, y: view.frame.size.height/2.15, width: view.frame.size.width - ((view.frame.size.width/10)*2), height: view.frame.size.height/13)
         textfield.backgroundColor = UIColor.white
-        textfield.becomeFirstResponder()
         textfield.textAlignment = .center
+        self.textfield.becomeFirstResponder()
 
         view.addSubview(textfield)
         
@@ -67,13 +67,16 @@ class setNameViewController: UIViewController {
                     
                 }else{
                     self.loadviewBG.removeFromSuperview()
-
+                    self.textfield.becomeFirstResponder()
+                    self.textfield.shake()
                     //                self.messageTextField.becomeFirstResponder()
                     //                self.messageTextField.shake()
                     //                self.messageTextField.text = ""
                 }
                 if result == nil {
                     self.loadviewBG.removeFromSuperview()
+                    self.textfield.becomeFirstResponder()
+                    self.textfield.shake()
                 }
                 
                 

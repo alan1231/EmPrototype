@@ -37,7 +37,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         //        navigationController?.navigationBar.isHidden = false
         
         self.title = ""
-        let newBackButton = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.done, target: self, action:#selector(self.back))
+        let newBackButton = UIBarButtonItem(title:localizedStr("back"), style: UIBarButtonItemStyle.done, target: self, action:#selector(self.back))
         self.navigationItem.leftBarButtonItem = newBackButton
         
         
@@ -58,18 +58,12 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         
         switch user.get("PinNumber"){
         case "3":
-            
-            addCode(Int(user.get("PinNumber"))!, nb: 2.7)
-            pinMain.nextBtn.setTitle("四位数PinCode", for: .normal)
-            pinMain.nextBtn.frame.size.width = viewSize.width/2.7
-            pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
-            
+
+            settingPinCode(Int(user.get("PinNumber"))!, 2.7, localizedStr("4pcsPinCode"))
+
         case "5":
             
-            addCode(Int(user.get("PinNumber"))!, nb: 3.6)
-            pinMain.nextBtn.setTitle("六位数PinCode", for: .normal)
-            pinMain.nextBtn.frame.size.width = viewSize.width/2.7
-            pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
+            settingPinCode(Int(user.get("PinNumber"))!, 3.6, localizedStr("6pcsPinCode"))
 
         default:break
         }
@@ -83,6 +77,12 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             labArry[i].isHidden = ((i >= pinPassword.count) ? true:false)
         }
     }
+    func settingPinCode(_ pinPcd:Int,_ pinWidth:CGFloat,_ localizedStr:String) {
+        addCode(pinPcd, nb: pinWidth)
+        pinMain.nextBtn.setTitle(localizedStr, for: .normal)
+        pinMain.nextBtn.frame.size.width = viewSize.width/2.7
+        pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
+    }
     
     @objc func pinchange(){
         
@@ -93,10 +93,8 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             pinLab = UILabel()
             pinLab.frame = CGRect(x: 0, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
             view.addSubview(pinLab)
-            addCode(3, nb: 2.7)
-            pinMain.nextBtn.setTitle("四位数PinCode", for: .normal)
-            pinMain.nextBtn.frame.size.width = viewSize.width/2.7
-            pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
+            
+            settingPinCode(3,2.7, localizedStr("4pcsPinCode"))
 
             user.save("PinNumber", "3")
             
@@ -107,10 +105,8 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             pinLab = UILabel()
             pinLab.frame = CGRect(x: 0, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
             view.addSubview(pinLab)
-            addCode(5, nb: 3.6)
-            pinMain.nextBtn.setTitle("六位数PinCode", for: .normal)
-            pinMain.nextBtn.frame.size.width = viewSize.width/2.7
-            pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
+            
+            settingPinCode(5,3.6, localizedStr("6pcsPinCode"))
 
             user.save("PinNumber", "5")
 
@@ -228,8 +224,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                             
                         case "2" :
                             if str == user.get("PinCode"){
-                                
-                                
+                
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
                                     let vc = setNameViewController()
                                     self.navigationController?.pushViewController(vc, animated: true)
@@ -242,6 +237,10 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                                     self.pinLab.shake()
                                     self.pinPassword.removeAll()
                                     self.alerterror()
+                                    for i in 0...Int(user.get("PinNumber"))!{
+                                        self.labArry[i].layer.cornerRadius = self.labArry[i].bounds.width/2
+                                        self.labArry[i].isHidden = ((i >= self.pinPassword.count) ? true:false)
+                                    }
                                 }
                             }
                         case "3" :
@@ -261,6 +260,11 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                                     self.pinLab.shake()
                                     self.pinPassword.removeAll()
                                     self.alerterror()
+                                    for i in 0...Int(user.get("PinNumber"))!{
+                                        self.labArry[i].layer.cornerRadius = self.labArry[i].bounds.width/2
+                                        self.labArry[i].isHidden = ((i >= self.pinPassword.count) ? true:false)
+                                    }
+                                    
                                 }
 
                             }
@@ -286,8 +290,9 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     func alerterror()  {
         
             let tipLab = UILabel()
-            tipLab.text = "请输入同样的PinCode"
+            tipLab.text = localizedStr("AskInputSamePinCode")
             tipLab.frame = pinLab.frame
+            tipLab.frame.origin.x = 0
             tipLab.frame.size.width = view.frame.width
             tipLab.frame.origin.y += pinLab.frame.size.height + 20
             tipLab.textAlignment = .center
@@ -334,7 +339,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         var title = String()
         title = dataArr[indexPath.row]
         cell.titleLabel?.text = title
-        if "清除" == cell.titleLabel?.text {
+        if  localizedStr("Clear") == cell.titleLabel?.text {
             cell.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         }
         if "⌫" == cell.titleLabel?.text {

@@ -8,5 +8,13 @@
 //簡中
 
 // pin code str
+"back" = "返回";
 "Unlock" = "解锁";
 "Clear" = "清除";
+"AskInputSamePinCode" = "请输入同样的PinCode";
+"InputPinCode" = "请输入PinCode";
+"CheackNewPinCode" = "确认新的PinCode";
+"4pcsPinCode" = "四位数PinCode";
+"6pcsPinCode" = "六位数PinCode";
+"SettingNewPinCode" = "設置新的PinCode";
+"h1PinCode" = "您的PinCode将用于登录和确认交易";

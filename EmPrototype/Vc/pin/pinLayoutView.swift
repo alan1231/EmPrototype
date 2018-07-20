@@ -22,7 +22,7 @@ class pinLayoutView: UIView {
         case "1":
             
             let inputlab = UILabel()
-            inputlab.text = "设置新的PinCode"
+            inputlab.text = localizedStr("SettingNewPinCode")
             inputlab.textColor = UIColor.black
             inputlab.frame = CGRect(x: 0, y: viewSize.height/4.73, width: viewSize.width, height: viewSize.height/26)
             inputlab.font = UIFont.systemFont(ofSize:25)
@@ -30,7 +30,7 @@ class pinLayoutView: UIView {
             self.addSubview(inputlab)
             
             let h1 = UILabel()
-            h1.text = "您的PinCode将用于登录和确认交易"
+            h1.text = localizedStr("h1PinCode")
             h1.textColor = cgBlackGray
             h1.frame = CGRect(x: 0, y: viewSize.height/3.55, width: viewSize.width, height: viewSize.height/26)
             h1.font = UIFont.systemFont(ofSize:15)
@@ -41,7 +41,7 @@ class pinLayoutView: UIView {
             
             
             //            nextBtn.addTarget(self, action: #selector(self.pinchange), for: .touchUpInside)
-            nextBtn.setTitle("六位数PinCode", for: .normal)
+            nextBtn.setTitle(localizedStr("6pcsPinCode"), for: .normal)
             nextBtn.frame.size.width = viewSize.width/2.7
             nextBtn.frame.origin.x = viewSize.width/2 - nextBtn.frame.size.width/2
             nextBtn.frame.size.height = 40
@@ -52,7 +52,7 @@ class pinLayoutView: UIView {
             
         case "2":
             let inputlab = UILabel()
-            inputlab.text = "确认新的PinCode"
+            inputlab.text = localizedStr("CheackNewPinCode")
             inputlab.textColor = UIColor.black
             inputlab.frame = CGRect(x: 0, y: viewSize.height/4.73, width: viewSize.width, height: viewSize.height/26)
             inputlab.font = UIFont.systemFont(ofSize:25)
@@ -71,7 +71,7 @@ class pinLayoutView: UIView {
             self.addSubview(inputlab)
             
             let h1 = UILabel()
-            h1.text = "请输入PinCode"
+            h1.text = localizedStr("InputPinCode")
             h1.textColor = cgBlackGray
             h1.frame = CGRect(x: 0, y: viewSize.height/3.55, width: viewSize.width, height: viewSize.height/26)
             h1.font = UIFont.systemFont(ofSize:15)

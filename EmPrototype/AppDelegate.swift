@@ -12,13 +12,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var pin = true
-    
-//    var second = 20
-//    var timer = Timer()
-    
+    var second = Int()
+    var timer = Timer()
     var backgroundTask:UIBackgroundTaskIdentifier! = nil
-
     var navigation = UINavigationController(rootViewController:phoneNumberViewController())
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
 //          user.remove("PinCode")
@@ -27,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //          user.remove("PinNumber")
 //          user.remove("PhoneNumber")
         
-//            user.save("PinNumber", "5")
-//            user.save("PinStatus", "1")
+
 
         let defaults = UserDefaults.standard
         if  defaults.object(forKey: "Token") as? String == nil && defaults.object(forKey: "pinCode") == nil {
@@ -45,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame:UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
-
         navigation.navigationBar.isHidden = true
         self.window?.rootViewController = navigation
         self.window?.backgroundColor = UIColor.white
@@ -57,20 +53,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-//    func runTimer(){
-//        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-//    }
-//    @objc func  updateTimer(){
-//        if second == 0{
-//            timer.invalidate()
-//            pin = true
-//        }else{
-//            second -= 1
-//        }
-//        print(second)
-//    }
+    func runTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    @objc func  updateTimer(){
+        if second == 0{
+            timer.invalidate()
+            pin = true
+        }else{
+            second -= 1
+        }
+        print(second)
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
+        if pin == false{
+            self.second = 20
+            self.runTimer()
+        }
 
     }
 
@@ -81,31 +81,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
             self.backgroundTask = application.beginBackgroundTask(expirationHandler: {
-                () -> Void in
-
-//                self.second = 20
-//                self.runTimer()
-//                self.pin = false
-
-            
-                let vc = pinViewController()
-                self.navigation.pushViewController(vc, animated: false)
                 
                 application.endBackgroundTask(self.backgroundTask)
                 self.backgroundTask = UIBackgroundTaskInvalid
-            })
-            
-    
-       application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
 
+            })
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-//        print("進")
-//        if pin == false {
-//
-//            pin = true
-//        }
+        timer.invalidate()
+
+        if pin == true {
+            
+            let vc = pinViewController()
+            self.navigation.pushViewController(vc, animated: false)
+
+            pin = false
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -113,7 +106,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        print(5)
     }
 
 

@@ -58,7 +58,7 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
         cp.showCountryCodeInView = false
         
         let infolab = UITextView()
-        infolab.frame = CGRect(x: 0, y: phoneNumberField.frame.origin.y + view.frame.size.height/3.7, width: self.view.frame.size.width, height: view.frame.size.height/18
+        infolab.frame = CGRect(x: 0, y: phoneNumberField.frame.origin.y + phoneNumberField.frame.height + 10, width: self.view.frame.size.width, height: view.frame.size.height/18
         )
         infolab.appendLinkString(string: "点击「下一步」即表示您同意")
         infolab.appendLinkString(string: "使用协议", withURLString: "about:")

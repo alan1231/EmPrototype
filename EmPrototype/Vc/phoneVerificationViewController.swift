@@ -76,7 +76,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         
         let messageCodeLab = UILabel()
         messageCodeLab.textColor = cgGray
-        messageCodeLab.text = "请输入简讯内的认证码。"
+        messageCodeLab.text = "请输入简讯内的验证码。"
         messageCodeLab.textAlignment = .center
         messageCodeLab.font = UIFont.systemFont(ofSize: 15)
         messageCodeLab.frame = numberLab.frame

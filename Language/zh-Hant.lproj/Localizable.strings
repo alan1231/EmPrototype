@@ -5,6 +5,13 @@
  Created by alan on 2018/7/20.
  Copyright © 2018年 alan. All rights reserved.
  */
-
+"back" = "返回";
 "Unlock" = "解鎖";
 "Clear" = "清除";
+"AskInputSamePinCode" = "請輸入同樣的PinCode";
+"InputPinCode" = "請輸入PinCode";
+"CheackNewPinCode" = "確認新的PinCode";
+"4pcsPinCode" = "四位數PinCode";
+"6pcsPinCode" = "六位數PinCode";
+"SettingNewPinCode" = "设置新的PinCode";
+"h1PinCode" = "您的PinCode將用於登入和確認交易";
