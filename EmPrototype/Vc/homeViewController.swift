@@ -23,6 +23,11 @@ class homeViewController: UIViewController {
         homeMain.CryptoBtn.addTarget(self, action: #selector(self.Crypto), for: .touchUpInside)
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
     @objc func fiat (){
         homeMain.pageview.setContentOffset(CGPoint(x:homeMain.pageview.frame.width, y: 0), animated: true)
     }

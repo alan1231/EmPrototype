@@ -130,7 +130,9 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 //        bordview.isHidden = true
 //        runTimer()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
     func runTimer(){
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
     }

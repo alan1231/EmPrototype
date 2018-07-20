@@ -12,7 +12,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     
     var pinMain: pinLayoutView!
     
-    var dataArr = ["1","2","3","4","5","6","7","8","9","清除","0","⌫"]
+    var dataArr = ["1","2","3","4","5","6","7","8","9",localizedStr("Clear"),"0","⌫"]
     
     var Allcell = UICollectionViewCell()
     
@@ -76,6 +76,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         pinPassword.removeAll()
         for i in 0...Int(user.get("PinNumber"))!{
             labArry[i].layer.cornerRadius = labArry[i].bounds.width/2
@@ -180,7 +181,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         
         if pinPassword.count == 0{
             
-            if dataArr[(indexPath.item)] == "清除" || dataArr[(indexPath.item)] == "⌫" {
+            if dataArr[(indexPath.item)] == localizedStr("Clear") || dataArr[(indexPath.item)] == "⌫" {
                 
             }else{
                 pinPassword.append(dataArr[(indexPath.item)])
@@ -189,7 +190,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             
         }else{
             switch dataArr[(indexPath.item)]{
-            case "清除" :
+            case localizedStr("Clear") :
                 pinPassword.removeAll()
                 
             case "⌫" :
@@ -249,7 +250,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
                                     let vc = tabbar()
                                     self.navigationController?.pushViewController(vc, animated: false)
-                                    
+//                                    self.present(vc, animated: false, completion: nil)
                                 }
                           
                                 
