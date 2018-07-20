@@ -75,6 +75,14 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         }
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        pinPassword.removeAll()
+        for i in 0...Int(user.get("PinNumber"))!{
+            labArry[i].layer.cornerRadius = labArry[i].bounds.width/2
+            labArry[i].isHidden = ((i >= pinPassword.count) ? true:false)
+        }
+    }
+    
     @objc func pinchange(){
         
         if pinMain.pinBool {
@@ -139,10 +147,8 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         
         if user.get("PinStatus") == "1"{
             navigationController?.navigationBar.isHidden = true
-            print("bbb")
         }else{
             navigationController?.navigationBar.isHidden = false
-            print("aaaa")
         }
         
         
@@ -209,37 +215,52 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                         
                         switch (user.get("PinStatus")){
                         case "1" :
-                            user.save("PinCode",str)
-                            user.save("PinStatus", "2")
-
-                            let vc = pinViewController()
-                            self.navigationController?.pushViewController(vc, animated: true)
-                            self.navigationController?.navigationBar.isHidden = false
-
+                            
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
+                                user.save("PinCode",str)
+                                user.save("PinStatus", "2")
+                                
+                                let vc = pinViewController()
+                                self.navigationController?.pushViewController(vc, animated: true)
+                                self.navigationController?.navigationBar.isHidden = false
+                            }
                             
                         case "2" :
                             if str == user.get("PinCode"){
-                                let vc = setNameViewController()
-                                self.navigationController?.pushViewController(vc, animated: true)
                                 
-                                user.save("PinStatus", "3")
+                                
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
+                                    let vc = setNameViewController()
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                    user.save("PinStatus", "3")
+                                }
 
                             }else{
-                                print("某愛了")
-                                pinLab.shake()
-                                pinPassword.removeAll()
-                                alerterror()
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
+                                    print("某愛了")
+                                    self.pinLab.shake()
+                                    self.pinPassword.removeAll()
+                                    self.alerterror()
+                                }
                             }
                         case "3" :
                             if str == user.get("PinCode"){
-                                let vc = tabbar()
-                                self.navigationController?.pushViewController(vc, animated: false)
+                                
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
+                                    let vc = tabbar()
+                                    self.navigationController?.pushViewController(vc, animated: false)
+                                    
+                                }
+                          
                                 
                             }else{
-                                print("某愛了")
-                                pinLab.shake()
-                                pinPassword.removeAll()
-                                alerterror()
+                               
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
+                                    print("某愛了")
+                                    self.pinLab.shake()
+                                    self.pinPassword.removeAll()
+                                    self.alerterror()
+                                }
 
                             }
                             

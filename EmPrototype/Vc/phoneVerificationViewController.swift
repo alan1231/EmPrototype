@@ -44,7 +44,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         
         
         
-        messageTextField.frame = CGRect(x: view.frame.size.width/15.8, y: view.frame.size.height/3.55, width: view.frame.size.width/1.2, height: view.frame.size.height/15)
+        messageTextField.frame = CGRect(x: view.frame.width/2 - (view.frame.width/1.2)/2, y: view.frame.size.height/3.55, width: view.frame.size.width/1.2, height: view.frame.size.height/15)
         
         messageTextField.becomeFirstResponder()
         messageTextField.keyboardType = UIKeyboardType.numberPad
@@ -119,7 +119,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         
         nextBtn.frame = messageTextField.frame
         nextBtn.frame.origin.y = view.frame.size.height/1.889
-
+        nextBtn.frame.size.height = 40
         nextBtn.backgroundColor = mobiColor
         nextBtn.setTitleColor(UIColor.white, for: .normal)
         nextBtn.layer.cornerRadius = 20
