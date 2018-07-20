@@ -12,7 +12,6 @@ class BViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.orange
         
         let btn = UIButton()
         btn.setTitle("清除", for: .normal)

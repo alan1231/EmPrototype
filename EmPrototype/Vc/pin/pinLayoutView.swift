@@ -41,7 +41,10 @@ class pinLayoutView: UIView {
             
             
             //            nextBtn.addTarget(self, action: #selector(self.pinchange), for: .touchUpInside)
-            nextBtn.setTitle("PIN选项6", for: .normal)
+            nextBtn.setTitle("六位数PinCode", for: .normal)
+            nextBtn.frame.size.width = viewSize.width/2.7
+            nextBtn.frame.origin.x = viewSize.width/2 - nextBtn.frame.size.width/2
+            nextBtn.frame.size.height = 40
             nextBtn.setTitleColor(UIColor(red: 41/255, green: 125/255, blue: 245/255, alpha: 1), for: .normal)
             self.addSubview(nextBtn)
             
@@ -60,7 +63,7 @@ class pinLayoutView: UIView {
         case "3":
             
             let inputlab = UILabel()
-            inputlab.text = "解锁"
+            inputlab.text = localizedStr("Unlock")
             inputlab.textColor = UIColor.black
             inputlab.frame = CGRect(x: 0, y: viewSize.height/4.73, width: viewSize.width, height: viewSize.height/26)
             inputlab.font = UIFont.systemFont(ofSize:25)

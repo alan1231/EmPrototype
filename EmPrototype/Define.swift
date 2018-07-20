@@ -21,3 +21,19 @@ public let viewSize = UIScreen.main.bounds.size
 func RGBA (r:CGFloat,g:CGFloat,b:CGFloat,a:CGFloat)-> UIColor{
     return UIColor (red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)
 }
+
+func getSizeFromString(string:String, withFont font:UIFont)->CGSize{
+    
+    let textSize = NSString(string: string ).size(
+        
+        withAttributes: [ NSAttributedStringKey.font:font ])
+    
+    return textSize
+    
+}
+func localizedStr (_ string:String) -> String{
+//    if NSLocalizedString(string, comment: "") == nil{
+//        return string
+//    }else{
+        return  NSLocalizedString(string, comment: "")
+}

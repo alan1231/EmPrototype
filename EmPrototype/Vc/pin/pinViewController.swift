@@ -27,7 +27,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     var labArry = [UILabel]()
     
     var labArry2 = [UILabel]()
-    
+        
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -43,29 +43,34 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         
         view.backgroundColor = UIColor.white
         
-        //        view.layer.shouldRasterize=true
         
         pinMain = pinLayoutView (frame:self.view.frame, VC: self)
         
         view.addSubview(pinMain)
         
-        pinMain.nextBtn.frame = CGRect(x: viewSize.width/2 - viewSize.width/10 , y: pinLab.frame.origin.y + pinLab.frame.size.height + viewSize.height/5.5, width: viewSize.width/5, height: 40)
+
         
         initView()
+        
+        pinMain.nextBtn.frame.origin.y = pinLab.frame.origin.y + pinLab.frame.size.height + viewSize.height/5.5
         pinMain.nextBtn.addTarget(self, action:#selector(self.pinchange), for: .touchUpInside)
         
         
-        //        let btn = UIButton()
-        //        btn.frame = CGRect(x: 10, y: 30, width: 40, height: 40)
-        //        btn.addTarget(self, action: #selector(self.back), for: .touchUpInside)
-        //        btn.backgroundColor  = UIColor.red
-        //        view.addSubview(btn)
-        
         switch user.get("PinNumber"){
         case "3":
+            
             addCode(Int(user.get("PinNumber"))!, nb: 2.7)
+            pinMain.nextBtn.setTitle("四位数PinCode", for: .normal)
+            pinMain.nextBtn.frame.size.width = viewSize.width/2.7
+            pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
+            
         case "5":
+            
             addCode(Int(user.get("PinNumber"))!, nb: 3.6)
+            pinMain.nextBtn.setTitle("六位数PinCode", for: .normal)
+            pinMain.nextBtn.frame.size.width = viewSize.width/2.7
+            pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
+
         default:break
         }
         
@@ -80,8 +85,9 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             pinLab.frame = CGRect(x: 0, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
             view.addSubview(pinLab)
             addCode(3, nb: 2.7)
-            pinMain.nextBtn.setTitle("PIN选项4", for: .normal)
-            
+            pinMain.nextBtn.setTitle("四位数PinCode", for: .normal)
+            pinMain.nextBtn.frame.size.width = viewSize.width/2.7
+            pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
 
             user.save("PinNumber", "3")
             
@@ -93,8 +99,10 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             pinLab.frame = CGRect(x: 0, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
             view.addSubview(pinLab)
             addCode(5, nb: 3.6)
-            pinMain.nextBtn.setTitle("PIN选项6", for: .normal)
-            
+            pinMain.nextBtn.setTitle("六位数PinCode", for: .normal)
+            pinMain.nextBtn.frame.size.width = viewSize.width/2.7
+            pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
+
             user.save("PinNumber", "5")
 
         }
@@ -220,7 +228,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                                 print("某愛了")
                                 pinLab.shake()
                                 pinPassword.removeAll()
-                                
+                                alerterror()
                             }
                         case "3" :
                             if str == user.get("PinCode"){
@@ -231,7 +239,8 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                                 print("某愛了")
                                 pinLab.shake()
                                 pinPassword.removeAll()
-                                
+                                alerterror()
+
                             }
                             
                         default:
@@ -251,6 +260,20 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         }
         
     }
+    
+    func alerterror()  {
+        
+            let tipLab = UILabel()
+            tipLab.text = "请输入同样的PinCode"
+            tipLab.frame = pinLab.frame
+            tipLab.frame.size.width = view.frame.width
+            tipLab.frame.origin.y += pinLab.frame.size.height + 20
+            tipLab.textAlignment = .center
+            tipLab.textColor = UIColor.red
+            view.addSubview(tipLab)
+
+    }
+    
     
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

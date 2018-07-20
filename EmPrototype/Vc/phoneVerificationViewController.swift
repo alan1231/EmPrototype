@@ -16,7 +16,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
     
     var second = 60
     var timer = Timer()
-    var isTimerRun = false
+    var isTimerRun = true
     var str = String()
     var bordview = UIView()
     
@@ -98,8 +98,8 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         restMessageCodeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         restMessageCodeBtn.frame.origin.y = view.frame.size.height/2.14
         restMessageCodeBtn.frame.size.height += -10
-        restMessageCodeBtn.setTitle("沒有收到驗證碼嗎？請等待60s", for: .normal)
-        restMessageCodeBtn.frame.size.width = getSizeFromString(string: "沒有收到驗證碼嗎？請等待60s", withFont:UIFont.systemFont(ofSize: 15)).width
+        restMessageCodeBtn.setTitle("重新传送验证码", for: .normal)
+        restMessageCodeBtn.frame.size.width = getSizeFromString(string: "重新传送验证码", withFont:UIFont.systemFont(ofSize: 15)).width
         restMessageCodeBtn.frame.origin.x = view.frame.size.width/2 - restMessageCodeBtn.frame.size.width/2
 //        restMessageCodeBtn.layer.addBorder(edge: .bottom, color: UIColor(red: 149/255, green: 149/255, blue: 152/255, alpha: 1), thickness: 1)
         restMessageCodeBtn.addTarget(self, action: #selector(self.restMessage), for: .touchUpInside)
@@ -126,9 +126,9 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         nextBtn.addTarget(self, action: #selector(self.nextView), for: .touchUpInside)
         nextBtn.setTitle("确定", for: .normal)
         view.addSubview(nextBtn)
-        restMessageCodeBtn.isHidden = true
-        bordview.isHidden = true
-        runTimer()
+//        restMessageCodeBtn.isHidden = true
+//        bordview.isHidden = true
+//        runTimer()
     }
     
     func runTimer(){
@@ -174,13 +174,14 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 
         }else{
             second -= 1
-            print(second)
              str = "沒有收到驗證碼嗎？請等待\(second)秒"
             restMessageCodeBtn.setTitle(str, for: .normal)
             restMessageCodeBtn.frame.size.width = getSizeFromString(string: str , withFont:UIFont.systemFont(ofSize: 15)).width
             restMessageCodeBtn.frame.origin.x = view.frame.size.width/2 - restMessageCodeBtn.frame.width/2
             bordview.frame.origin.x = restMessageCodeBtn.frame.origin.x
             bordview.frame.size.width = restMessageCodeBtn.frame.size.width
+            bordview.isHidden = true
+
         }
 
         
@@ -210,7 +211,10 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
                 let vc = pinViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
                 self.navigationController?.navigationBar.isHidden = false
+                
+                self.timer.invalidate()
 
+                
 //                let alert = UIAlertController(title: "完成簡訊認證", message: nil, preferredStyle: .alert)
 //
 //                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
@@ -247,15 +251,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         return textLength<=4
     }
     
-    func getSizeFromString(string:String, withFont font:UIFont)->CGSize{
-        
-        let textSize = NSString(string: string ).size(
-            
-            withAttributes: [ NSAttributedStringKey.font:font ])
-        
-        return textSize
-        
-    }
+   
     
     fileprivate func setupView() {
         
