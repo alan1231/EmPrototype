@@ -29,6 +29,8 @@ class CountryPickerViewController: UITableViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
         
+        tableView = UITableView.init(frame: CGRect.zero, style: .plain)
+        
         prepareTableItems()
         prepareNavItem()
         prepareSearchBar()
@@ -109,14 +111,14 @@ extension CountryPickerViewController {
         searchController?.hidesNavigationBarDuringPresentation = searchBarPosition == .tableViewHeader
         searchController?.searchBar.delegate = self
         searchController?.searchBar.sizeToFit()
-        let myview = UIView()
-        myview.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70)
-        print(view.frame.size.height/10)
-        myview.addSubview((searchController?.searchBar)!)
+//        let myview = UIView()
+//        myview.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70)
+//        print(view.frame.size.height/10)
+//        myview.addSubview((searchController?.searchBar)!)
         switch searchBarPosition {
-        case .tableViewHeader: tableView.tableHeaderView = myview
+        case .tableViewHeader: tableView.tableHeaderView = (searchController?.searchBar)!
         
-        case .navigationBar: navigationItem.titleView = myview
+        case .navigationBar: navigationItem.titleView = (searchController?.searchBar)!
 
         default: break
         }

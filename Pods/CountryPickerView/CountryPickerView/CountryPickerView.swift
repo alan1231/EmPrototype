@@ -96,8 +96,8 @@ public class CountryPickerView: NibView {
         }
         
         if showCountryCodeInView || showPhoneCodeInView {
-            let str = selectedCountry.phoneCode + " ▼"
-
+//            let str = selectedCountry.phoneCode + " ▼"
+            let str = selectedCountry.phoneCode
             countryDetailsLabel.text = showCountryCodeInView ? selectedCountry.code : str
         } else {
             countryDetailsLabel.text = nil

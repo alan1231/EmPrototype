@@ -11,7 +11,6 @@ import UIKit
 class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
     let messageTextField = UITextField()
     let nextBtn = UIButton()
-    let loadviewBG = UIView()
     let restMessageCodeBtn = UIButton()
     
     var second = 60
@@ -62,7 +61,8 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(messageTextField)
         
         let numberLab = UILabel()
-        numberLab.text = user.get("PhoneNumber")
+//        numberLab.text = user.get("PhoneNumber")
+        numberLab.text = phoneNumberViewController.myPhoneNumber
 //        numberLab.text = "+886978768913"
         numberLab.textAlignment = .center
         numberLab.font = UIFont.systemFont(ofSize: 15)
@@ -197,12 +197,12 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
     @objc func nextView(){
         messageTextField.resignFirstResponder()
 
-        self.setupView()
+        setupView(view)
 
         APIManager.getApi.sendMessage(user.get("PhoneNumber"), self.messageTextField.text!, completion: {result,token,err    in
     
             if result == "ok"{
-                self.loadviewBG.removeFromSuperview()
+                loadviewBG.removeFromSuperview()
 
                 
                 
@@ -226,13 +226,14 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 //                self.present(alert, animated: true)
 
             }else{
-                self.loadviewBG.removeFromSuperview()
+                stoploadingView()
+                
                 self.messageTextField.becomeFirstResponder()
                 self.messageTextField.shake()
 //                self.messageTextField.attributedPlaceholder = "输入验证码".attributedString(aligment: .center)
 
                 self.messageTextField.attributedPlaceholder = NSAttributedString(string:
-                    "错误验证码", attributes:
+                    "验证码错误", attributes:
                     [NSAttributedStringKey.foregroundColor:UIColor.red])
                 self.messageTextField.text = ""
             }
@@ -255,25 +256,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
     
    
     
-    fileprivate func setupView() {
-        
-        loadviewBG.frame = view.frame
-        loadviewBG.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
-        view.addSubview(loadviewBG)
-        
-        
-        let lview = UIView()
-        lview.backgroundColor = UIColor.white
-        lview.frame = CGRect(x: view.frame.midX-40, y: view.frame.midY-40, width: 80, height: 80)
-        lview.layer.cornerRadius = lview.frame.size.width/2
-        loadviewBG.addSubview(lview)
-        
-        let loadingView = LoadingView(frame: CGRect(x: lview.frame.width/2 - 30, y: lview.frame.height/2 - 30, width: 60, height: 60))
-        
-        loadingView.startLoading()
-        lview.addSubview(loadingView)
-        
-    }
+
 
 
 }

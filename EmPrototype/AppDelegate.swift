@@ -90,15 +90,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        timer.invalidate()
-
-        if pin == true {
+        
+        let defaults = UserDefaults.standard
+        if  defaults.object(forKey: "Token") as? String == nil && defaults.object(forKey: "pinCode") == nil {
+        }else{
+            timer.invalidate()
             
-            let vc = pinViewController()
-            self.navigation.pushViewController(vc, animated: false)
-
-            pin = false
+            if pin == true {
+                
+                let vc = pinViewController()
+                self.navigation.pushViewController(vc, animated: false)
+                
+                pin = false
+            }
         }
+        
+        
+        
+
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

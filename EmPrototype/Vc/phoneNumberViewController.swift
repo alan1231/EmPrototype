@@ -14,7 +14,7 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
     
     let cp = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 125, height: 20))
     
-    let loadviewBG = UIView()
+//    let loadviewBG = UIView()
     
     var messageCode = UITextField()
 
@@ -26,7 +26,9 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
     var phoneUtil = NBPhoneNumberUtil()
     
     var phoneNumberResults : Bool = false
-
+    
+    static var myPhoneNumber = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,7 +104,6 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
     }
     func textView(_ textView: UITextView, shouldInteractWith URL: URL,
                   in characterRange: NSRange) -> Bool {
-        print(URL.scheme as Any)
         
         switch URL.scheme {
         case "about" :
@@ -112,7 +113,7 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
             let vc = PrivacyPolicyViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         default:
-            print("这个是普通的url")
+            break
         }
         
         return true
@@ -131,13 +132,18 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
 
             let vs : String = try phoneUtil.format(phoneNumber, numberFormat: .E164)
             
+            phoneNumberViewController.myPhoneNumber = "\(cp.selectedCountry.phoneCode) \(phoneNumberField.text!)"
+            
             user.save("PhoneNumber",vs)
             user.save("PinNumber", "5")
             user.save("PinStatus", "1")
             
             if phoneNumberResults {
-                print("22222")
-                setupView()
+               
+                phoneNumberField.resignFirstResponder()
+                
+                
+                setupView(view)
                 
                 Alamofire.request("https://davidfunc.azurewebsites.net/api/requestSMSVerify?code=St0Av0A0PagU18UrTafewYxaZonjdrjnLQnTJVxVk6XhCh1lwUDC1A==&phoneNo=\(vs)").responseJSON { response in
                     
@@ -149,7 +155,7 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
                         let ty = Json as![String:AnyObject]
                         let status = ty["status"]as! String
                         if status == "ok"{
-                            self.loadviewBG.removeFromSuperview()
+                            loadviewBG.removeFromSuperview()
 
                             let vc = phoneVerificationViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
@@ -160,7 +166,7 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
   
                     }else{
                         self.alert("連接異常","關閉")
-                        self.loadviewBG.removeFromSuperview()
+                        stoploadingView()
                     }
                 }
             }else{
@@ -198,32 +204,14 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
         }
     }
     
-    fileprivate func setupView() {
-        phoneNumberField.resignFirstResponder()
-        
-        loadviewBG.frame = view.frame
-        loadviewBG.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
-        view.addSubview(loadviewBG)
-        
-        
-        let lview = UIView()
-        lview.backgroundColor = UIColor.white
-        lview.frame = CGRect(x: view.frame.midX-40, y: view.frame.midY-40, width: 80, height: 80)
-        lview.layer.cornerRadius = lview.frame.size.width/2
-        loadviewBG.addSubview(lview)
 
-        let loadingView = LoadingView(frame: CGRect(x: lview.frame.width/2 - 30, y: lview.frame.height/2 - 30, width: 60, height: 60))
-        
-        loadingView.startLoading()
-        lview.addSubview(loadingView)
-    
-    }
     
 
     
     @objc func ck(){
 //        print(phoneNumberField.text!)
         do {
+            
             phoneNumber = try phoneUtil.parse(phoneNumberField.text!, defaultRegion:cp.selectedCountry.code)
             
              phoneNumberResults =  phoneUtil.isValidNumber(forRegion: phoneNumber, regionCode:cp.selectedCountry.code)

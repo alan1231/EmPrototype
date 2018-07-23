@@ -16,6 +16,14 @@ class pinLayoutView: UIView {
     init(frame: CGRect,VC:pinViewController) {
         super.init(frame:frame)
         
+//        let str = String()
+//        
+//        if user.get("PinStatus") == nil{
+//            str = "1"
+//        }else{
+//            str = user.get("PinStatus")
+//        }
+        
         
         switch user.get("PinStatus") {
             

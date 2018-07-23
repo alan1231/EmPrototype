@@ -80,7 +80,10 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     func settingPinCode(_ pinPcd:Int,_ pinWidth:CGFloat,_ localizedStr:String) {
         addCode(pinPcd, nb: pinWidth)
         pinMain.nextBtn.setTitle(localizedStr, for: .normal)
-        pinMain.nextBtn.frame.size.width = viewSize.width/2.7
+        pinMain.nextBtn.frame.size.width = viewSize.width/2.3
+        
+//        pinMain.nextBtn.frame.size.width = getSizeFromString(string: localizedStr , withFont:UIFont.systemFont(ofSize: 15)).width
+
         pinMain.nextBtn.frame.origin.x = viewSize.width/2 - pinMain.nextBtn.frame.size.width/2
     }
     
@@ -91,7 +94,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             pinPassword.removeAll()
             pinLab.removeFromSuperview()
             pinLab = UILabel()
-            pinLab.frame = CGRect(x: 0, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
+            pinLab.frame = CGRect(x: -10, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
             view.addSubview(pinLab)
             
             settingPinCode(3,2.7, localizedStr("4pcsPinCode"))
