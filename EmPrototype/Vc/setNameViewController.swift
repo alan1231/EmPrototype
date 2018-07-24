@@ -11,7 +11,6 @@ import UIKit
 class setNameViewController: UIViewController {
     let textfield = UITextField()
     let btn = UIButton()
-    let loadviewBG = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +48,7 @@ class setNameViewController: UIViewController {
     }
     @objc func sendName (){
         textfield.resignFirstResponder()
-        setupView()
+        setupView(view)
         let str1 = self.textfield.text!
         //除去前后空格
         let str2 = str1.trimmingCharacters(in: .whitespaces)
@@ -58,15 +57,14 @@ class setNameViewController: UIViewController {
                 
                 
                 if result == "ok"{
-                    self.loadviewBG.removeFromSuperview()
-                    
+                    stoploadingView()
                     let vc = tabbar()
 //                    self.navigationController?.pushViewController(vc, animated: true)
                     self.navigationController?.pushViewController(vc, animated: true)
                     self.navigationController?.navigationBar.isHidden = true
                     
                 }else{
-                    self.loadviewBG.removeFromSuperview()
+                    stoploadingView()
                     self.textfield.becomeFirstResponder()
                     self.textfield.shake()
                     //                self.messageTextField.becomeFirstResponder()
@@ -74,7 +72,7 @@ class setNameViewController: UIViewController {
                     //                self.messageTextField.text = ""
                 }
                 if result == nil {
-                    self.loadviewBG.removeFromSuperview()
+                    stoploadingView()
                     self.textfield.becomeFirstResponder()
                     self.textfield.shake()
                 }
@@ -89,24 +87,6 @@ class setNameViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    fileprivate func setupView() {
-        
-        loadviewBG.frame = view.frame
-        loadviewBG.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
-        view.addSubview(loadviewBG)
-        
-        
-        let lview = UIView()
-        lview.backgroundColor = UIColor.white
-        lview.frame = CGRect(x: view.frame.midX-40, y: view.frame.midY-40, width: 80, height: 80)
-        lview.layer.cornerRadius = lview.frame.size.width/2
-        loadviewBG.addSubview(lview)
-        
-        let loadingView = LoadingView(frame: CGRect(x: lview.frame.width/2 - 30, y: lview.frame.height/2 - 30, width: 60, height: 60))
-        
-        loadingView.startLoading()
-        lview.addSubview(loadingView)
-        
-    }
+
 
 }

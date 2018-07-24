@@ -59,11 +59,11 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         switch user.get("PinNumber"){
         case "3":
 
-            settingPinCode(Int(user.get("PinNumber"))!, 2.7, localizedStr("4pcsPinCode"))
+            settingPinCode(Int(user.get("PinNumber"))!, 2.7, localizedStr("6pcsPinCode"))
 
         case "5":
             
-            settingPinCode(Int(user.get("PinNumber"))!, 3.6, localizedStr("6pcsPinCode"))
+            settingPinCode(Int(user.get("PinNumber"))!, 3.6, localizedStr("4pcsPinCode"))
 
         default:break
         }
@@ -97,7 +97,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             pinLab.frame = CGRect(x: -10, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
             view.addSubview(pinLab)
             
-            settingPinCode(3,2.7, localizedStr("4pcsPinCode"))
+            settingPinCode(3,2.7, localizedStr("6pcsPinCode"))
 
             user.save("PinNumber", "3")
             
@@ -109,7 +109,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
             pinLab.frame = CGRect(x: 0, y: Int(viewSize.height/2.8), width: Int(viewSize.width), height: Int(viewSize.width/20))
             view.addSubview(pinLab)
             
-            settingPinCode(5,3.6, localizedStr("6pcsPinCode"))
+            settingPinCode(5,3.6, localizedStr("4pcsPinCode"))
 
             user.save("PinNumber", "5")
 

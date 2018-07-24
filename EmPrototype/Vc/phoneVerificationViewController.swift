@@ -176,7 +176,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 
         }else{
             second -= 1
-             str = "沒有收到驗證碼嗎？請等待\(second)秒"
+             str = "没有收到验证码吗？请等待\(second)秒"
             restMessageCodeBtn.setTitle(str, for: .normal)
             restMessageCodeBtn.frame.size.width = getSizeFromString(string: str , withFont:UIFont.systemFont(ofSize: 15)).width
             restMessageCodeBtn.frame.origin.x = view.frame.size.width/2 - restMessageCodeBtn.frame.width/2
@@ -202,7 +202,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         APIManager.getApi.sendMessage(user.get("PhoneNumber"), self.messageTextField.text!, completion: {result,token,err    in
     
             if result == "ok"{
-                loadviewBG.removeFromSuperview()
+                stoploadingView()
 
                 
                 

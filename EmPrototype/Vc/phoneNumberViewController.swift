@@ -155,7 +155,7 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
                         let ty = Json as![String:AnyObject]
                         let status = ty["status"]as! String
                         if status == "ok"{
-                            loadviewBG.removeFromSuperview()
+                            stoploadingView()
 
                             let vc = phoneVerificationViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
