@@ -30,7 +30,7 @@ class pinLayoutView: UIView {
         case "1":
             
             let inputlab = UILabel()
-            inputlab.text = localizedStr("SettingNewPinCode")
+            inputlab.text = localizedStr("PinCode.Set1.title")
             inputlab.textColor = UIColor.black
             inputlab.frame = CGRect(x: 0, y: viewSize.height/4.73, width: viewSize.width, height: viewSize.height/26)
             inputlab.font = UIFont.systemFont(ofSize:25)
@@ -38,7 +38,7 @@ class pinLayoutView: UIView {
             self.addSubview(inputlab)
             
             let h1 = UILabel()
-            h1.text = localizedStr("h1PinCode")
+            h1.text = localizedStr("PinCode.Set1.desc")
             h1.textColor = cgBlackGray
             h1.frame = CGRect(x: 0, y: viewSize.height/3.55, width: viewSize.width, height: viewSize.height/26)
             h1.font = UIFont.systemFont(ofSize:15)
@@ -49,7 +49,7 @@ class pinLayoutView: UIView {
             
             
             //            nextBtn.addTarget(self, action: #selector(self.pinchange), for: .touchUpInside)
-            nextBtn.setTitle(localizedStr("6pcsPinCode"), for: .normal)
+            nextBtn.setTitle(localizedStr("PinCode.option1"), for: .normal)
             nextBtn.frame.size.width = viewSize.width/2.7
             nextBtn.frame.origin.x = viewSize.width/2 - nextBtn.frame.size.width/2
             nextBtn.frame.size.height = 40
@@ -60,7 +60,7 @@ class pinLayoutView: UIView {
             
         case "2":
             let inputlab = UILabel()
-            inputlab.text = localizedStr("CheackNewPinCode")
+            inputlab.text = localizedStr("PinCode.Set2.title")
             inputlab.textColor = UIColor.black
             inputlab.frame = CGRect(x: 0, y: viewSize.height/4.73, width: viewSize.width, height: viewSize.height/26)
             inputlab.font = UIFont.systemFont(ofSize:25)
@@ -71,7 +71,7 @@ class pinLayoutView: UIView {
         case "3":
             
             let inputlab = UILabel()
-            inputlab.text = localizedStr("Unlock")
+            inputlab.text = localizedStr("Unlock.title")
             inputlab.textColor = UIColor.black
             inputlab.frame = CGRect(x: 0, y: viewSize.height/4.73, width: viewSize.width, height: viewSize.height/26)
             inputlab.font = UIFont.systemFont(ofSize:25)
@@ -79,7 +79,7 @@ class pinLayoutView: UIView {
             self.addSubview(inputlab)
             
             let h1 = UILabel()
-            h1.text = localizedStr("InputPinCode")
+            h1.text = localizedStr("Unlock.desc")
             h1.textColor = cgBlackGray
             h1.frame = CGRect(x: 0, y: viewSize.height/3.55, width: viewSize.width, height: viewSize.height/26)
             h1.font = UIFont.systemFont(ofSize:15)

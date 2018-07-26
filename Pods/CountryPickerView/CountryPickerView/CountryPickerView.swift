@@ -17,13 +17,15 @@ public struct Country {
    public var name: String
    public var code: String
    public var phoneCode: String
+   public var chname: String
    public var flag: UIImage {
         return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
             in: Bundle(for: CountryPickerView.self), compatibleWith: nil)!
     }
     
-   internal init(name: String, code: String, phoneCode: String) {
+    internal init(name: String,chname: String, code: String, phoneCode: String) {
         self.name = name
+        self.chname = chname
         self.code = code
         self.phoneCode = phoneCode
     }
@@ -151,11 +153,11 @@ public class CountryPickerView: NibView {
                 
                 guard let name = countryObj["name"] as? String,
                     let code = countryObj["code"] as? String,
+                    let chname = countryObj["chname"] as? String,
                     let phoneCode = countryObj["dial_code"] as? String else {
                         continue
                 }
-                
-                let country = Country(name: name, code: code, phoneCode: phoneCode)
+                let country = Country(name: name, chname: chname, code: code, phoneCode: phoneCode)
                 countries.append(country)
             }
             
@@ -172,6 +174,12 @@ extension CountryPickerView {
             selectedCountry = country
         }
     }
+    public func setCountryBychname(_ chname: String) {
+        if let country = countries.first(where: { $0.chname == chname }){
+            selectedCountry = country
+        }
+    }
+
     
     public func setCountryByPhoneCode(_ phoneCode: String) {
         if let country = countries.first(where: { $0.phoneCode == phoneCode }) {

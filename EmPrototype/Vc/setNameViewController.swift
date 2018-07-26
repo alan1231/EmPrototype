@@ -40,7 +40,7 @@ class setNameViewController: UIViewController {
         btn.frame = CGRect(x: view.frame.size.width/1.28, y: view.frame.size.height/28, width: view.frame.size.width/5, height: view.frame.size.height/20)
         btn.setTitleColor(UIColor.gray, for: .normal)
         btn.layer.addBorder(edge: .bottom, color: UIColor.gray, thickness: 1)
-        btn.setTitle("下一步", for: .normal)
+        btn.setTitle("完成", for: .normal)
         btn.addTarget(self, action: #selector(self.sendName), for: .touchUpInside)
         view.addSubview(btn)
         

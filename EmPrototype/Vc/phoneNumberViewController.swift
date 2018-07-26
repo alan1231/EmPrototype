@@ -63,9 +63,9 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
         infolab.frame = CGRect(x: 0, y: phoneNumberField.frame.origin.y + phoneNumberField.frame.height + 10, width: self.view.frame.size.width, height: view.frame.size.height/18
         )
         infolab.appendLinkString(string: "点击「下一步」即表示您同意")
-        infolab.appendLinkString(string: "使用协议", withURLString: "about:")
+        infolab.appendLinkString(string: "使用协议", withURLString: "UseAgreement:")
         infolab.appendLinkString(string: "和")
-        infolab.appendLinkString(string: "隐私政策", withURLString: "feedback:")
+        infolab.appendLinkString(string: "隐私政策", withURLString: "PrivacyPolicy:")
 
 
         infolab.font = UIFont.systemFont(ofSize: 12)
@@ -106,10 +106,10 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
                   in characterRange: NSRange) -> Bool {
         
         switch URL.scheme {
-        case "about" :
+        case "UseAgreement" :
             let vc = AgreementViewController()
             self.navigationController?.pushViewController(vc, animated: true)
-        case "feedback" :
+        case "PrivacyPolicy" :
             let vc = PrivacyPolicyViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         default:

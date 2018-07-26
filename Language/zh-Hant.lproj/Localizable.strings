@@ -6,12 +6,13 @@
  Copyright © 2018年 alan. All rights reserved.
  */
 "back" = "返回";
-"Unlock" = "解鎖";
+"Unlock.title" = "解鎖";
 "Clear" = "清除";
-"AskInputSamePinCode" = "請輸入同樣的PinCode";
-"InputPinCode" = "請輸入PinCode";
-"CheackNewPinCode" = "確認新的PinCode";
-"4pcsPinCode" = "四位數PinCode";
-"6pcsPinCode" = "六位數PinCode";
-"SettingNewPinCode" = "設置新的PinCode";
-"h1PinCode" = "您的PinCode將用於登入和確認交易";
+"PinCode.mismatched" = "請輸入同樣的PinCode";
+"Unlock.desc" = "請輸入PinCode";
+"PinCode.Set2.title" = "確認PinCode";
+"PinCode.option2" = "四位數PinCode";
+"PinCode.option1" = "六位數PinCode";
+"PinCode.Set1.title" = "設置PinCode";
+"PinCode.Set1.desc" = "您的PinCode將用於登入和確認交易";
+"Language" = "English";

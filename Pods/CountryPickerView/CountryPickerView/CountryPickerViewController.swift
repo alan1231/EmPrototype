@@ -148,9 +148,23 @@ extension CountryPickerViewController {
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
-        let name = countryPickerView.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
+        
+        switch NSLocalizedString("Language", comment: "") {
+        case "Chinese":
+            let name = countryPickerView.showPhoneCodeInList ? "\(country.chname) (\(country.phoneCode))" : country.chname
+            cell.textLabel?.text = name
+
+        case "English":
+            let name = countryPickerView.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
+            cell.textLabel?.text = name
+
+        default:
+            break
+        }
+        
+        
+        
         cell.imageView?.image = country.flag
-        cell.textLabel?.text = name
         cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
         cell.separatorInset = .zero
         return cell
