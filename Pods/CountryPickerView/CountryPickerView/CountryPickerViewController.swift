@@ -149,19 +149,14 @@ extension CountryPickerViewController {
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
         
-        switch NSLocalizedString("Language", comment: "") {
-        case "Chinese":
+        if NSLocalizedString("Language", comment: "") == "Chinese" {
             let name = countryPickerView.showPhoneCodeInList ? "\(country.chname) (\(country.phoneCode))" : country.chname
             cell.textLabel?.text = name
-
-        case "English":
+        }else{
             let name = countryPickerView.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
             cell.textLabel?.text = name
-
-        default:
-            break
         }
-        
+                
         
         
         cell.imageView?.image = country.flag
