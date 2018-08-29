@@ -17,11 +17,11 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
     var timer = Timer()
     var isTimerRun = true
     var str = String()
+    var phoneStr = String()
     var bordview = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let topview = UILabel()
         topview.backgroundColor = mobiColor
         topview.frame = CGRect(x: 0 , y: 0, width: view.frame.size.width, height: view.frame.size.height/6)
@@ -61,9 +61,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(messageTextField)
         
         let numberLab = UILabel()
-//        numberLab.text = user.get("PhoneNumber")
-        numberLab.text = phoneNumberViewController.myPhoneNumber
-//        numberLab.text = "+886978768913"
+        numberLab.text = phoneStr
         numberLab.textAlignment = .center
         numberLab.font = UIFont.systemFont(ofSize: 15)
         numberLab.frame = messageTextField.frame
@@ -198,24 +196,26 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         messageTextField.resignFirstResponder()
 
         setupView(view)
-
-        APIManager.getApi.sendMessage(user.get("PhoneNumber"), self.messageTextField.text!, completion: {result,token,err    in
+        APIManager.getApi.sendMessage(user.get("PhoneNumber"), self.messageTextField.text!, completion: {token,status,err    in
     
-            if result == "ok"{
+            if status == "ok" {
                 stoploadingView()
-
-                
-                
                 user.save("Token", token!)
-                
-
-                
                 let vc = pinViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
                 self.navigationController?.navigationBar.isHidden = false
                 
                 self.timer.invalidate()
+                print(user.get("DeviceToken"))
+                
+                APIManager.getApi.sendDevicetoken(user.get("DeviceToken"), completion:{
+                    result in
 
+                    if result! {
+                        print("device token push ok")
+                    }
+
+                })
                 
 //                let alert = UIAlertController(title: "完成簡訊認證", message: nil, preferredStyle: .alert)
 //

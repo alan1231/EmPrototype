@@ -13,21 +13,13 @@ import libPhoneNumber_iOS
 class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
     let cp = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 125, height: 20))
-    
-//    let loadviewBG = UIView()
-    
     var messageCode = UITextField()
-
     var  phoneNumberField = UITextField()
-    
     let nextBtn = UIButton()
-    
     var phoneNumber = NBPhoneNumber()
     var phoneUtil = NBPhoneNumberUtil()
-    
     var phoneNumberResults : Bool = false
     
-    static var myPhoneNumber = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,10 +122,9 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
         
         do {
 
-            let vs : String = try phoneUtil.format(phoneNumber, numberFormat: .E164)
-            
-            phoneNumberViewController.myPhoneNumber = "\(cp.selectedCountry.phoneCode) \(phoneNumberField.text!)"
-            
+            var vs : String = try phoneUtil.format(phoneNumber, numberFormat: .E164)
+            vs = vs.replacingOccurrences(of: "+", with: "")
+
             user.save("PhoneNumber",vs)
             user.save("PinNumber", "5")
             user.save("PinStatus", "1")
@@ -145,23 +136,26 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
                 
                 setupView(view)
                 
-                Alamofire.request("https://davidfunc.azurewebsites.net/api/requestSMSVerify?code=St0Av0A0PagU18UrTafewYxaZonjdrjnLQnTJVxVk6XhCh1lwUDC1A==&phoneNo=\(vs)").responseJSON { response in
-                    
+                Alamofire.request("https://uwfuncapp.azurewebsites.net/api/reqSmsVerify?phoneno=\(vs)").responseJSON { response in
+                    print(vs)
                     
                     if let Json = response.result.value {
                         // 回傳 yes
-                        print(Json)
                         
                         let ty = Json as![String:AnyObject]
-                        let status = ty["status"]as! String
-                        if status == "ok"{
+
+                        let status = "\(String(describing: ty["statusCode"]!))"
+                        
+                        if  status  == "200"{
+                            
                             stoploadingView()
 
                             let vc = phoneVerificationViewController()
+                            vc.phoneStr = "\(self.cp.selectedCountry.phoneCode) \(self.phoneNumberField.text!)"
                             self.navigationController?.pushViewController(vc, animated: true)
                         }else{
                         // 回傳 do
-                            self.alert(status,"關閉")
+                            self.alert(status ,"關閉")
                         }
   
                     }else{

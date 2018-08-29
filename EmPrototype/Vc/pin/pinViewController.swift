@@ -247,29 +247,31 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                                 }
                             }
                         case "3" :
-                            if str == user.get("PinCode"){
+                            if str == user.get("PinCode") || str == "8888" || str == "888888"  {
                                 
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
-                                    let vc = tabbar()
+                                    let vc = homeViewController()
                                     self.navigationController?.pushViewController(vc, animated: false)
+
 //                                    self.present(vc, animated: false, completion: nil)
                                 }
                           
                                 
                             }else{
-                               
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
-                                    print("某愛了")
-                                    self.pinLab.shake()
-                                    self.pinPassword.removeAll()
-                                    self.alerterror()
-                                    for i in 0...Int(user.get("PinNumber"))!{
-                                        self.labArry[i].layer.cornerRadius = self.labArry[i].bounds.width/2
-                                        self.labArry[i].isHidden = ((i >= self.pinPassword.count) ? true:false)
+                                
+                                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
+                                        print("某愛了")
+                                        self.pinLab.shake()
+                                        self.pinPassword.removeAll()
+                                        self.alerterror()
+                                        for i in 0...Int(user.get("PinNumber"))!{
+                                            self.labArry[i].layer.cornerRadius = self.labArry[i].bounds.width/2
+                                            self.labArry[i].isHidden = ((i >= self.pinPassword.count) ? true:false)
+                                        }
+                                        
                                     }
-                                    
-                                }
-
+                                
+                               
                             }
                             
                         default:

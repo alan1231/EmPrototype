@@ -10,15 +10,16 @@ import XCTest
 @testable import EmPrototype
 
 class EmPrototypeTests: XCTestCase {
-    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+  
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        print("tearDown... ")
+
     }
     
     func testExample() {
@@ -32,5 +33,7 @@ class EmPrototypeTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
+    func testAdd(){
+        XCTAssert(true)
+    }
 }

@@ -9,74 +9,58 @@
 import UIKit
 
 class homeLayoutView: UIView {
-    let setGetview = UIView()
-    let getBtn = UIButton()
-    let sedBtn = UIButton()
-    let CryptoBtn = UIButton()
-    let FiatBtn = UIButton()
-    let pageview = UIScrollView()
-    
-    
+
+    let DepositBtn = UIButton()
+    let HistoryBtn = UIButton()
+    let ExchangeBtn = UIButton()
+    let ReceivePaymentBtn = UIButton()
+    let BalanceBtn = UIButton()
     init(frame: CGRect,VC:homeViewController) {
         super.init(frame:frame)
-        setGetview.frame = CGRect(x: 0, y: viewSize.height/3.5 , width: viewSize.width, height: viewSize.height/10)
-        setGetview.backgroundColor = UIColor(red: 22/255, green: 45/255, blue: 113/255, alpha: 1)
-        self.addSubview(setGetview)
-        
-        sedBtn.frame = CGRect(x: 0, y: 0, width: setGetview.frame.width/2, height: setGetview.frame.height)
-        sedBtn.setImage(UIImage(named:"sendBtn"), for: .normal)
-        setGetview.addSubview(sedBtn)
-        
-        getBtn.frame = CGRect(x: setGetview.frame.width/2, y: 0, width: setGetview.frame.width/2, height: setGetview.frame.height)
-        getBtn.setImage(UIImage(named: "getBtn"), for: .normal)
-        setGetview.addSubview(getBtn)
-        
-        let line = UIView ()
-        line.frame = CGRect(x: (setGetview.frame.width/2)-0.5 , y: 10, width: 1, height: setGetview.frame.height-20)
-        line.backgroundColor = UIColor.gray
-        setGetview.addSubview(line)
-        
-        let view2 = UIView()
-        view2.frame  = CGRect(x: 0, y: setGetview.frame.origin.y + setGetview.frame.size.height, width: setGetview.frame.size.width, height: viewSize.height/12)
-        view2.backgroundColor = UIColor.white
-        self.addSubview(view2)
-        
-        CryptoBtn.setTitle("數字貨幣", for: .normal)
-        CryptoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(rawValue: 18))
-        CryptoBtn.setTitleColor(UIColor.black, for: .normal)
-        CryptoBtn.frame = CGRect(x: 10, y: 0, width: viewSize.width/4.8, height: view2.frame.height)
-        view2.addSubview(CryptoBtn)
-        
-        FiatBtn.setTitle("法幣", for: .normal)
-        FiatBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(rawValue: 18))
-        FiatBtn.setTitleColor(UIColor.gray, for: .normal)
-        FiatBtn.frame = CGRect(x: CryptoBtn.frame.origin.x + CryptoBtn.frame.width + 20, y: 0, width: viewSize.width/6, height: view2.frame.height)
-        view2.addSubview(FiatBtn)
         
         
-        pageview.frame = CGRect(x: 0, y: view2.frame.origin.y + view2.frame.size.height, width: viewSize.width, height: viewSize.height/2.15)
-        pageview.backgroundColor = UIColor.red
-        pageview.contentSize = CGSize(width: viewSize.width*2, height: viewSize.height/3)
-        pageview.showsVerticalScrollIndicator = false
-        pageview.bouncesZoom = false
-        pageview.showsHorizontalScrollIndicator = false
-        pageview.isPagingEnabled = true
+        BalanceBtn.frame = CGRect(x:viewSize.width/20, y: viewSize.height/3.1, width: viewSize.width - (viewSize.width/20*2), height: viewSize.height/6)
+        BalanceBtn.layer.addBorder(edge: .top, color: UIColor.groupTableViewBackground, thickness: 2)
+        BalanceBtn.layer.addBorder(edge: .bottom, color: UIColor.groupTableViewBackground, thickness: 2)
+        BalanceBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 38)
+        BalanceBtn.setTitleColor(UIColor.black, for: .normal)
+        self.addSubview(BalanceBtn)
 
+        let uilab = UILabel()
+        uilab.frame = CGRect(x: BalanceBtn.frame.origin.x, y: BalanceBtn.frame.origin.y + 5, width: 100, height: 30)
+        uilab.text = "人民币余额"
+        self.addSubview(uilab)
+        
+        
+        DepositBtn.frame = CGRect(x: viewSize.width/20, y: viewSize.height/2 + (viewSize.width/17), width: viewSize.width/1.9 - (viewSize.width/20*2), height: viewSize.height/5)
+        DepositBtn.backgroundColor = UIColor.groupTableViewBackground
+        DepositBtn.setTitle("存提", for: .normal)
+        DepositBtn.layer.cornerRadius = 5
+        DepositBtn.setTitleColor(UIColor.black, for: .normal)
 
-        self.addSubview(pageview)
+        self.addSubview(DepositBtn)
         
-        let v1 = UIView()
-        v1.backgroundColor = UIColor.groupTableViewBackground
-        v1.frame = CGRect(x: pageview.frame.origin.x, y: 0, width: pageview.frame.size.width, height: pageview.frame.size.height)
-        pageview.addSubview(v1)
+        HistoryBtn.frame = CGRect(x: viewSize.width/1.9, y: DepositBtn.frame.origin.y, width: DepositBtn.frame.width, height: DepositBtn.frame.height)
+        HistoryBtn.backgroundColor = UIColor.groupTableViewBackground
+        HistoryBtn.setTitle("历史交易", for: .normal)
+        HistoryBtn.setTitleColor(UIColor.black, for: .normal)
+        HistoryBtn.layer.cornerRadius = 5
+        self.addSubview(HistoryBtn)
         
-        let v2 = UIView()
-        v2.backgroundColor = UIColor.yellow
-        v2.frame = CGRect(x: pageview.frame.origin.x + pageview.frame.size.width , y: 0, width: pageview.frame.size.width, height: pageview.frame.size.height)
-        pageview.addSubview(v2)
+        ExchangeBtn.frame = CGRect(x: viewSize.width/20, y: DepositBtn.frame.origin.y + DepositBtn.frame.height + viewSize.width/20, width: DepositBtn.frame.width, height: DepositBtn.frame.height)
+        ExchangeBtn.backgroundColor = UIColor.groupTableViewBackground
+        ExchangeBtn.setTitle("换汇", for: .normal)
+        ExchangeBtn.setTitleColor(UIColor.black, for: .normal)
+        ExchangeBtn.layer.cornerRadius = 5
 
-        
-        
+        self.addSubview(ExchangeBtn)
+
+        ReceivePaymentBtn.frame = CGRect(x: HistoryBtn.frame.origin.x, y: ExchangeBtn.frame.origin.y, width: DepositBtn.frame.width, height: DepositBtn.frame.height)
+        ReceivePaymentBtn.backgroundColor = UIColor.groupTableViewBackground
+        ReceivePaymentBtn.setTitle("收付款", for: .normal)
+        ReceivePaymentBtn.layer.cornerRadius = 5
+        ReceivePaymentBtn.setTitleColor(UIColor.black, for: .normal)
+        self.addSubview(ReceivePaymentBtn)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -7,6 +7,6 @@ target 'EmPrototype' do
   pod 'CountryPickerView'  
   pod 'Alamofire'
   pod 'libPhoneNumber-iOS', '~> 0.8'
-
+  pod 'MGSwipeTableCell'
 
 end

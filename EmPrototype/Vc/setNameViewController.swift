@@ -53,12 +53,13 @@ class setNameViewController: UIViewController {
         //除去前后空格
         let str2 = str1.trimmingCharacters(in: .whitespaces)
 
-            APIManager.getApi.sendName(user.get("Token"), str2, completion: {result,err    in
+            APIManager.getApi.sendName( str2, completion: {result,errors    in
                 
-                
-                if result == "ok"{
+
+                if result == true {
+                    user.save("Name", str2)
                     stoploadingView()
-                    let vc = tabbar()
+                    let vc = homeViewController()
 //                    self.navigationController?.pushViewController(vc, animated: true)
                     self.navigationController?.pushViewController(vc, animated: true)
                     self.navigationController?.navigationBar.isHidden = true
@@ -71,10 +72,11 @@ class setNameViewController: UIViewController {
                     //                self.messageTextField.shake()
                     //                self.messageTextField.text = ""
                 }
-                if result == nil {
+                if result == false {
                     stoploadingView()
                     self.textfield.becomeFirstResponder()
                     self.textfield.shake()
+                    print(errors as Any)
                 }
                 
                 

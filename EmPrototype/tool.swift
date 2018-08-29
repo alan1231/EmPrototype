@@ -109,7 +109,30 @@ extension UIView {
         }
     }
 }
-
+extension UIImage {
+    //生成圆形图片
+    func toCircle() -> UIImage {
+        //取最短边长
+        let shotest = min(self.size.width, self.size.height)
+        //输出尺寸
+        let outputRect = CGRect(x: 0, y: 0, width: shotest, height: shotest)
+        //开始图片处理上下文（由于输出的图不会进行缩放，所以缩放因子等于屏幕的scale即可）
+        UIGraphicsBeginImageContextWithOptions(outputRect.size, false, 0)
+        let context = UIGraphicsGetCurrentContext()!
+        //添加圆形裁剪区域
+        context.addEllipse(in: outputRect)
+        context.clip()
+        //绘制图片
+        self.draw(in: CGRect(x: (shotest-self.size.width)/2,
+                             y: (shotest-self.size.height)/2,
+                             width: self.size.width,
+                             height: self.size.height))
+        //获得处理后的图片
+        let maskedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return maskedImage
+    }
+}
 extension UITextView {
     //添加链接文本（链接为空时则表示普通文本）
     func appendLinkString(string:String, withURLString:String = "") {
@@ -134,3 +157,19 @@ extension UITextView {
         self.attributedText = attrString
     }
 }
+//不能使用 self 的 vc呼叫
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
+    } }

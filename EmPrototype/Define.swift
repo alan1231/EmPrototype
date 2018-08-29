@@ -19,8 +19,18 @@ public let cgBlackGray = UIColor(red: 149/255, green: 149/255, blue: 152/255, al
 public let viewSize = UIScreen.main.bounds.size
 public let loadviewBG = UIView()
 
+
+
+
+
 func RGBA (r:CGFloat,g:CGFloat,b:CGFloat,a:CGFloat)-> UIColor{
     return UIColor (red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)
+}
+func getNowTime()->Int{
+    let now:Date = Date()
+    let timeInterval:TimeInterval = now.timeIntervalSince1970
+    let time:Int = Int(timeInterval)
+    return time
 }
 
 func getSizeFromString(string:String, withFont font:UIFont)->CGSize{

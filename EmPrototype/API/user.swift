@@ -7,6 +7,16 @@
 //
 
 import UIKit
+public enum userDefine :String {
+    case PinCode = "PinCode"
+    case PinStatus
+    case Token
+    case PinNumber
+    case PhoneNumber
+    case DeviceToken
+}
+
+
 
 class user: NSObject {
     static func save (_ key:String, _ value:String){

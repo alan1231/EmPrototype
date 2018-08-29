@@ -13,10 +13,9 @@ class tabbar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //一共包含了两个视图
         let viewMain = homeViewController()
         viewMain.title = "錢包"
-        let viewSetting = ViewController()
+        let viewSetting = vc111()
         viewSetting.title = "消息"
         let a = AViewController()
         a.title = "發現"
