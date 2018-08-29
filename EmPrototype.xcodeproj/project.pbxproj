@@ -56,7 +56,6 @@
 		E7C92E63211AC47B003DF2CC /* Json-Rpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C92E62211AC47B003DF2CC /* Json-Rpc.swift */; };
 		E7C92E65211AD458003DF2CC /* JsonRPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C92E64211AD458003DF2CC /* JsonRPC.swift */; };
 		E7C92F2121210F56003DF2CC /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C92F2021210F56003DF2CC /* PushNotification.swift */; };
-		E7F40986211947D600A6C089 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F40985211947D600A6C089 /* WindowsAzureMessaging.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,7 +139,6 @@
 		E7C92E62211AC47B003DF2CC /* Json-Rpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Json-Rpc.swift"; sourceTree = "<group>"; };
 		E7C92E64211AD458003DF2CC /* JsonRPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonRPC.swift; sourceTree = "<group>"; };
 		E7C92F2021210F56003DF2CC /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
-		E7F40985211947D600A6C089 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = Pods/WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		E7FCA77D2112FF7C00CD68A3 /* EmPrototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EmPrototype.entitlements; sourceTree = "<group>"; };
 		E7FCA7882113E9F300CD68A3 /* EmPrototype-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EmPrototype-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				272118B6383B18BC7FEFDF1C /* Pods_EmPrototype.framework in Frameworks */,
-				E7F40986211947D600A6C089 /* WindowsAzureMessaging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				AAC48C146CED77DF33D2248D /* Pods_EmPrototype.framework */,
-				E7F40985211947D600A6C089 /* WindowsAzureMessaging.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

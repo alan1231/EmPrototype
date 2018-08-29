@@ -8,7 +8,6 @@
 
 #ifndef EmPrototype_Bridging_Header_h
 #define EmPrototype_Bridging_Header_h
-#import "WindowsAzureMessaging/WindowsAzureMessaging.h"
 #import "MGSwipeTableCell/MGSwipeTableCell.h"
 
 
