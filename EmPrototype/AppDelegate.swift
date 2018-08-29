@@ -132,14 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = self.navigation
             self.window?.backgroundColor = UIColor.white
         }
-
-
-
-        
-
-
-        
-        return true
+      return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -156,16 +149,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = String(deviceTokenString)
         user.save(userDefine.DeviceToken.rawValue, "\(token)")
         
-//        //push Azuer device api
-//        let hub = SBNotificationHub(connectionString: "Endpoint=sb://mynotificationhub.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=GGu5X5TGyRBbAMMEPzyaA9HdTwTANBbvhCyHoGS4zLo=", notificationHubPath: "U-wallet-ts")
-//
-//        hub?.registerNative(withDeviceToken: deviceToken, tags: nil) { (error) in
-//            if (error != nil) {
-//                print("Error registering for notifications.", error as Any)
-//            } else {
-//                print("Success registering for notifications.", deviceToken)
-//            }
-//        }
     }
     
 
