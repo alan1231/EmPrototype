@@ -20,11 +20,11 @@ class APIManager: NSObject {
         
             if let Json = response.result.value {
                 // 回傳 yes
-                print(Json)
                 let ty = Json as![String:AnyObject]
-                let status = ty["status"]as! String
-                
-                if status == "ok"{
+                let status = "\(String(describing: ty["statusCode"]!))"
+
+                if status == "200"{
+                    print("!!!!!!!")
                     completion(status, nil)
                 }else{
                     completion(status, nil)

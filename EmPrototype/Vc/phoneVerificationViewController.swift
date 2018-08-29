@@ -143,7 +143,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
             
             
             APIManager.getApi.sendPhoneNumber(user.get("PhoneNumber"), self.messageTextField.text!, completion: {result,err    in
-                if result == "ok"{
+                if result == "200"{
                     print("ok")
                 }else{
                     print("err")
