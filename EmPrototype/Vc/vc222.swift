@@ -12,7 +12,7 @@ import Alamofire
 class vc222: UIViewController,UITextFieldDelegate {
     var userid = String()
     var username = String()
-
+    var numbertextfiled = UITextField()
 //    let message = UITextField()
     let btn = UIButton()
     let lab = UILabel()
@@ -115,6 +115,8 @@ class vc222: UIViewController,UITextFieldDelegate {
             textField.placeholder = placeholder
             textField.delegate = self
             if currency == "推播"{
+                textField.keyboardType = UIKeyboardType.default
+
             }else{
                 textField.keyboardType = UIKeyboardType.decimalPad
             }
@@ -221,11 +223,16 @@ class vc222: UIViewController,UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        let expression = "^\\d{0,10}(\\.\\d{0,2})?$"
-        let regex = try! NSRegularExpression(pattern: expression, options: NSRegularExpression.Options.allowCommentsAndWhitespace)
-        let numberOfMatches = regex.numberOfMatches(in: newString, options:NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, (newString as NSString).length))
-        return numberOfMatches != 0
+        if textField.placeholder == "金額"{
+            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            let expression = "^\\d{0,10}(\\.\\d{0,2})?$"
+            let regex = try! NSRegularExpression(pattern: expression, options: NSRegularExpression.Options.allowCommentsAndWhitespace)
+            let numberOfMatches = regex.numberOfMatches(in: newString, options:NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, (newString as NSString).length))
+            return numberOfMatches != 0
+        }
+        
+        return true
+
     }
 
     

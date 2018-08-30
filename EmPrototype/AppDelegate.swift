@@ -167,24 +167,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if userInfo["custom"] != nil{
             let custom = userInfo["custom"] as! [String:AnyObject]
-            if let type = custom["type"]{
-                if (type as! String) == "LOGOUT" {
+
+            if  custom["type"] is NSNull {
+            }else{
+                let type = custom["type"] as! String
+                if type == "LOGOUT"{
+                    print("登出")
+                }
+            }
+
                     let alert = UIAlertController(title: "Your have message", message: "\(user["alert"] as! String)", preferredStyle: .alert)
                     
                     let cancelButton = UIAlertAction(title: "確定", style: .cancel, handler: {
                         (action:UIAlertAction)
                         -> Void in
-                        self.cleandata()
+//                        self.cleandata()
                         
                     })
                     
                     alert.addAction(cancelButton)
                     
                     UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
-                }
             }
             
-        }
         
 
 
@@ -214,6 +219,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if  defaults.object(forKey: "Token") as? String == nil && defaults.object(forKey: "pinCode") == nil {
             
         }else{
+            if getNowTime() - self.goinTime >= 20{
+                let vc = pinViewController()
+                self.navigation.pushViewController(vc, animated: false)
+                self.navigation.navigationBar.isHidden = true
+                print(self.navigation.viewControllers)
+            }
             cheacktoken()
         }
     }
@@ -225,12 +236,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if (cheack){
                 print("t")
-                if getNowTime() - self.goinTime >= 20{
-                    let vc = pinViewController()
-                    self.navigation.pushViewController(vc, animated: false)
-                    self.navigation.navigationBar.isHidden = true
-                    print(self.navigation.viewControllers)
-                }
+
             }else{
                 print("f")
                 
