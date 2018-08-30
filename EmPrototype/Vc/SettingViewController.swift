@@ -167,6 +167,17 @@ class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UI
         let clear = UIAlertAction(title: "確定", style: .destructive, handler: {
             (action:UIAlertAction)
             -> Void in
+            
+            APIManager.getApi.sendDevicetoken("22345678", completion:{
+                result in
+                
+                if result! {
+                    print("device token push ok")
+                }
+                
+            })
+            
+            
             user.remove("PinCode")
             user.remove("PinStatus")
             user.remove("Token")
