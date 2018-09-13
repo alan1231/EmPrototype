@@ -42,6 +42,10 @@ func getSizeFromString(string:String, withFont font:UIFont)->CGSize{
     return textSize
     
 }
+func randomInt() -> Int{
+    let int = Int(arc4random_uniform(9999)+1)
+    return int
+}
 func localizedStr (_ string:String) -> String{
         return  NSLocalizedString(string, comment: "")
 }

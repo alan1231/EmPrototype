@@ -18,6 +18,7 @@ class vc222: UIViewController,UITextFieldDelegate {
     let lab = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = UIColor.groupTableViewBackground
         lab.frame = CGRect(x: 0, y: 150, width: view.frame.width,height: 30)
         lab.text = username
@@ -82,16 +83,16 @@ class vc222: UIViewController,UITextFieldDelegate {
             self.selectNumber("USD","金額","請輸入金額")
 
         })
-        let BITCOIN = UIAlertAction(title: "BITCOIN", style: .default, handler: {
+        let BITCOIN = UIAlertAction(title: "BTC", style: .default, handler: {
             (action:UIAlertAction)
             -> Void in
-            self.selectNumber("BITCOIN","金額","請輸入金額")
+            self.selectNumber("BTC","金額","請輸入金額")
 
         })
-        let ETHER = UIAlertAction(title: "ETHER", style: .default, handler: {
+        let ETHER = UIAlertAction(title: "ETH", style: .default, handler: {
             (action:UIAlertAction)
             -> Void in
-            self.selectNumber("ETHER","金額","請輸入金額")
+            self.selectNumber("ETH","金額","請輸入金額")
 
         })
         actionSheet.addAction(cancelBtn)
@@ -110,16 +111,26 @@ class vc222: UIViewController,UITextFieldDelegate {
             preferredStyle: .alert)
         
         // 輸入框
-        alertController.addTextField {
-            (textField: UITextField!) -> Void in
-            textField.placeholder = placeholder
-            textField.delegate = self
-            if currency == "推播"{
+        if currency == "推播"{
+            alertController.addTextField {
+                (textField: UITextField!) -> Void in
+                textField.placeholder = placeholder
+                textField.delegate = self
                 textField.keyboardType = UIKeyboardType.default
-
-            }else{
+            }
+        }else{
+            alertController.addTextField {
+                (textField: UITextField!) -> Void in
+                textField.placeholder = placeholder
+                textField.delegate = self
                 textField.keyboardType = UIKeyboardType.decimalPad
             }
+            
+            alertController.addTextField {
+                (textField: UITextField!) -> Void in
+                textField.placeholder = "message"
+            }
+            
         }
         
         // 建立[取消]按鈕
@@ -129,7 +140,7 @@ class vc222: UIViewController,UITextFieldDelegate {
             handler: nil)
         alertController.addAction(cancelAction)
         
-        // 建立[登入]按鈕
+        // 建立[確定]按鈕
         let okAction = UIAlertAction(
             title: "確定",
             style: UIAlertActionStyle.default) {
@@ -149,11 +160,12 @@ class vc222: UIViewController,UITextFieldDelegate {
                         }
                     })
                 }else{
-                    APIManager.getApi.payBalances(currency, acc.text!, self.userid, completion:{
+                    let message =
+                        (alertController.textFields?.last)!
+                            as UITextField
+                    APIManager.getApi.payBalances(currency, acc.text!, self.userid, message.text!, completion:{
                         result in
-                        
                         stoploadingView()
-
                     })
                 }
                 
@@ -225,7 +237,7 @@ class vc222: UIViewController,UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField.placeholder == "金額"{
             let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-            let expression = "^\\d{0,10}(\\.\\d{0,2})?$"
+            let expression = "^\\d{0,10}(\\.\\d{0,8})?$"
             let regex = try! NSRegularExpression(pattern: expression, options: NSRegularExpression.Options.allowCommentsAndWhitespace)
             let numberOfMatches = regex.numberOfMatches(in: newString, options:NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, (newString as NSString).length))
             return numberOfMatches != 0

@@ -8,5 +8,6 @@ target 'EmPrototype' do
   pod 'Alamofire'
   pod 'libPhoneNumber-iOS', '~> 0.8'
   pod 'MGSwipeTableCell'
-
+  pod 'ObjectMapper'
+	
 end

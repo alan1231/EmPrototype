@@ -26,21 +26,23 @@
 		E71B0F3520E463C1002FCA4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71B0F3320E463C1002FCA4A /* LaunchScreen.storyboard */; };
 		E71B0F4020E463C1002FCA4A /* EmPrototypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F3F20E463C1002FCA4A /* EmPrototypeTests.swift */; };
 		E71B0F4B20E463C1002FCA4A /* EmPrototypeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F4A20E463C1002FCA4A /* EmPrototypeUITests.swift */; };
-		E71B0F5A20E46514002FCA4A /* logininViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F5920E46514002FCA4A /* logininViewController.swift */; };
 		E71B0F5C20E4659F002FCA4A /* phoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F5B20E4659F002FCA4A /* phoneNumberViewController.swift */; };
 		E71B0F5E20E465D2002FCA4A /* phoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F5D20E465D2002FCA4A /* phoneVerificationViewController.swift */; };
 		E71B0F6520E61AC1002FCA4A /* tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B0F6420E61AC1002FCA4A /* tool.swift */; };
+		E7212BB12149F0D10041898B /* BalanceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7212BB02149F0D10041898B /* BalanceDetailViewController.swift */; };
 		E7259A2020F43D96005DC340 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A1F20F43D96005DC340 /* Define.swift */; };
 		E7259A2220F444F0005DC340 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A2120F444F0005DC340 /* LoadingView.swift */; };
 		E7259A2820F4A37F005DC340 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A2720F4A37F005DC340 /* APIManager.swift */; };
 		E7259A3820F5EC0A005DC340 /* setNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7259A3720F5EC0A005DC340 /* setNameViewController.swift */; };
-		E747243C20E61DCD00B4FB6C /* CreatWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */; };
+		E7342407213FC6CA0008DC28 /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7342406213FC6CA0008DC28 /* APIData.swift */; };
+		E7342409213FCEC10008DC28 /* JsonReturn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7342408213FCEC10008DC28 /* JsonReturn.swift */; };
+		E734240B2140BE0A0008DC28 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734240A2140BE0A0008DC28 /* HistoryTableViewCell.swift */; };
 		E747243E20E61E2D00B4FB6C /* pinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */; };
 		E747244020E632A900B4FB6C /* pinCodeAgainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */; };
+		E7588737214646A7003FC3C5 /* ReceiptsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7588736214646A7003FC3C5 /* ReceiptsData.swift */; };
+		E758873921475549003FC3C5 /* HistoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E758873821475549003FC3C5 /* HistoryDetail.swift */; };
 		E765DA4620F71D96003FF71A /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4520F71D96003FF71A /* homeViewController.swift */; };
 		E765DA4A20F73935003FF71A /* tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4920F73935003FF71A /* tabbar.swift */; };
-		E765DA4C20F73A32003FF71A /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4B20F73A32003FF71A /* AViewController.swift */; };
-		E765DA4E20F73A3D003FF71A /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA4D20F73A3D003FF71A /* BViewController.swift */; };
 		E765DA5420FC45A6003FF71A /* homeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E765DA5320FC45A6003FF71A /* homeLayoutView.swift */; };
 		E76F71DA2100755100020DBF /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F71D92100755100020DBF /* AgreementViewController.swift */; };
 		E76F71DC2100757100020DBF /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F71DB2100757100020DBF /* PrivacyPolicyViewController.swift */; };
@@ -49,12 +51,11 @@
 		E77727BE21241A8400D4F05F /* vc111.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77727BD21241A8400D4F05F /* vc111.swift */; };
 		E77727C52125594B00D4F05F /* APIDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77727C42125594B00D4F05F /* APIDefine.swift */; };
 		E77D8580212E3E3200EE5ECD /* BalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77D857F212E3E3200EE5ECD /* BalanceTableViewCell.swift */; };
+		E782855321392338002942CE /* FriendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E782855221392338002942CE /* FriendData.swift */; };
 		E7AB786B20FECC4000270CA6 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AB786A20FECC4000270CA6 /* user.swift */; };
 		E7BEEB2520F70E8400E7956B /* pinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2420F70E8400E7956B /* pinViewController.swift */; };
 		E7BEEB2720F70ED700E7956B /* pinLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2620F70ED700E7956B /* pinLayoutView.swift */; };
 		E7BEEB2920F70EF600E7956B /* pinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB2820F70EF600E7956B /* pinCollectionViewCell.swift */; };
-		E7C92E63211AC47B003DF2CC /* Json-Rpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C92E62211AC47B003DF2CC /* Json-Rpc.swift */; };
-		E7C92E65211AD458003DF2CC /* JsonRPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C92E64211AD458003DF2CC /* JsonRPC.swift */; };
 		E7C92F2121210F56003DF2CC /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C92F2021210F56003DF2CC /* PushNotification.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,21 +104,23 @@
 		E71B0F4620E463C1002FCA4A /* EmPrototypeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmPrototypeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71B0F4A20E463C1002FCA4A /* EmPrototypeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmPrototypeUITests.swift; sourceTree = "<group>"; };
 		E71B0F4C20E463C1002FCA4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E71B0F5920E46514002FCA4A /* logininViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logininViewController.swift; sourceTree = "<group>"; };
 		E71B0F5B20E4659F002FCA4A /* phoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = phoneNumberViewController.swift; sourceTree = "<group>"; };
 		E71B0F5D20E465D2002FCA4A /* phoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = phoneVerificationViewController.swift; sourceTree = "<group>"; };
 		E71B0F6420E61AC1002FCA4A /* tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tool.swift; sourceTree = "<group>"; };
+		E7212BB02149F0D10041898B /* BalanceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceDetailViewController.swift; sourceTree = "<group>"; };
 		E7259A1F20F43D96005DC340 /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		E7259A2120F444F0005DC340 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E7259A2720F4A37F005DC340 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		E7259A3720F5EC0A005DC340 /* setNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setNameViewController.swift; sourceTree = "<group>"; };
-		E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatWalletViewController.swift; sourceTree = "<group>"; };
+		E7342406213FC6CA0008DC28 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
+		E7342408213FCEC10008DC28 /* JsonReturn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonReturn.swift; sourceTree = "<group>"; };
+		E734240A2140BE0A0008DC28 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCodeViewController.swift; sourceTree = "<group>"; };
 		E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCodeAgainViewController.swift; sourceTree = "<group>"; };
+		E7588736214646A7003FC3C5 /* ReceiptsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsData.swift; sourceTree = "<group>"; };
+		E758873821475549003FC3C5 /* HistoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetail.swift; sourceTree = "<group>"; };
 		E765DA4520F71D96003FF71A /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		E765DA4920F73935003FF71A /* tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabbar.swift; sourceTree = "<group>"; };
-		E765DA4B20F73A32003FF71A /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
-		E765DA4D20F73A3D003FF71A /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
 		E765DA5320FC45A6003FF71A /* homeLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeLayoutView.swift; sourceTree = "<group>"; };
 		E76F71D92100755100020DBF /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		E76F71DB2100757100020DBF /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
@@ -132,12 +135,11 @@
 		E77727BD21241A8400D4F05F /* vc111.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vc111.swift; sourceTree = "<group>"; };
 		E77727C42125594B00D4F05F /* APIDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDefine.swift; sourceTree = "<group>"; };
 		E77D857F212E3E3200EE5ECD /* BalanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTableViewCell.swift; sourceTree = "<group>"; };
+		E782855221392338002942CE /* FriendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendData.swift; sourceTree = "<group>"; };
 		E7AB786A20FECC4000270CA6 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = user.swift; path = API/user.swift; sourceTree = "<group>"; };
 		E7BEEB2420F70E8400E7956B /* pinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinViewController.swift; sourceTree = "<group>"; };
 		E7BEEB2620F70ED700E7956B /* pinLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinLayoutView.swift; sourceTree = "<group>"; };
 		E7BEEB2820F70EF600E7956B /* pinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pinCollectionViewCell.swift; sourceTree = "<group>"; };
-		E7C92E62211AC47B003DF2CC /* Json-Rpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Json-Rpc.swift"; sourceTree = "<group>"; };
-		E7C92E64211AD458003DF2CC /* JsonRPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonRPC.swift; sourceTree = "<group>"; };
 		E7C92F2021210F56003DF2CC /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		E7FCA77D2112FF7C00CD68A3 /* EmPrototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EmPrototype.entitlements; sourceTree = "<group>"; };
 		E7FCA7882113E9F300CD68A3 /* EmPrototype-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EmPrototype-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -233,14 +235,13 @@
 			children = (
 				E7019534212B94A0003C4800 /* SWQRCode */,
 				E7FCA77D2112FF7C00CD68A3 /* EmPrototype.entitlements */,
+				E7828551213922EE002942CE /* Model */,
 				E7259A2520F4A335005DC340 /* API */,
 				E7259A2320F444FB005DC340 /* view */,
 				E71B0F3120E463C1002FCA4A /* Assets.xcassets */,
 				E71B0F3320E463C1002FCA4A /* LaunchScreen.storyboard */,
 				E71B0F3620E463C1002FCA4A /* Info.plist */,
 				E71B0F2A20E463BE002FCA4A /* AppDelegate.swift */,
-				E765DA4B20F73A32003FF71A /* AViewController.swift */,
-				E765DA4D20F73A3D003FF71A /* BViewController.swift */,
 				E71B0F6420E61AC1002FCA4A /* tool.swift */,
 				E7259A1F20F43D96005DC340 /* Define.swift */,
 				E7C92F2021210F56003DF2CC /* PushNotification.swift */,
@@ -287,12 +288,15 @@
 				E765DA5320FC45A6003FF71A /* homeLayoutView.swift */,
 				E7019526212AB0AB003C4800 /* DepositViewController.swift */,
 				E7019528212AB0BA003C4800 /* HistoryViewController.swift */,
+				E734240A2140BE0A0008DC28 /* HistoryTableViewCell.swift */,
+				E758873821475549003FC3C5 /* HistoryDetail.swift */,
 				E701952A212AB0C8003C4800 /* ExchangeViewController.swift */,
 				E701952C212AB0D5003C4800 /* ReceivePaymentViewController.swift */,
 				E7019530212B9092003C4800 /* SettingViewController.swift */,
 				E7019541212BBE49003C4800 /* BalanceSettingViewController.swift */,
 				E701952E212AB0E3003C4800 /* BalanceViewController.swift */,
 				E77D857F212E3E3200EE5ECD /* BalanceTableViewCell.swift */,
+				E7212BB02149F0D10041898B /* BalanceDetailViewController.swift */,
 			);
 			path = Vc;
 			sourceTree = "<group>";
@@ -308,11 +312,8 @@
 		E7259A2420F4457C005DC340 /* 不用 */ = {
 			isa = PBXGroup;
 			children = (
-				E7C92E61211AC3EF003DF2CC /* testJsonRpc */,
-				E747243B20E61DCD00B4FB6C /* CreatWalletViewController.swift */,
 				E747243D20E61E2D00B4FB6C /* pinCodeViewController.swift */,
 				E747243F20E632A900B4FB6C /* pinCodeAgainViewController.swift */,
-				E71B0F5920E46514002FCA4A /* logininViewController.swift */,
 			);
 			path = "不用";
 			sourceTree = "<group>";
@@ -322,6 +323,7 @@
 			children = (
 				E7259A2720F4A37F005DC340 /* APIManager.swift */,
 				E77727C42125594B00D4F05F /* APIDefine.swift */,
+				E7342408213FCEC10008DC28 /* JsonReturn.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -334,6 +336,16 @@
 			path = Language;
 			sourceTree = "<group>";
 		};
+		E7828551213922EE002942CE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E782855221392338002942CE /* FriendData.swift */,
+				E7588736214646A7003FC3C5 /* ReceiptsData.swift */,
+				E7342406213FC6CA0008DC28 /* APIData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E7BEEB2120F70DFB00E7956B /* pin */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,15 +354,6 @@
 				E7BEEB2820F70EF600E7956B /* pinCollectionViewCell.swift */,
 			);
 			path = pin;
-			sourceTree = "<group>";
-		};
-		E7C92E61211AC3EF003DF2CC /* testJsonRpc */ = {
-			isa = PBXGroup;
-			children = (
-				E7C92E62211AC47B003DF2CC /* Json-Rpc.swift */,
-				E7C92E64211AD458003DF2CC /* JsonRPC.swift */,
-			);
-			path = testJsonRpc;
 			sourceTree = "<group>";
 		};
 		F6EC77EDE8B297CDAAA22DD9 /* Pods */ = {
@@ -531,6 +534,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CountryPickerView/CountryPickerView.framework",
 				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -538,6 +542,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CountryPickerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libPhoneNumber_iOS.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,43 +558,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7019542212BBE49003C4800 /* BalanceSettingViewController.swift in Sources */,
+				E7342407213FC6CA0008DC28 /* APIData.swift in Sources */,
 				E7C92F2121210F56003DF2CC /* PushNotification.swift in Sources */,
 				E7019529212AB0BA003C4800 /* HistoryViewController.swift in Sources */,
 				E7259A2820F4A37F005DC340 /* APIManager.swift in Sources */,
 				E77727BE21241A8400D4F05F /* vc111.swift in Sources */,
+				E7588737214646A7003FC3C5 /* ReceiptsData.swift in Sources */,
 				E7BEEB2520F70E8400E7956B /* pinViewController.swift in Sources */,
 				E7019540212B94A0003C4800 /* SWQRCodeViewController.swift in Sources */,
 				E701953F212B94A0003C4800 /* SWScannerView.swift in Sources */,
 				E7019531212B9092003C4800 /* SettingViewController.swift in Sources */,
 				E76F71DC2100757100020DBF /* PrivacyPolicyViewController.swift in Sources */,
-				E747243C20E61DCD00B4FB6C /* CreatWalletViewController.swift in Sources */,
 				E701953D212B94A0003C4800 /* SWQRCodeConfig.swift in Sources */,
 				E7259A3820F5EC0A005DC340 /* setNameViewController.swift in Sources */,
 				E71B0F5E20E465D2002FCA4A /* phoneVerificationViewController.swift in Sources */,
 				E7BEEB2720F70ED700E7956B /* pinLayoutView.swift in Sources */,
+				E734240B2140BE0A0008DC28 /* HistoryTableViewCell.swift in Sources */,
 				E71B0F6520E61AC1002FCA4A /* tool.swift in Sources */,
 				E765DA4A20F73935003FF71A /* tabbar.swift in Sources */,
-				E7C92E63211AC47B003DF2CC /* Json-Rpc.swift in Sources */,
 				E7259A2220F444F0005DC340 /* LoadingView.swift in Sources */,
 				E77727C52125594B00D4F05F /* APIDefine.swift in Sources */,
+				E7342409213FCEC10008DC28 /* JsonReturn.swift in Sources */,
 				E765DA5420FC45A6003FF71A /* homeLayoutView.swift in Sources */,
 				E747244020E632A900B4FB6C /* pinCodeAgainViewController.swift in Sources */,
 				E71B0F5C20E4659F002FCA4A /* phoneNumberViewController.swift in Sources */,
+				E7212BB12149F0D10041898B /* BalanceDetailViewController.swift in Sources */,
 				E71B0F2B20E463BE002FCA4A /* AppDelegate.swift in Sources */,
 				E76F71DA2100755100020DBF /* AgreementViewController.swift in Sources */,
 				E7019527212AB0AB003C4800 /* DepositViewController.swift in Sources */,
-				E765DA4E20F73A3D003FF71A /* BViewController.swift in Sources */,
 				E701953C212B94A0003C4800 /* SWQRCodeManager.swift in Sources */,
 				E701952D212AB0D5003C4800 /* ReceivePaymentViewController.swift in Sources */,
 				E77D8580212E3E3200EE5ECD /* BalanceTableViewCell.swift in Sources */,
 				E701952F212AB0E3003C4800 /* BalanceViewController.swift in Sources */,
 				E77727BA2124197100D4F05F /* vc222.swift in Sources */,
-				E71B0F5A20E46514002FCA4A /* logininViewController.swift in Sources */,
-				E7C92E65211AD458003DF2CC /* JsonRPC.swift in Sources */,
 				E701952B212AB0C8003C4800 /* ExchangeViewController.swift in Sources */,
 				E7259A2020F43D96005DC340 /* Define.swift in Sources */,
-				E765DA4C20F73A32003FF71A /* AViewController.swift in Sources */,
+				E758873921475549003FC3C5 /* HistoryDetail.swift in Sources */,
 				E747243E20E61E2D00B4FB6C /* pinCodeViewController.swift in Sources */,
+				E782855321392338002942CE /* FriendData.swift in Sources */,
 				E7AB786B20FECC4000270CA6 /* user.swift in Sources */,
 				E765DA4620F71D96003FF71A /* homeViewController.swift in Sources */,
 				E7BEEB2920F70EF600E7956B /* pinCollectionViewCell.swift in Sources */,

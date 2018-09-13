@@ -142,16 +142,13 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
             isTimerRun = false
             
             
-            APIManager.getApi.sendPhoneNumber(user.get("PhoneNumber"), self.messageTextField.text!, completion: {result,err    in
-                if result == "200"{
+            APIManager.getApi.sendPhoneNumber(user.get("PhoneNumber"), completion: { result,err   in
+                if (result)!{
                     print("ok")
                 }else{
                     print("err")
                 }
             })
-            
-            
-            
         }
  
     }
@@ -196,7 +193,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         messageTextField.resignFirstResponder()
 
         setupView(view)
-        APIManager.getApi.sendMessage(user.get("PhoneNumber"), self.messageTextField.text!, completion: {token,status,err    in
+        APIManager.getApi.sendMessage(user.get("PhoneNumber"), self.messageTextField.text!,user.get("DeviceToken"), completion: {token,status,err    in
     
             if status == "ok" {
                 stoploadingView()
@@ -206,16 +203,15 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
                 self.navigationController?.navigationBar.isHidden = false
                 
                 self.timer.invalidate()
-                print(user.get("DeviceToken"))
                 
-                APIManager.getApi.sendDevicetoken(user.get("DeviceToken"), completion:{
-                    result in
-
-                    if result! {
-                        print("device token push ok")
-                    }
-
-                })
+//                APIManager.getApi.sendDevicetoken(user.get("DeviceToken"), completion:{
+//                    result in
+//
+//                    if result! {
+//                        print("device token push ok")
+//                    }
+//
+//                })
                 
 //                let alert = UIAlertController(title: "完成簡訊認證", message: nil, preferredStyle: .alert)
 //

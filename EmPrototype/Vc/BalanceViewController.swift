@@ -33,27 +33,21 @@ class BalanceViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         APIManager.getApi.getBalances(completion:{
             balances in
-            for ffx in (balances!["result"] as? [AnyObject])!{
-                self.balance.append(ffx["balance"] as! String)
-                self.name.append(ffx["name"] as! String)
-            }
+            let list  = balances!["list"] as! [String:AnyObject]
+            print(list)
+        
+            list.forEach({ (key, value) in
+                self.name.append(key)
+                self.balance.append("\(value)")
+            })
+
             DispatchQueue.main.async{
                 self.setUpTable()
 
                 self.mainTable?.reloadData()
             }
         })
-        
-        
 
-        
-        
-//        mainArray = NSMutableArray.init(array: ["宝宝0", "宝宝1", "宝宝2", "宝宝3", "宝宝4", "宝宝5", "宝宝6", "宝宝7", "宝宝8", "宝宝9", "宝宝10", "宝宝11"])
-//
-//
-//
-//
-//        self.mainTable?.reloadData()
     }
     
     func setUpTable(){
@@ -214,5 +208,26 @@ class BalanceViewController: UIViewController,UITableViewDelegate,UITableViewDat
 
         return cell!
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 取消 cell 的選取狀態
+//        tableView.deselectRow(at: indexPath, animated: true)
+        
+//        let name = info[indexPath.section][indexPath.row]
+//        let id = infoid[indexPath.section][indexPath.row] as! String
+//
+//        guard let list = APIData.instance.receipts?.list else {
+//            return
+//        }
+        
+//        for index in 0...(list.count-1){
+//            if   (list[index].id) == id{
+                let vc = BalanceDetailViewController()
+                vc.strtitle = name[indexPath.row]
+                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.navigationBar.isHidden = false
+//            }
+//        }
+        
+        }
     
 }

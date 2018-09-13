@@ -57,7 +57,7 @@ class setNameViewController: UIViewController {
                 
 
                 if result == true {
-                    user.save("Name", str2)
+                    user.save("username", str2)
                     stoploadingView()
                     let vc = homeViewController()
 //                    self.navigationController?.pushViewController(vc, animated: true)

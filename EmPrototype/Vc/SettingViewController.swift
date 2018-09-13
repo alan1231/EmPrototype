@@ -18,7 +18,6 @@ protocol callBackProtocol {
 class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     let firendBtn = UIButton()
     //设置服务器地址
-    let uploadURL = "https://uwfuncapp.azurewebsites.net/api/uploadAvatar"
     var delegate:callBackProtocol?
     
     override func viewDidLoad() {
@@ -98,7 +97,7 @@ class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UI
             //flag = "图片"
             
             //获取选取后的图片
-            let pickedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+            let pickedImage = info[UIImagePickerControllerEditedImage] as! UIImage
             //转成jpg格式图片
             guard let jpegData = UIImageJPEGRepresentation(pickedImage, 0.5) else {
                 return
@@ -127,7 +126,7 @@ class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UI
                 //multipartFormData.append(imageData, withName: "file", fileName: "123456.jpg", mimeType: "image/jpeg")
                 //......
                 
-        },to: self.uploadURL,headers: ["Authorization": " Bearer \(user.get("Token"))"],encodingCompletion: { encodingResult in
+        },to: API_UPPHOTO,headers: ["Authorization": " Bearer \(user.get("Token"))"],encodingCompletion: { encodingResult in
             switch encodingResult {
             case .success(let upload, _, _):
                 //连接服务器成功后，对json的处理
@@ -168,14 +167,14 @@ class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UI
             (action:UIAlertAction)
             -> Void in
             
-            APIManager.getApi.sendDevicetoken("22345678", completion:{
-                result in
-                
-                if result! {
-                    print("device token push ok")
-                }
-                
-            })
+//            APIManager.getApi.sendDevicetoken("22345678", completion:{
+//                result in
+//                
+//                if result! {
+//                    print("device token push ok")
+//                }
+//                
+//            })
             
             
             user.remove("PinCode")
@@ -183,7 +182,7 @@ class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UI
             user.remove("Token")
             user.remove("PinNumber")
             user.remove("PhoneNumber")
-            user.remove("Name")
+            user.remove("username")
             let vc = phoneNumberViewController()
             self.navigationController?.pushViewController(vc, animated: true)
             self.navigationController?.navigationBar.isHidden = true

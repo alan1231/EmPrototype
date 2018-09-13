@@ -1,14 +1,16 @@
 PODS:
-  - Alamofire (4.7.2)
-  - CountryPickerView (2.1.0)
+  - Alamofire (4.7.3)
+  - CountryPickerView (2.1.1)
   - libPhoneNumber-iOS (0.9.13)
   - MGSwipeTableCell (1.6.7)
+  - ObjectMapper (3.3.0)
 
 DEPENDENCIES:
   - Alamofire
   - CountryPickerView
   - libPhoneNumber-iOS (~> 0.8)
   - MGSwipeTableCell
+  - ObjectMapper
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -16,13 +18,15 @@ SPEC REPOS:
     - CountryPickerView
     - libPhoneNumber-iOS
     - MGSwipeTableCell
+    - ObjectMapper
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  CountryPickerView: 25a85d08e993e2ed7d3f06d59bb66017851115ff
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  CountryPickerView: 8b20263f2d4e1953045e608c2594b50e8a2ee65c
   libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
 
-PODFILE CHECKSUM: 5c842b5befddc468b946ed5d0d66e9bbf04270b8
+PODFILE CHECKSUM: aa7eedf37095f697dc8560b38a07af8e21879a74
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

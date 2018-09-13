@@ -8,12 +8,13 @@
 
 import UIKit
 public enum userDefine :String {
-    case PinCode = "PinCode"
+    case PinCode
     case PinStatus
     case Token
     case PinNumber
     case PhoneNumber
     case DeviceToken
+    case username
 }
 
 

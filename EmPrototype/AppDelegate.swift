@@ -20,31 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        
-        
-        
-//        let options: UNAuthorizationOptions = [.badge, .sound, .alert]
-//        center.getNotificationSettings { ( settings ) in
-//            switch settings.authorizationStatus {
-//            case .notDetermined:
-//                self.center.requestAuthorization(options: options) {
-//                    (granted, error) in
-//                    if !granted {
-//                        print("Something went wrong")
-//                    }
-//                }
-//            case .authorized:
-//                DispatchQueue.main.async(execute: {
-//                    UIApplication.shared.registerForRemoteNotifications()
-//                })
-//            case .denied:
-//                print("cannot use notifications cuz the user has denied permissions")
-//            }
-//        }
-
-        
-        
         //要求用戶同意推播通知訊息的協定
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {
@@ -55,16 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         //device 裝置的 token
         UIApplication.shared.registerForRemoteNotifications()
-
-        
-        
+       
 //        user.remove(userDefine.PinCode.rawValue)
 //        user.remove(userDefine.DeviceToken.rawValue)
 //        user.remove(userDefine.Token.rawValue)
 //        user.remove(userDefine.PhoneNumber.rawValue)
 //        user.remove(userDefine.PinStatus.rawValue)
 //        user.remove(userDefine.PinNumber.rawValue)
-        
+//        user.remove(userDefine.username.rawValue)
 
         
 
@@ -81,17 +54,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
                     APIManager.getApi.cheackToken(completion: {
                         result in
+                        
+                  
+                        
+//                        let cheack = result!["result"] as! Bool
             
-                        let cheack = result!["result"] as! Bool
-            
-                        if (cheack){
+                        if (result)!{
                             print("t")
-                            self.navigation = UINavigationController(rootViewController:pinViewController())
-                            self.navigation.navigationBar.isHidden = true
-                            self.pin = false
+//                            self.navigation = UINavigationController(rootViewController:pinViewController())
+//                            self.navigation.navigationBar.isHidden = true
+//                            self.pin = false
                         }else{
                             print("f")
-                            
+                            //  do error obj 
                             
                             let alertController = UIAlertController(
                                 title: "重複登入",
@@ -106,7 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 user.remove("Token")
                                 user.remove("PinNumber")
                                 user.remove("PhoneNumber")
-                                user.remove("Name")
+                                user.remove("username")
+                                user.remove("userid")
                                 let vc = phoneNumberViewController()
                                 self.navigation.pushViewController(vc, animated: false)
                                 self.navigation.navigationBar.isHidden = true
@@ -124,14 +100,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
         
-        DispatchQueue.main.async{
+//        DispatchQueue.main.async{
             //以下 使用 導引列 UINavigationController
             self.window = UIWindow(frame:UIScreen.main.bounds)
             self.window?.makeKeyAndVisible()
             self.navigation.navigationBar.isHidden = true
             self.window?.rootViewController = self.navigation
             self.window?.backgroundColor = UIColor.white
-        }
+//        }
       return true
     }
     
@@ -168,20 +144,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userInfo["custom"] != nil{
             let custom = userInfo["custom"] as! [String:AnyObject]
 
-            if  custom["type"] is NSNull {
-            }else{
-                let type = custom["type"] as! String
-                if type == "LOGOUT"{
-                    print("登出")
-                }
-            }
+         
 
                     let alert = UIAlertController(title: "Your have message", message: "\(user["alert"] as! String)", preferredStyle: .alert)
                     
                     let cancelButton = UIAlertAction(title: "確定", style: .cancel, handler: {
                         (action:UIAlertAction)
                         -> Void in
-//                        self.cleandata()
+                        if  custom["type"] is NSNull {
+                        }else{
+                            let type = custom["type"] as! String
+                            if type == "LOGOUT"{
+                                self.cleandata()
+                                print("登出")
+                            }
+                        }
                         
                     })
                     
@@ -232,9 +209,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         APIManager.getApi.cheackToken(completion: {
             result in
             
-            let cheack = result!["result"] as! Bool
+//            let cheack = result!["result"] as! Bool
             
-            if (cheack){
+            if (result)!{
                 print("t")
 
             }else{
@@ -271,7 +248,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         user.remove("Token")
         user.remove("PinNumber")
         user.remove("PhoneNumber")
-        user.remove("Name")
+        user.remove("username")
+        user.remove("userid")
         let vc = phoneNumberViewController()
         self.navigation.pushViewController(vc, animated: false)
         self.navigation.navigationBar.isHidden = true

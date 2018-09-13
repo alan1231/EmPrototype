@@ -135,36 +135,22 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
                 
                 
                 setupView(view)
-                
-                Alamofire.request("https://uwfuncapp.azurewebsites.net/api/reqSmsVerify?phoneno=\(vs)").responseJSON { response in
-                    print(vs)
-                    
-                    if let Json = response.result.value {
-                        // 回傳 yes
-                        
-                        let ty = Json as![String:AnyObject]
-
-                        let status = "\(String(describing: ty["statusCode"]!))"
-                        
-                        if  status  == "200"{
-                            
-                            stoploadingView()
-
-                            let vc = phoneVerificationViewController()
-                            vc.phoneStr = "\(self.cp.selectedCountry.phoneCode) \(self.phoneNumberField.text!)"
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }else{
-                        // 回傳 do
-                            self.alert(status ,"關閉")
-                        }
-  
+                APIManager.getApi.sendPhoneNumber(vs, completion: { result,err   in
+                    if (result)!{
+                        print("ok")
+                        stoploadingView()
+                        let vc = phoneVerificationViewController()
+                        vc.phoneStr = "\(self.cp.selectedCountry.phoneCode) \(self.phoneNumberField.text!)"
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }else{
                         self.alert("連接異常","關閉")
-                        stoploadingView()
-                    }
-                }
+                        stoploadingView()                    }
+                    
+                })
+
+                
             }else{
-//                self.alert("請輸入正確的手機號碼","關閉")
+                self.alert("請輸入正確的手機號碼","關閉")
             }
         }
         catch let error as NSError {

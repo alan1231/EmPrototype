@@ -27,18 +27,13 @@ class CountryPickerViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = false
-        
-        tableView = UITableView.init(frame: CGRect.zero, style: .plain)
         
         prepareTableItems()
         prepareNavItem()
         prepareSearchBar()
-
     }
    
 }
-
 
 // UI Setup
 extension CountryPickerViewController {
@@ -105,21 +100,16 @@ extension CountryPickerViewController {
             return
         }
         searchController = UISearchController(searchResultsController:  nil)
-
         searchController?.searchResultsUpdater = self
         searchController?.dimsBackgroundDuringPresentation = false
         searchController?.hidesNavigationBarDuringPresentation = searchBarPosition == .tableViewHeader
+        searchController?.definesPresentationContext = true
         searchController?.searchBar.delegate = self
-        searchController?.searchBar.sizeToFit()
-//        let myview = UIView()
-//        myview.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70)
-//        print(view.frame.size.height/10)
-//        myview.addSubview((searchController?.searchBar)!)
-        switch searchBarPosition {
-        case .tableViewHeader: tableView.tableHeaderView = (searchController?.searchBar)!
-        
-        case .navigationBar: navigationItem.titleView = (searchController?.searchBar)!
+        searchController?.delegate = self
 
+        switch searchBarPosition {
+        case .tableViewHeader: tableView.tableHeaderView = searchController?.searchBar
+        case .navigationBar: navigationItem.titleView = searchController?.searchBar
         default: break
         }
     }
@@ -128,8 +118,6 @@ extension CountryPickerViewController {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }
-
-
 
 //MARK:- UITableViewDataSource
 extension CountryPickerViewController {
@@ -148,18 +136,9 @@ extension CountryPickerViewController {
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
-        
-        if NSLocalizedString("Language", comment: "") == "Chinese" {
-            let name = countryPickerView.showPhoneCodeInList ? "\(country.chname) (\(country.phoneCode))" : country.chname
-            cell.textLabel?.text = name
-        }else{
-            let name = countryPickerView.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
-            cell.textLabel?.text = name
-        }
-                
-        
-        
+        let name = countryPickerView.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
         cell.imageView?.image = country.flag
+        cell.textLabel?.text = name
         cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
         cell.separatorInset = .zero
         return cell
@@ -185,7 +164,6 @@ extension CountryPickerViewController {
     }
 }
 
-
 //MARK:- UITableViewDelegate
 extension CountryPickerViewController {
 
@@ -194,9 +172,7 @@ extension CountryPickerViewController {
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         }
     }
-   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return view.frame.height/30
-    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let country = isSearchMode ? searchResults[indexPath.row]
@@ -216,10 +192,9 @@ extension CountryPickerViewController {
     }
 }
 
-
 // MARK:- UISearchResultsUpdating
 extension CountryPickerViewController: UISearchResultsUpdating {
-    public func updateSearchResults(for searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         isSearchMode = false
         if let text = searchController.searchBar.text, text.count > 0 {
             isSearchMode = true
@@ -240,22 +215,31 @@ extension CountryPickerViewController: UISearchResultsUpdating {
     }
 }
 
-
 // MARK:- UISearchBarDelegate
 extension CountryPickerViewController: UISearchBarDelegate {
-    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         // Hide the back/left navigationItem button
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
     }
     
-    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         // Show the back/left navigationItem button
         prepareNavItem()
         navigationItem.hidesBackButton = false
-
     }
     
 }
 
+// MARK:- UISearchControllerDelegate
+// Fixes an issue where the search bar goes off screen sometimes.
+extension CountryPickerViewController: UISearchControllerDelegate {
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+}
 

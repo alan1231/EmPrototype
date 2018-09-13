@@ -46,11 +46,7 @@ class homeViewController: UIViewController,callBackProtocol {
         homeMain.BalanceBtn.addTarget(self, action: #selector(self._Balance), for: .touchUpInside)
         
         APIManager.getApi.sendDevicetoken(user.get("DeviceToken"), completion:{
-            result in
-            if result! {
-                print("device token push ok")
-            }
-            
+            result in            
         })
         
         userimg.frame = CGRect(x: (viewSize.width/2)-50, y: 80, width: 100, height: 100)
@@ -75,14 +71,11 @@ class homeViewController: UIViewController,callBackProtocol {
         
         APIManager.getApi.getBalances(completion:{
             balances in
-            if balances != nil{
-                for ffx in (balances!["result"] as? [AnyObject])!{
-                    if (ffx["name"]as! String) == "cny"{
-                        self.homeMain.BalanceBtn.setTitle("¥"+(ffx["balance"]as! String), for: .normal)
-                    }
-                    
-                }
-            }
+            balances?.forEach({ (key, value) in
+                let str = value["CNY"]!
+                self.homeMain.BalanceBtn.setTitle("¥\(str!)", for: .normal)
+            })
+
          
             
         })
