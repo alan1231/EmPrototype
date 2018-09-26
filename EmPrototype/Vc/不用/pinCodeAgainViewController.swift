@@ -15,7 +15,7 @@ class pinCodeAgainViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
         self.title = "再次輸入PIN"
-        let newBackButton = UIBarButtonItem(title:nil, style: UIBarButtonItemStyle.done, target: self, action:nil)
+        let newBackButton = UIBarButtonItem(title:nil, style: UIBarButtonItem.Style.done, target: self, action:nil)
         self.navigationItem.leftBarButtonItem = newBackButton
         
         let nextBtn = UIButton()

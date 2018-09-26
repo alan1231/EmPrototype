@@ -20,11 +20,13 @@ class ReceiptsData: Mappable {
     
 }
 
+
 class Receipts: Mappable {
     var txparams:TxParams?
     var txresult:TxResult?
     var id : String?
     var datetime : String?
+    var datetime_ : Date?
     var currency : String?
     var message : String?
     var statusCode : Int?
@@ -42,7 +44,45 @@ class Receipts: Mappable {
         statusCode <- map["statusCode"]
         statusMsg <- map["statusMsg"]
         txType <- map["txType"]
+    
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SZ"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        datetime_ = dateFormatter.date(from: datetime!)
     }
+    
+//    static func getTest(_ rec:Receipts)-> (a:String, String){
+//        return ("a", b: "b")
+//    }
+//
+    
+//    static func getDispText(_ rec:Receipts)-> (name:String,a:String){
+//
+//        let toUserId = rec.txresult!.outflow!  ? rec.txparams?.receiver:rec.txparams?.sender
+//        var str = ""
+//
+//        UserBank.get(userId: toUserId!){ user in
+//
+//            switch rec.txType {
+//            case 1:
+//                str = "存款"
+//            case 2:
+//                str = "提款"
+//            case 3:
+//                let paymode = rec.txresult!.outflow!  ? "付款":"收款"
+//                var str = "-"
+//                if let
+//            case 4:
+//                str = "換匯"
+//            default:
+//                break
+//            }
+//
+//
+//        }
+//        return (str,"")
+//
+//    }
 }
 
 class TxParams: Mappable {

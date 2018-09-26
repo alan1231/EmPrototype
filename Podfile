@@ -9,5 +9,5 @@ target 'EmPrototype' do
   pod 'libPhoneNumber-iOS', '~> 0.8'
   pod 'MGSwipeTableCell'
   pod 'ObjectMapper'
-	
+  pod 'Kingfisher'
 end

@@ -9,13 +9,12 @@
 import UIKit
 
 public let API_URL = "https://uwbackend-dev.azurewebsites.net/api/"
-//public let API_URL = "https://uwbackend-asia.azurewebsites.net/api/"
-
 public let API_NUMBER = "https://uwfuncapp-dev.azurewebsites.net/api/"
-//public let API_NUMBER = "https://uwfuncapp-rel.azurewebsites.net/api/"
-
 public let API_UPPHOTO = "https://uwfuncapp-dev.azurewebsites.net/api/uploadAvatar"
-//publiclet API_UPPHOTO = "https://uwfuncapp-arel.azurewebsites.net/api/uploadAvatar"
+
+//public let API_NUMBER = "https://uwfuncapp-rel.azurewebsites.net/api/"
+//public let API_UPPHOTO = "https://uwfuncapp-rel.azurewebsites.net/api/uploadAvatar"
+//public let API_URL = "https://uwbackend-rel.azurewebsites.net/api/"
 
 
 public let API_AUTH = "auth"

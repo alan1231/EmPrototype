@@ -53,12 +53,12 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
         messageTextField.layer.addBorder(edge: .bottom, color: UIColor.groupTableViewBackground, thickness: 1)
         messageTextField.font = UIFont.systemFont(ofSize: 26)
         messageTextField.delegate = self
-        
         //textfield text 字距
-        messageTextField.defaultTextAttributes
-            .updateValue(12, forKey: NSAttributedStringKey.kern.rawValue)
-        
+        messageTextField.defaultTextAttributes.updateValue(12, forKey: NSAttributedString.Key(rawValue: NSAttributedString.Key.kern.rawValue))
         view.addSubview(messageTextField)
+
+        //        convertFromNSAttributedStringKeyDictionary(messageTextField.defaultTextAttributes)
+        //            .updateValue(12, forKey: NSAttributedString.Key(rawValue: NSAttributedString.Key.kern.rawValue))
         
         let numberLab = UILabel()
         numberLab.text = phoneStr
@@ -230,7 +230,7 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 
                 self.messageTextField.attributedPlaceholder = NSAttributedString(string:
                     "验证码错误", attributes:
-                    [NSAttributedStringKey.foregroundColor:UIColor.red])
+                    [NSAttributedString.Key.foregroundColor:UIColor.red])
                 self.messageTextField.text = ""
             }
             
@@ -256,3 +256,9 @@ class phoneVerificationViewController: UIViewController,UITextFieldDelegate {
 
 
 }
+
+// Helper function inserted by Swift 4.2 migrator.
+// func convertFromNSAttributedStringKeyDictionary(_ input: [NSAttributedString.Key: Any]) -> [String: Any] {
+//    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+//}
+

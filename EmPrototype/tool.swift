@@ -44,7 +44,7 @@ extension NSAttributedString {
     convenience init(text: String, aligment: NSTextAlignment) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = aligment
-        self.init(string: text, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        self.init(string: text, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
 }
 extension String {
@@ -141,13 +141,13 @@ extension UITextView {
         attrString.append(self.attributedText)
         
         //新增的文本内容（使用默认设置的字体样式）
-        let attrs = [NSAttributedStringKey.font :UIFont.systemFont(ofSize: 12.0)]
+        let attrs = [NSAttributedString.Key.font :UIFont.systemFont(ofSize: 12.0)]
         let appendString = NSMutableAttributedString(string: string, attributes:attrs)
         //判断是否是链接文字
         if withURLString != "" {
             let range:NSRange = NSMakeRange(0, appendString.length)
             appendString.beginEditing()
-            appendString.addAttribute(NSAttributedStringKey.link, value:withURLString, range:range)
+            appendString.addAttribute(NSAttributedString.Key.link, value:withURLString, range:range)
             appendString.endEditing()
         }
         //合并新的文本
@@ -155,6 +155,18 @@ extension UITextView {
         
         //设置合并后的文本
         self.attributedText = attrString
+    }
+}
+extension UIColor {
+    //返回随机颜色
+    open class var randomColor:UIColor{
+        get
+        {
+            let red = CGFloat(arc4random()%256)/255.0
+            let green = CGFloat(arc4random()%256)/255.0
+            let blue = CGFloat(arc4random()%256)/255.0
+            return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+        }
     }
 }
 //不能使用 self 的 vc呼叫
@@ -173,3 +185,15 @@ extension UIApplication {
         }
         return controller
     } }
+// string 切割
+extension String {
+    func mySubString(to index: Int) -> String {
+        return String(self[..<self.index(self.startIndex, offsetBy: index)])
+    }
+    
+    func mySubString(from index: Int) -> String {
+        return String(self[self.index(self.startIndex, offsetBy: index)...])
+    }
+}
+
+

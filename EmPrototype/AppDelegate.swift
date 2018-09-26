@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var pin = true
     let center = UNUserNotificationCenter.current()
     
-
+    static var pinbool = true
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //要求用戶同意推播通知訊息的協定
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {
@@ -39,11 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        user.remove(userDefine.PinNumber.rawValue)
 //        user.remove(userDefine.username.rawValue)
 
-        
-
+  
         //進入app 判斷 裝置token&pinCode 有無 儲存, 是不是第一次 使用app , 是的話 進入 註冊畫面 不是的話進入 pincode 解鎖畫面
         let defaults = UserDefaults.standard
-        if  defaults.object(forKey: "Token") as? String != nil && defaults.object(forKey: "PinCode") != nil && defaults.object(forKey: "Name") as? String != nil {
+        if  defaults.object(forKey: "Token") as? String != nil && defaults.object(forKey: "PinCode") != nil && defaults.object(forKey: "username") as? String != nil {
             
             self.navigation = UINavigationController(rootViewController:pinViewController())
             self.navigation.navigationBar.isHidden = true
@@ -58,7 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                   
                         
 //                        let cheack = result!["result"] as! Bool
-            
                         if (result)!{
                             print("t")
 //                            self.navigation = UINavigationController(rootViewController:pinViewController())
@@ -179,13 +177,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         if backgroundTask != nil{
             application.endBackgroundTask(self.backgroundTask)
-            self.backgroundTask = UIBackgroundTaskInvalid
+            self.backgroundTask = UIBackgroundTaskIdentifier(rawValue: convertFromUIBackgroundTaskIdentifier(UIBackgroundTaskIdentifier.invalid))
         }
         
             self.backgroundTask = application.beginBackgroundTask(expirationHandler: {
                 
                 application.endBackgroundTask(self.backgroundTask)
-                self.backgroundTask = UIBackgroundTaskInvalid
+                self.backgroundTask = UIBackgroundTaskIdentifier(rawValue: convertFromUIBackgroundTaskIdentifier(UIBackgroundTaskIdentifier.invalid))
 
             })
         
@@ -201,6 +199,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.navigation.pushViewController(vc, animated: false)
                 self.navigation.navigationBar.isHidden = true
                 print(self.navigation.viewControllers)
+                PinBool = false
             }
             cheacktoken()
         }
@@ -257,3 +256,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIBackgroundTaskIdentifier(_ input: UIBackgroundTaskIdentifier) -> Int {
+	return input.rawValue
+}

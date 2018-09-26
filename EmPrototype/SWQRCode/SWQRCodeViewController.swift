@@ -17,14 +17,14 @@ class SWQRCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.done, target: self, action:#selector(self.back(sender:)))
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.done, target: self, action:#selector(self.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
         
         navigationItem.title = SWQRCodeHelper.sw_navigationItemTitle(type: self.config.scannerType)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: .UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         
         _setupUI();
     }
@@ -195,7 +195,7 @@ extension SWQRCodeViewController: AVCaptureMetadataOutputObjectsDelegate {
 extension SWQRCodeViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        let metadataDict = CMCopyDictionaryOfAttachments(nil, sampleBuffer, kCMAttachmentMode_ShouldPropagate)
+        let metadataDict = CMCopyDictionaryOfAttachments(allocator: nil, target: sampleBuffer, attachmentMode: kCMAttachmentMode_ShouldPropagate)
         
         if let metadata = metadataDict as? [AnyHashable: Any] {
             if let exifMetadata = metadata[kCGImagePropertyExifDictionary as String] as? [AnyHashable: Any] {
@@ -219,7 +219,10 @@ extension SWQRCodeViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 // MARK: - 识别选择图片
 extension SWQRCodeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         picker.dismiss(animated: true) {
             if !self.handlePickInfo(info) {
                 self.sw_didReadFromAlbumFailed()
@@ -229,7 +232,7 @@ extension SWQRCodeViewController: UIImagePickerControllerDelegate, UINavigationC
     
     /// 识别二维码并返回识别结果
     private func handlePickInfo(_ info: [String : Any]) -> Bool {
-        if let pickImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let pickImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             let ciImage = CIImage(cgImage: pickImage.cgImage!)
             let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])
             
@@ -263,3 +266,13 @@ extension SWQRCodeViewController {
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}

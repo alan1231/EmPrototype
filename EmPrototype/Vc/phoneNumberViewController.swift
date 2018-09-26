@@ -143,7 +143,8 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
                         vc.phoneStr = "\(self.cp.selectedCountry.phoneCode) \(self.phoneNumberField.text!)"
                         self.navigationController?.pushViewController(vc, animated: true)
                     }else{
-                        self.alert("連接異常","關閉")
+                        let er = err["error"] as! [String:Any]
+                        self.alert("\(er["message"]!)","關閉")
                         stoploadingView()                    }
                     
                 })
@@ -174,14 +175,9 @@ class phoneNumberViewController: UIViewController,UITextFieldDelegate,UITextView
             
         }))
         
-        if let alertWindow = UIApplication.shared.windows.last, alertWindow.windowLevel == 10000001.0 // If keyboard is open
-        { // Make sure keyboard is open
-            alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
-        }
-        else
-        {
-            self.present(alert, animated: true)
-        }
+
+        self.present(alert, animated: true)
+
     }
     
 

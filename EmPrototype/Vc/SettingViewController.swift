@@ -17,7 +17,6 @@ protocol callBackProtocol {
 
 class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     let firendBtn = UIButton()
-    //设置服务器地址
     var delegate:callBackProtocol?
     
     override func viewDidLoad() {
@@ -51,7 +50,24 @@ class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UI
         updataimage.setTitleColor(UIColor.black, for: .normal)
         updataimage.layer.cornerRadius = 5
         view.addSubview(updataimage)
+        
+        let vers = UIButton()
+        vers.frame = firendBtn.frame
+        vers.frame = CGRect(x:viewSize.width/1.9, y:firendBtn.frame.origin.y, width: firendBtn.frame.width  , height: firendBtn.frame.height)
+        vers.frame.origin.y = (firendBtn.frame.height)*2 + viewSize.width/20
+        vers.backgroundColor = UIColor.groupTableViewBackground
+        vers.addTarget(self, action: #selector(self.vers), for: .touchUpInside)
+        vers.setTitle("版本別", for: .normal)
+        vers.setTitleColor(UIColor.black, for: .normal)
+        vers.layer.cornerRadius = 5
+        view.addSubview(vers)
+        
     }
+    @objc func vers(){
+        let vcs = versViewController()
+        self.navigationController?.pushViewController(vcs, animated: true)
+    }
+    
     @objc func upup(){
 
         let actionSheet = UIAlertController(title: "上传头像", message: nil, preferredStyle: .actionSheet)
@@ -92,14 +108,17 @@ class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UI
 
     }
     //选择成功后代理
-    func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
 
             //flag = "图片"
             
             //获取选取后的图片
-            let pickedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+            let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as! UIImage
             //转成jpg格式图片
-            guard let jpegData = UIImageJPEGRepresentation(pickedImage, 0.5) else {
+            guard let jpegData = pickedImage.jpegData(compressionQuality: 0.5) else {
                 return
             }
             //上传
@@ -211,4 +230,14 @@ class SettingViewController: UIViewController,UIImagePickerControllerDelegate,UI
     
 
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

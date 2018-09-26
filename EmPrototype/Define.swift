@@ -15,12 +15,18 @@ public let mobiColor = UIColor(red: 37/255.0, green: 66/255.0, blue: 152/255.0, 
 public let systemBuleColor = UIColor(red: 25/255.0, green: 56/255.0, blue: 145/255.0, alpha: 1)
 public let cgGray = UIColor(red: 193/255, green: 191/255, blue: 194/255, alpha: 1)
 public let cgBlackGray = UIColor(red: 149/255, green: 149/255, blue: 152/255, alpha: 1)
+public let tabcellGray = UIColor(red: 232/255, green: 229/255, blue: 226/255, alpha: 1)
 
 public let viewSize = UIScreen.main.bounds.size
 public let loadviewBG = UIView()
 
 
+public var CurrencyName = [String]()
+public var CurrencyBalance = [String]()
+public let CurrencySign = ["CNY":"¥","USD":"$","BTC":"₿","ETH":"Ξ"]
+public let CurrencyiCon = ["CNY":"cnycoin","USD":"usdcoin","BTC":"btccoin","ETH":"ethcoin"]
 
+public var PinBool = true
 
 
 func RGBA (r:CGFloat,g:CGFloat,b:CGFloat,a:CGFloat)-> UIColor{
@@ -37,7 +43,7 @@ func getSizeFromString(string:String, withFont font:UIFont)->CGSize{
     
     let textSize = NSString(string: string ).size(
         
-        withAttributes: [ NSAttributedStringKey.font:font ])
+        withAttributes: [ NSAttributedString.Key.font:font ])
     
     return textSize
     
@@ -68,7 +74,9 @@ func localizedStr (_ string:String) -> String{
     lview.addSubview(loadingView)
     
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+30) {
+        
         loadviewBG.removeFromSuperview()
+        
     }
 }
 

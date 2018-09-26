@@ -27,8 +27,8 @@ class LoadingView: UIView {
         cycleLayer.fillColor = UIColor.clear.cgColor
         cycleLayer.strokeColor = mobiColor.cgColor
         
-        cycleLayer.lineCap = kCALineCapRound
-        cycleLayer.lineJoin = kCALineJoinRound
+        cycleLayer.lineCap = CAShapeLayerLineCap.round
+        cycleLayer.lineJoin = CAShapeLayerLineJoin.round
         
         cycleLayer.frame = bounds
         cycleLayer.path = UIBezierPath(ovalIn: bounds).cgPath

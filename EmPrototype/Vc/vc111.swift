@@ -35,7 +35,7 @@ class vc111: UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwipeT
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.title = "聯絡人"
-        let settingButton = UIBarButtonItem(title:"Add+", style: UIBarButtonItemStyle.done, target: self, action:#selector(self.selectlist))
+        let settingButton = UIBarButtonItem(title:"Add+", style: UIBarButtonItem.Style.done, target: self, action:#selector(self.selectlist))
         
         self.navigationItem.rightBarButtonItem = settingButton
         
@@ -204,8 +204,8 @@ class vc111: UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwipeT
         if tableView == tab{
             print(indexPath.row)
             let vc = vc222()
-            vc.userid = addAry!.list![indexPath.row].userId!
-            vc.username = addAry!.list![indexPath.row].name!
+            vc.userid = listAry!.list![indexPath.row].userId!
+            vc.username = listAry!.list![indexPath.row].name!
             //                    self.navigationController?.pushViewController(vc, animated: true)
             self.navigationController?.pushViewController(vc, animated: true)
             self.navigationController?.navigationBar.isHidden = false
@@ -250,7 +250,7 @@ class vc111: UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwipeT
             var cell = tab.dequeueReusableCell(withIdentifier: "cellID") as! MGSwipeTableCell?
             
             if cell == nil {
-                cell = MGSwipeTableCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cellID")
+                cell = MGSwipeTableCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "cellID")
             }
             
             
@@ -277,7 +277,7 @@ class vc111: UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwipeT
             cell?.rightSwipeSettings.transition = .border
             
             cell?.delegate = self
-            cell?.selectionStyle = UITableViewCellSelectionStyle.none
+            cell?.selectionStyle = UITableViewCell.SelectionStyle.none
             cell?.textLabel?.text = "用戶 : \(listAry!.list![indexPath.row].name!)"
             
             return cell!
@@ -286,7 +286,7 @@ class vc111: UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwipeT
                 selectlisttb.dequeueReusableCell(
                     withIdentifier: "Cell2", for: indexPath) as
             UITableViewCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.textLabel?.text = "用戶 : \(addAry!.list![indexPath.row].name!)"
             if selectedIndexs.contains(indexPath.row) {
                 cell.accessoryType = .checkmark

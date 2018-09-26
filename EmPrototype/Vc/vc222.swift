@@ -62,7 +62,7 @@ class vc222: UIViewController,UITextFieldDelegate {
         bb2.setTitle("back", for: .normal)
         bb2.backgroundColor = UIColor.orange
         bb2.addTarget(self, action:#selector(self.cc), for: .touchUpInside)
-        view.addSubview(bb2)
+//        view.addSubview(bb2)
         
         
         
@@ -143,9 +143,9 @@ class vc222: UIViewController,UITextFieldDelegate {
         // 建立[確定]按鈕
         let okAction = UIAlertAction(
             title: "確定",
-            style: UIAlertActionStyle.default) {
+            style: UIAlertAction.Style.default) {
                 (action: UIAlertAction!) -> Void in
-                setupView(self.view)
+                setupView((self.navigationController?.view)!)
 
                 let acc =
                     (alertController.textFields?.first)!
@@ -166,6 +166,21 @@ class vc222: UIViewController,UITextFieldDelegate {
                     APIManager.getApi.payBalances(currency, acc.text!, self.userid, message.text!, completion:{
                         result in
                         stoploadingView()
+                        
+                        //更新
+                        APIManager.getApi.getBalances(completion:{
+                            balances in
+                            let list  = balances!["list"] as! [String:AnyObject]
+                            //            print(balances)
+                            
+                            list.forEach({ (key, value) in
+                                CurrencyName.append(key)
+                                CurrencyBalance.append("\(value)")
+                            })
+                
+                        })
+                        
+                        
                     })
                 }
                 

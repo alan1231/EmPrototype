@@ -27,7 +27,7 @@ class JsonReturn {
         
     }
     
-    static func get(res : DataResponse<Any>) -> JsonReturn?{
+    static func get(res :DataResponse<Any>) -> JsonReturn?{
         let data = res.result.value as? [String:AnyObject]
         if (data != nil){
             let jr = JsonReturn()
@@ -55,4 +55,35 @@ class JsonReturn {
 //        }
 //    }
     
+}
+
+import ObjectMapper
+
+class UserBank {
+    static var dict = [String: UserProfile?]()
+    
+    static func get(userId: String, callback: @escaping (UserProfile?)->Void) -> Void{
+        
+        let found = dict[userId]
+        
+        if found != nil {
+//            var u = UserProfile(JSON: [String : Any]())
+//            u?.name = "jim"
+//            callback(u)
+            callback(found!)
+        }
+        else{
+            
+            //api
+            APIManager.getApi.getUsersProfile([userId]) { (err, user) in
+//                print(user?.list)
+//                user?.list![0]
+                callback(user?.list![0])
+                dict[userId] = user?.list![0]
+            }
+            
+            
+        }
+
+    }
 }

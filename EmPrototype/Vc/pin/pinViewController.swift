@@ -27,7 +27,11 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
     var labArry = [UILabel]()
     
     var labArry2 = [UILabel]()
-        
+    
+    var Name : String!
+    var Imgurl : URL!
+    var Err : String!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -37,7 +41,7 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
         //        navigationController?.navigationBar.isHidden = false
         
         self.title = ""
-        let newBackButton = UIBarButtonItem(title:localizedStr("back"), style: UIBarButtonItemStyle.done, target: self, action:#selector(self.back))
+        let newBackButton = UIBarButtonItem(title:localizedStr("back"), style: UIBarButtonItem.Style.done, target: self, action:#selector(self.back))
         self.navigationItem.leftBarButtonItem = newBackButton
         
         
@@ -67,6 +71,18 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
 
         default:break
         }
+        
+        
+        if user.get("PinStatus") == "2"{
+            APIManager.getApi.getProfile(completion:{
+                name,img,err in
+                self.Name = name
+                self.Imgurl = img
+                self.Err = err
+            })
+        }
+
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -229,9 +245,23 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                             if str == user.get("PinCode"){
                 
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
-                                    let vc = setNameViewController()
-                                    self.navigationController?.pushViewController(vc, animated: true)
-                                    user.save("PinStatus", "3")
+//                                    APIManager.getApi.getProfile(completion:{
+//                                        name,img,err in
+//                                        print(err as Any)
+//                                    })
+                                    if self.Err == "ok"{
+                                        let vc = homeViewController()
+                                        vc.Imgurl = self.Imgurl!
+                                        vc.userstr = self.Name!
+                                        self.navigationController?.pushViewController(vc, animated: true)
+                                        user.save("PinStatus", "3")
+                                    }else{
+                                        let vc = setNameViewController()
+                                        self.navigationController?.pushViewController(vc, animated: true)
+                                        user.save("PinStatus", "3")
+                                    }
+                                    
+
                                 }
 
                             }else{
@@ -248,12 +278,15 @@ class pinViewController: UIViewController,UICollectionViewDelegate,UICollectionV
                             }
                         case "3" :
                             if str == user.get("PinCode") || str == "8888" || str == "888888"  {
-                                
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
-                                    let vc = homeViewController()
-                                    self.navigationController?.pushViewController(vc, animated: false)
-
-//                                    self.present(vc, animated: false, completion: nil)
+                                    
+                                    if PinBool{
+                                        let vc = homeViewController()
+                                        self.navigationController?.pushViewController(vc, animated: false)
+                                    }else{
+                                        self.navigationController?.popViewController(animated: false)
+                                        PinBool = true
+                                    }
                                 }
                           
                                 

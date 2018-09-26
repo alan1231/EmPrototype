@@ -20,7 +20,6 @@ class APIManager: NSObject {
             .responseJSON { response in
                 if let Json = response.result.value {
                     let JsonStr = Json as![String:AnyObject]
-                    print(JsonStr)
                     if JsonStr["error"]is NSNull{
                         completion(true,JsonStr)
                     }else{
@@ -67,6 +66,7 @@ class APIManager: NSObject {
         
         Alamofire.request("\(API_URL)\(API_AUTH)", method: .post ,parameters:parameters ,  encoding: JSONEncoding.default , headers: ["Authorization": " Bearer \(user.get("Token"))"]).responseJSON{ response in
             if response.result.value != nil {
+                print(response)
                 if let Json = response.result.value {
                     let JsData = Json as![String:AnyObject]
                     
@@ -188,6 +188,35 @@ class APIManager: NSObject {
      }
     }
     
+    //取得用戶資料
+    func getUsersProfile(_ ary:[String],completion:@escaping(_ err:Bool, UsersProfileData?)->Void){
+        let ary = ["userIds":ary]
+        let parameters: Parameters = ["jsonrpc":"2.0","method":"\(API_METHOD.getUsersProfile)","params":ary,"id":randomInt()]
+        
+        Alamofire.request("\(API_URL)\(API_PROFILE)", method: .post ,parameters:parameters ,  encoding: JSONEncoding.default , headers: ["Authorization": " Bearer \(user.get("Token"))"]).responseJSON{ response in
+            guard let jr = JsonReturn.get(res: response) else {
+                return
+            }
+            
+            //檢查錯誤
+            let err = jr.getErrorCode()
+            if (err < 0){
+                self.handleError(err)
+                completion(false, nil)
+                
+                //處理失敗
+                return
+            }
+            
+            //檢查結果
+            let res = jr.result!
+            
+            let list = UsersProfileData(JSON: res)
+            
+            completion(true, list)
+        }
+    }
+
 
 
     
@@ -265,7 +294,7 @@ class APIManager: NSObject {
         let parameters: Parameters = ["jsonrpc":"2.0","method":"\(API_METHOD.getReceipts)","params":ary,"id":randomInt()]
         
         Alamofire.request("\(API_URL)\(API_TRADING)", method: .post ,parameters:parameters ,  encoding: JSONEncoding.default , headers: ["Authorization": " Bearer \(user.get("Token"))"]).responseJSON{ response in
-            
+            print(response)
             guard let jr = JsonReturn.get(res: response) else {
                 return
             }
@@ -338,7 +367,7 @@ class APIManager: NSObject {
     
     
     //取得個人設定
-    func getProfile(completion:@escaping(String?,Data?,String?)->Void){
+    func getProfile(completion:@escaping(String?,URL?,String?)->Void){
         let ary = [String]()
         let parameters: Parameters = ["jsonrpc":"2.0","method":"\(API_METHOD.getProfile)","params":ary,"id":randomInt()]
         
@@ -354,28 +383,17 @@ class APIManager: NSObject {
                 let imageUrlString = JsData["result"]!["avatar"]
                 if let imageUrl = URL(string: imageUrlString as! String) {
 
-                    URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, response, error) in
+                    completion((name as! String),imageUrl,"ok")
 
-                        if error != nil {
 
-                            print("Download Image Task Fail: \(error!.localizedDescription)")
-                        }
-                        else if let imageData = data {
-
-                            DispatchQueue.main.async {
-                                completion((name as! String),imageData,"ok")
-                            }
-                        }
-
-                    }).resume()
+                    }
                 }
                 
                 
-            }else{
             }
             
         }
-    }
+    
     
     func handleError(_ err:Int){
         
